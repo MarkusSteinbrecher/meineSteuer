@@ -44,3 +44,35 @@ werte:
   liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: dbg, hinweis: "Gebäude bis 10 Jahre alt, des Mietertrags bzw. Eigenmietwerts" }
   liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: dbg, hinweis: "Gebäude älter als 10 Jahre" }
   hoechstsatz: { wert: 11.5, einheit: prozent, quelle: dbg, artikel: DBG Art. 36 }
+# Tarif DBG Art. 36, Steuerjahr 2025: ab (steuerbares Einkommen) → Steuer an der Stufe, je weitere CHF 100.
+# Letzte Stufe: satz_ganz = Prozentsatz auf dem ganzen Einkommen.
+tarife:
+  quelle: estv-rs-2025
+  ledig:
+    - { ab: 0, steuer: 0, je100: 0 }
+    - { ab: 15200, steuer: 0, je100: 0.77 }
+    - { ab: 33200, steuer: 138.60, je100: 0.88 }
+    - { ab: 43500, steuer: 229.20, je100: 2.64 }
+    - { ab: 58000, steuer: 612.00, je100: 2.97 }
+    - { ab: 76100, steuer: 1149.55, je100: 5.94 }
+    - { ab: 82000, steuer: 1500.00, je100: 6.60 }
+    - { ab: 108800, steuer: 3268.80, je100: 8.80 }
+    - { ab: 141500, steuer: 6146.40, je100: 11.00 }
+    - { ab: 184900, steuer: 10920.40, je100: 13.20 }
+    - { ab: 793400, satz_ganz: 11.5 }
+  verheiratet:
+    - { ab: 0, steuer: 0, je100: 0 }
+    - { ab: 29700, steuer: 0, je100: 1 }
+    - { ab: 53400, steuer: 237, je100: 2 }
+    - { ab: 61300, steuer: 395, je100: 3 }
+    - { ab: 79100, steuer: 929, je100: 4 }
+    - { ab: 94900, steuer: 1561, je100: 5 }
+    - { ab: 108600, steuer: 2246, je100: 6 }
+    - { ab: 120500, steuer: 2960, je100: 7 }
+    - { ab: 130500, steuer: 3660, je100: 8 }
+    - { ab: 138300, steuer: 4284, je100: 9 }
+    - { ab: 144200, steuer: 4815, je100: 10 }
+    - { ab: 148200, steuer: 5215, je100: 11 }
+    - { ab: 150300, steuer: 5446, je100: 12 }
+    - { ab: 152300, steuer: 5686, je100: 13 }
+    - { ab: 940900, satz_ganz: 11.5 }

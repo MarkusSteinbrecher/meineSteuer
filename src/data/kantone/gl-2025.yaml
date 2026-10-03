@@ -1,0 +1,72 @@
+# Kanton Glarus, Steuerjahr 2025. Quellen: research_notes/…/02, 05, 09
+kanton: GL
+name: Glarus
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://www.gl.ch/verwaltung/finanzen-und-gesundheit/steuern/online-formulare/fuer-natuerliche-personen.html/500
+quellen:
+  gl-online-formulare:
+    titel: Kanton Glarus – Online-Formulare für natürliche Personen
+    url: https://www.gl.ch/verwaltung/finanzen-und-gesundheit/steuern/online-formulare/fuer-natuerliche-personen.html/500
+  gl-wegleitung-2025:
+    titel: Kanton Glarus – Wegleitung zur Steuererklärung 2025
+    url: https://www.gl.ch/public/upload/assets/59619/01%20Wegleitung%202025.pdf
+  sm-fahrkosten:
+    titel: ESTV-Steuermäppchen 2025 – Fahrkosten
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-kinderabzug:
+    titel: ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  sm-drittbetreuung:
+    titel: ESTV-Steuermäppchen 2025 – Drittbetreuungskosten
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-zweiverdiener:
+    titel: ESTV-Steuermäppchen 2025 – Zweiverdienerabzug
+    url: https://www.estv2.admin.ch/stp/sm/zweitverdiener-de-fr.pdf
+  sm-ehepaare:
+    titel: ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-abzug-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, persönlicher Abzug
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-v-de-fr.pdf
+  sm-kinderabzug-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, Kinderabzug
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-v-de-fr.pdf
+  sm-minimum-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, steuerfreies Minimum
+    url: https://www.estv2.admin.ch/stp/sm/steuerfreies-minimum-v-de-fr.pdf
+  sm-liegenschaft:
+    titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
+    url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+frist:
+  text: Auf dem persönlichen Formular aufgedruckt (Versand Ende Januar)
+  verlaengerung: Online auf efristen.gl.ch/np mit PID und Geburtsdatum gebührenfrei bis 31. Dezember 2026; danach schriftlich, CHF 30. Nach der zweiten Mahnung keine Fristverlängerung mehr.
+  quelle: gl-online-formulare
+software:
+  name: eTax.GL
+  unterschriftsfrei: true
+  login: Registrierung mit Zwei-Faktor-Authentifizierung
+  quelle: gl-wegleitung-2025
+ehepaare:
+  modell: splitting
+  divisor: 1.7
+  beschreibung: Teilsplitting für Verheiratete und Alleinerziehende mit Divisor 1,7.
+  quelle: sm-ehepaare
+fahrkosten_unbegrenzt: { quelle: sm-fahrkosten }
+werte:
+  kinderabzug: { wert: 7200, typ: abzug, quelle: sm-kinderabzug }
+  kinderdrittbetreuung_max: { wert: 25800, typ: abzug, quelle: sm-drittbetreuung }
+  versicherung_alleinstehend: { wert: 3100, typ: abzug, quelle: sm-versicherung }
+  versicherung_alleinstehend_ohne_vorsorge: { wert: 4650, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet: { wert: 6200, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet_ohne_vorsorge: { wert: 9300, typ: abzug, quelle: sm-versicherung }
+  versicherung_pro_kind: { wert: 1000, typ: abzug, quelle: sm-versicherung }
+  zweiverdiener: { wert: 10300, typ: abzug, quelle: sm-zweiverdiener, hinweis: "10 % des tieferen Einkommens, mindestens 3600, höchstens 10'300" }
+  vermoegen_freibetrag_alleinstehend: { wert: 77300, typ: freibetrag, quelle: sm-abzug-vermoegen }
+  vermoegen_freibetrag_verheiratet: { wert: 154600, typ: freibetrag, quelle: sm-abzug-vermoegen, hinweis: gilt auch für Alleinerziehende }
+  vermoegen_freibetrag_pro_kind: { wert: 25800, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
+  liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre alt; kein Pauschalabzug für unbebaute Grundstücke" }
+  liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude älter als 10 Jahre; kein Pauschalabzug für unbebaute Grundstücke" }

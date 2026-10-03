@@ -1,0 +1,30 @@
+---
+/** Federal tariff table (DBG Art. 36) from the data file. */
+import { getEntry } from 'astro:content';
+import { AKTUELLES_STEUERJAHR } from '../lib/site';
+import { formatWert } from '../lib/format';
+
+interface Props { art: 'ledig' | 'verheiratet'; jahr?: number }
+const { art, jahr = AKTUELLES_STEUERJAHR } = Astro.props;
+const daten = (await getEntry('bund', String(jahr)))?.data;
+if (!daten?.tarife) throw new Error(`Kein Bundestarif für ${jahr}`);
+const quelle = daten.quellen[daten.tarife.quelle];
+const zahl = new Intl.NumberFormat('de-CH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const stufen = daten.tarife[art].filter((s) => 'satz_ganz' in s || s.je100 > 0);
+---
+<figure>
+  <table>
+    <thead><tr><th data-num>Steuerbares Einkommen ab</th><th data-num>Steuer an dieser Stufe</th><th data-num>Für je weitere CHF 100</th></tr></thead>
+    <tbody>
+      {stufen.map((s) => (
+        <tr>
+          <td data-num>{formatWert(s.ab, 'CHF')}</td>
+          {'satz_ganz' in s
+            ? <td data-num colspan="2">{s.satz_ganz} % auf dem ganzen Einkommen</td>
+            : <><td data-num>CHF {zahl.format(s.steuer)}</td><td data-num>CHF {zahl.format(s.je100)}</td></>}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  <figcaption>Direkte Bundessteuer, {art === 'ledig' ? 'Grundtarif für Alleinstehende' : 'Tarif für Verheiratete und Alleinerziehende'}, Steuerjahr {jahr}. Quelle: <a href={quelle.url}>{quelle.titel}</a>.</figcaption>
+</figure>

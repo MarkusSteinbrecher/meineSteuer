@@ -16,7 +16,7 @@ const ehepaarText = { doppeltarif: 'Doppeltarif', splitting: 'Splitting', famili
   </header>
   <div class="uebersicht">
     <table>
-      <thead><tr><th>Kanton</th><th>Frist</th><th>Software</th><th>Ehepaare</th><th data-num>Fahrkosten max.</th><th data-num>Kinderabzug</th></tr></thead>
+      <thead><tr><th>Kanton</th><th>Frist</th><th>Software</th><th>Ehepaare</th><th data-num>Fahrkosten max.</th><th data-num>Kinderabzug (Grundbetrag)</th></tr></thead>
       <tbody>
         {KANTONE.map(([code, name]) => {
           const k = daten.get(code);
@@ -26,8 +26,8 @@ const ehepaarText = { doppeltarif: 'Doppeltarif', splitting: 'Splitting', famili
               <td>{k.frist.text}</td>
               <td>{k.software.name}</td>
               <td>{ehepaarText[k.ehepaare.modell]}{k.ehepaare.divisor ? ` ${k.ehepaare.divisor}` : ''}</td>
-              <td data-num>{k.werte.fahrkosten_max ? formatWert(k.werte.fahrkosten_max.wert, 'CHF') : 'unbegrenzt'}</td>
-              <td data-num>{k.werte.kinderabzug ? formatWert(k.werte.kinderabzug.wert, 'CHF') : '–'}</td>
+              <td data-num>{k.werte.fahrkosten_max ? formatWert(k.werte.fahrkosten_max.wert, 'CHF') : k.fahrkosten_unbegrenzt ? 'unbegrenzt' : '–'}</td>
+              <td data-num>{k.werte.kinderabzug ? `${formatWert(k.werte.kinderabzug.wert, 'CHF')}${k.werte.kinderabzug.typ === 'steuergutschrift' ? ' Gutschrift' : ''}` : '–'}</td>
             </tr>
           ) : (
             <tr><td>{name}</td><td colspan="5" style="color: var(--fg-subtle)">Daten folgen</td></tr>

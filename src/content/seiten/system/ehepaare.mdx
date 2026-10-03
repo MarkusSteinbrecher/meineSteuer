@@ -1,0 +1,52 @@
+---
+titel: Ehepaare und Familien
+beschreibung: Ehepaare werden gemeinsam besteuert, Kinder bringen Abzüge. Was ab 2032 mit der Individualbesteuerung ändert.
+bereich: system
+reihenfolge: 50
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+quellen:
+  - titel: Bundesgesetz über die direkte Bundessteuer (DBG, SR 642.11)
+    url: https://www.fedlex.admin.ch/eli/cc/1991/1184_1184_1184/de
+    artikel: Art. 9, 33, 35, 36
+  - titel: ESTV, Rundschreiben 2-210-D-2024 – Abzüge und Tarife, Steuerjahr 2025
+    url: https://www.estv.admin.ch/dam/de/sd-web/zkUbFt0fCQiy/dbst-rs-2-210-d-2024-de.pdf
+  - titel: ESTV – Individualbesteuerung
+    url: https://www.estv.admin.ch/de/individualbesteuerung
+  - titel: Bundesrat – Inkraftsetzung der Individualbesteuerung (19. August 2026)
+    url: https://www.admin.ch/de/newnsb/khPH1Sn08Zr6iGZYe4tsB
+  - titel: ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+---
+import Betrag from '../../../components/Betrag.astro';
+
+## Ein Haushalt, eine Steuererklärung
+
+Ehepaare und eingetragene Paare füllen **eine** gemeinsame Steuererklärung aus. Ihre Einkommen und Vermögen werden zusammengezählt (Art. 9 DBG). Das gilt für das ganze Jahr, in dem sie heiraten. Trennen oder scheiden sie sich, werden sie für das ganze Jahr wieder einzeln besteuert.
+
+Weil der Tarif progressiv ist, würde das Zusammenzählen Ehepaare stärker belasten als zwei Einzelpersonen. Der Bund gleicht das mit drei Instrumenten aus:
+
+- einem eigenen, tieferen **Tarif für Verheiratete**,
+- dem **Zweiverdienerabzug**, wenn beide arbeiten: 50 % des tieferen Einkommens, mindestens <Betrag k="zweiverdiener_min" />, höchstens <Betrag k="zweiverdiener_max" />,
+- dem **Verheiratetenabzug** von <Betrag k="verheiratetenabzug" />.
+
+Auch die Kantone müssen Ehepaare entlasten, wählen die Methode aber selbst: einen Doppeltarif wie Zürich und Bern, ein Splitting wie St. Gallen und Aargau oder ein eigenes Modell wie die Waadt. Welche Methode Ihr Kanton anwendet, steht auf der Kantonsseite.
+
+## Kinder
+
+Für jedes minderjährige Kind und für Kinder in Ausbildung gibt es beim Bund:
+
+- den **Kinderabzug** von <Betrag k="kinderabzug" /> pro Kind,
+- den **Abzug für Kinderbetreuung durch Dritte**, etwa Kita oder Tagesschule, bis <Betrag k="kinderdrittbetreuung_max" /> pro Kind unter 14 Jahren, wenn die Eltern arbeiten oder in Ausbildung sind,
+- einen höheren **Versicherungsabzug**: <Betrag k="versicherung_pro_kind" /> pro Kind,
+- den **Elterntarif**: Die Steuer wird pro Kind um <Betrag k="elterntarif_pro_kind" /> reduziert.
+
+Die Kantone kennen ähnliche Abzüge mit eigenen Beträgen.
+
+## Konkubinat
+
+Unverheiratete Paare füllen je eine eigene Steuererklärung aus. Bei gemeinsamen Kindern hängt die Verteilung der Kinderabzüge davon ab, wer das Sorgerecht hat und wer Unterhalt bezahlt.
+
+## Ab 2032: Individualbesteuerung
+
+Das Volk hat am 8. März 2026 die **Individualbesteuerung** angenommen. Der Bundesrat setzt sie auf den **1. Januar 2032** in Kraft. Ab dann füllt jede Person eine eigene Steuererklärung aus, auch in der Ehe, und der Kinderabzug beim Bund steigt auf CHF 12'000. Bis und mit Steuerjahr 2031 gilt die gemeinsame Besteuerung, wie sie hier beschrieben ist.

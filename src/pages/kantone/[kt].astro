@@ -9,9 +9,12 @@ export async function getStaticPaths() {
 }
 const { k } = Astro.props;
 const quellenListe = Object.values(k.quellen);
-const zeilen = await Promise.all(ABZUG_ZEILEN.filter((z) => k.werte[z.kanton]).map(async (z) => ({
+const unbegrenzt = { wert: 0, einheit: 'CHF', typ: 'abzug' as const, quelle: k.fahrkosten_unbegrenzt?.quelle ?? '', ungeprueft: false, unbegrenzt: true };
+const kantonsWert = (key: string) =>
+  key === 'fahrkosten_max' && !k.werte[key] && k.fahrkosten_unbegrenzt ? unbegrenzt : k.werte[key];
+const zeilen = await Promise.all(ABZUG_ZEILEN.filter((z) => kantonsWert(z.kanton)).map(async (z) => ({
   ...z,
-  kantonWert: k.werte[z.kanton],
+  kantonWert: kantonsWert(z.kanton)!,
   bundWert: z.bund ? await wertHolen('bund', z.bund, k.steuerjahr) : null,
 })));
 const headings = [
@@ -20,13 +23,15 @@ const headings = [
   { depth: 2, slug: 'ehepaare', text: 'Ehepaare' },
   { depth: 2, slug: 'vermoegen', text: 'Vermögenssteuer' },
 ];
-const zelle = (w: { wert: number; einheit: string; ungeprueft?: boolean; hinweis?: string }) =>
-  `${formatWert(w.wert, w.einheit)}${w.ungeprueft ? ' (ungeprüft)' : ''}`;
+const zelle = (w: { wert: number; einheit: string; ungeprueft?: boolean; unbegrenzt?: boolean }) =>
+  w.unbegrenzt ? 'unbegrenzt' : `${formatWert(w.wert, w.einheit)}${w.ungeprueft ? ' (ungeprüft)' : ''}`;
+const v = k.werte;
+const chf = (w?: { wert: number }) => (w ? formatWert(w.wert, 'CHF') : undefined);
 ---
 <Seite titel={`Kanton ${k.name}`} beschreibung={`Was im Kanton ${k.name} für die Steuererklärung ${k.steuerjahr} gilt: Frist, Software, Abzüge und Besonderheiten.`}
   bereich="kantone" steuerjahr={k.steuerjahr} geprueft_am={k.geprueft_am} quellen={quellenListe} headings={headings}>
   <h2 id="einreichen">Frist und Einreichen</h2>
-  <p>Die Steuererklärung {k.steuerjahr} ist im Kanton {k.name} bis am <strong>{k.frist.datum ? formatDatum(k.frist.datum) : k.frist.text}</strong> einzureichen. Massgebend ist die Frist in Ihrem Steuerbrief.</p>
+  <p>Frist für die Steuererklärung {k.steuerjahr} im Kanton {k.name}: <strong>{k.frist.text.replace(/\.$/, '')}</strong>. Massgebend ist die Frist in Ihrem Steuerbrief.</p>
   <p>{k.frist.verlaengerung}</p>
   <p>Ausfüllen können Sie die Erklärung mit <strong>{k.software.url ? <a href={k.software.url}>{k.software.name}</a> : k.software.name}</strong>
     {k.software.login && <>, Anmeldung mit {k.software.login}</>}.
@@ -54,7 +59,12 @@ const zelle = (w: { wert: number; einheit: string; ungeprueft?: boolean; hinweis
   <p>{k.ehepaare.beschreibung}</p>
 
   <h2 id="vermoegen">Vermögenssteuer</h2>
-  {k.werte.vermoegen_minimum_alleinstehend ? (
-    <p>Vermögen bis {formatWert(k.werte.vermoegen_minimum_alleinstehend.wert, 'CHF')} (Alleinstehende) bzw. {formatWert(k.werte.vermoegen_minimum_verheiratet?.wert ?? 0, 'CHF')} (Verheiratete) ist steuerfrei. Massgebend ist das Reinvermögen am 31. Dezember. Der Bund erhebt keine Vermögenssteuer.</p>
-  ) : <p>Angaben folgen.</p>}
+  <p>Die Vermögenssteuer erhebt nur der Kanton mit den Gemeinden; der Bund kennt keine. Massgebend ist das Reinvermögen am 31. Dezember.</p>
+  {v.vermoegen_minimum_alleinstehend && (
+    <p>Vermögen bis {chf(v.vermoegen_minimum_alleinstehend)} (Alleinstehende){v.vermoegen_minimum_verheiratet && <> bzw. {chf(v.vermoegen_minimum_verheiratet)} (Verheiratete)</>} ist steuerfrei (steuerfreies Minimum). Ob darüber das ganze Vermögen oder nur der übersteigende Teil besteuert wird, regelt der Tarif des Kantons.</p>
+  )}
+  {v.vermoegen_freibetrag_alleinstehend && (
+    <p>Vom Reinvermögen werden {chf(v.vermoegen_freibetrag_alleinstehend)} (Alleinstehende){v.vermoegen_freibetrag_verheiratet && <> bzw. {chf(v.vermoegen_freibetrag_verheiratet)} (Verheiratete)</>}{v.vermoegen_freibetrag_pro_kind && <> und {chf(v.vermoegen_freibetrag_pro_kind)} pro Kind</>} abgezogen. Nur der Rest wird besteuert.</p>
+  )}
+  {!v.vermoegen_minimum_alleinstehend && !v.vermoegen_freibetrag_alleinstehend && <p>Die steuerfreien Beträge für diesen Kanton sind noch nicht erfasst.</p>}
 </Seite>

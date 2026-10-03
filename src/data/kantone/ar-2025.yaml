@@ -1,0 +1,66 @@
+# Kanton Appenzell Ausserrhoden, Steuerjahr 2025. Quellen: research_notes/…/02, 05, 09
+kanton: AR
+name: Appenzell Ausserrhoden
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://ar.ch/verwaltung/departement-finanzen/steuerverwaltung/steuererklaerungen-fristverlaengerungen/
+quellen:
+  sm-kinderabzug:
+    titel: ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  ar-frist:
+    titel: "Kanton Appenzell Ausserrhoden – Steuererklärungen, Fristverlängerungen"
+    url: https://ar.ch/verwaltung/departement-finanzen/steuerverwaltung/steuererklaerungen-fristverlaengerungen/
+  ar-digital:
+    titel: "Kanton Appenzell Ausserrhoden – Einladung zur digitalen Steuererklärung (21.01.2026)"
+    url: https://ar.ch/verwaltung/departement-finanzen/steuerverwaltung/news-aus-der-steuerverwaltung/detail/news/appenzell-ausserrhoden-laedt-zur-digitalen-steuererklaerung-ein/
+  sm-fahrkosten:
+    titel: "ESTV-Steuermäppchen 2025 – Fahrkosten"
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-drittbetreuung:
+    titel: "ESTV-Steuermäppchen 2025 – Drittbetreuungskosten"
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: "ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen"
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-zweiverdiener:
+    titel: "ESTV-Steuermäppchen 2025 – Zweiverdienerabzug"
+    url: https://www.estv2.admin.ch/stp/sm/zweitverdiener-de-fr.pdf
+  sm-ehepaare:
+    titel: "ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting"
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-abzug-vermoegen:
+    titel: "ESTV-Steuermäppchen 2025 – Vermögenssteuer, persönlicher Abzug"
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-v-de-fr.pdf
+  sm-kinderabzug-vermoegen:
+    titel: "ESTV-Steuermäppchen 2025 – Vermögenssteuer, Kinderabzug"
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-v-de-fr.pdf
+  sm-liegenschaft:
+    titel: "ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)"
+    url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+frist:
+  text: "Steht auf Seite 1 des persönlichen Formulars"
+  verlaengerung: "Online über esteuern.ar.ch oder telefonisch (071 353 62 90); die erste Verlängerung ist gebührenfrei, jede weitere kostet CHF 25."
+  quelle: ar-frist
+software:
+  name: "mein.ar.ch / esteuern.ar.ch"
+  unterschriftsfrei: true
+  login: "AGOV (erhöhte Authentifizierung für das Steuerkonto)"
+  quelle: ar-digital
+ehepaare:
+  modell: doppeltarif
+  beschreibung: "Eigener Tarif für Verheiratete mit einer Nullstufe auf den ersten 16 700 Franken."
+  quelle: sm-ehepaare
+werte:
+  kinderabzug: { wert: 5300, typ: abzug, quelle: sm-kinderabzug, hinweis: "bis 4 Jahre; 7'400 bis 15 Jahre; 11'600 ab 15 Jahren und in Ausbildung bis 26" }
+  fahrkosten_max: { wert: 6000, typ: abzug, quelle: sm-fahrkosten }
+  kinderdrittbetreuung_max: { wert: 25000, typ: abzug, quelle: sm-drittbetreuung }
+  versicherung_alleinstehend: { wert: 2700, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet: { wert: 5400, typ: abzug, quelle: sm-versicherung }
+  versicherung_pro_kind: { wert: 1000, typ: abzug, quelle: sm-versicherung }
+  zweiverdiener: { wert: 5200, typ: abzug, quelle: sm-zweiverdiener, hinweis: "10 % des tieferen Nettoeinkommens, mindestens 2500, höchstens 5200" }
+  vermoegen_freibetrag_alleinstehend: { wert: 75000, typ: freibetrag, quelle: sm-abzug-vermoegen }
+  vermoegen_freibetrag_verheiratet: { wert: 150000, typ: freibetrag, quelle: sm-abzug-vermoegen }
+  vermoegen_freibetrag_pro_kind: { wert: 25000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
+  liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre" }
+  liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude über 10 Jahre; kein Pauschalabzug bei Bruttomietertrag aller Liegenschaften über 100000" }

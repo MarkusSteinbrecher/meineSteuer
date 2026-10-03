@@ -1,0 +1,65 @@
+# Kanton Waadt, Steuerjahr 2025. Quellen: research_notes/…/02, 05, 09
+kanton: VD
+name: Waadt
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://www.vd.ch/etat-droit-finances/impots/impots-pour-les-individus/demander-un-delai-pour-deposer-ma-declaration-dimpot
+quellen:
+  sm-kinderabzug:
+    titel: ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  vd-delai:
+    titel: Kanton Waadt – Demander un délai pour déposer ma déclaration d'impôt
+    url: https://www.vd.ch/etat-droit-finances/impots/impots-pour-les-individus/demander-un-delai-pour-deposer-ma-declaration-dimpot
+  vd-vaudtax:
+    titel: Kanton Waadt – Aide VaudTax 2025
+    url: https://www.vd.ch/etat-droit-finances/impots/impots-pour-les-individus/remplir-ma-declaration-dimpot/prestation-vaudtax/aide-prestation-vaudtax-2025
+  kb-vd:
+    titel: ESTV-Kantonsblatt Waadt (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/vd-fr.pdf
+  sm-fahrkosten:
+    titel: ESTV-Steuermäppchen 2025 – Fahrkosten
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-drittbetreuung:
+    titel: ESTV-Steuermäppchen 2025 – Drittbetreuungskosten
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-zweiverdiener:
+    titel: ESTV-Steuermäppchen 2025 – Zweiverdienerabzug
+    url: https://www.estv2.admin.ch/stp/sm/zweitverdiener-de-fr.pdf
+  sm-ehepaare:
+    titel: ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-minimum-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, steuerfreies Minimum
+    url: https://www.estv2.admin.ch/stp/sm/steuerfreies-minimum-v-de-fr.pdf
+frist:
+  datum: 2026-03-15
+  text: 15. März 2026 (gesetzliche Frist; ohne Gesuch toleriert bis 30. Juni 2026)
+  verlaengerung: Gebührenfrei über e-Délai (Steuernummer und Kontrollcode), Gesuch bis 30. Juni; Verlängerung bis 30. September (Wortlaut der Seite nicht eindeutig); für Vertreter gesammelt bis 31. Oktober.
+  quelle: vd-delai
+software:
+  name: VaudTax 2025
+  url: https://www.vd.ch/etat-droit-finances/impots/impots-pour-les-individus/remplir-ma-declaration-dimpot/prestation-vaudtax/aide-prestation-vaudtax-2025
+  unterschriftsfrei: true
+  login: Steuernummer und Kontrollcode oder Portail sécurisé (SMS-Code)
+  quelle: vd-vaudtax
+ehepaare:
+  modell: familienquotient
+  divisor: 1.8
+  beschreibung: Familienquotient – das Einkommen wird durch 1,8 (Ehepaare) bzw. 1,3 (Alleinerziehende) geteilt, zusätzlich 0,5 pro Kind (begrenzt).
+  quelle: sm-ehepaare
+fahrkosten_unbegrenzt: { quelle: sm-fahrkosten }
+werte:
+  kinderabzug: { wert: 1000, typ: abzug, quelle: sm-kinderabzug, hinweis: "nur bei Nettoeinkommen bis 126'300; Hauptentlastung über den Familienquotienten" }
+  kinderdrittbetreuung_max: { wert: 15200, typ: abzug, quelle: sm-drittbetreuung, ungeprueft: true, hinweis: "ESTV-Tabelle «2025» zeigt laut Kantonsblatt bereits den indexierten Wert 2026; für 2025 vermutlich CHF 15 000" }
+  versicherung_alleinstehend: { wert: 5000, typ: abzug, quelle: sm-versicherung, ungeprueft: true, hinweis: "ESTV-Tabelle «2025» zeigt laut Kantonsblatt bereits den indexierten Wert 2026; für 2025 vermutlich CHF 4800. Sparzinsen separat bis CHF 1600" }
+  versicherung_verheiratet: { wert: 9900, typ: abzug, quelle: sm-versicherung, ungeprueft: true, hinweis: "ESTV-Tabelle «2025» zeigt laut Kantonsblatt bereits den indexierten Wert 2026; für 2025 vermutlich CHF 9600. Sparzinsen separat bis CHF 3300" }
+  versicherung_pro_kind: { wert: 1300, typ: abzug, quelle: sm-versicherung, ungeprueft: true, hinweis: "aus derselben ESTV-Tabelle, die für VD bereits Werte 2026 zeigt; plus CHF 300 Sparzinsen" }
+  zweiverdiener: { wert: 1700, typ: abzug, quelle: sm-zweiverdiener, ungeprueft: true, hinweis: "ESTV-Tabelle «2025» zeigt laut Kantonsblatt bereits den indexierten Wert 2026; für 2025 vermutlich CHF 1500" }
+  vermoegen_minimum_alleinstehend: { wert: 60000, typ: nullstufe, quelle: sm-minimum-vermoegen, ungeprueft: true, hinweis: "ESTV-Tabelle «2025» zeigt laut Kantonsblatt bereits den indexierten Wert 2026; für 2025 vermutlich CHF 50 000" }
+  vermoegen_minimum_verheiratet: { wert: 120000, typ: nullstufe, quelle: sm-minimum-vermoegen, ungeprueft: true, hinweis: "ESTV-Tabelle «2025» zeigt laut Kantonsblatt bereits den indexierten Wert 2026; für 2025 vermutlich CHF 100 000" }
+  liegenschaft_pauschal_neu: { wert: 20, einheit: prozent, typ: abzug, quelle: kb-vd, hinweis: "selbst bewohnte Liegenschaft bis 20 Jahre alt (übrige 10 %); kein Pauschalabzug bei Bruttomietertrag über CHF 150 000" }
+  liegenschaft_pauschal_alt: { wert: 30, einheit: prozent, typ: abzug, quelle: kb-vd, hinweis: "selbst bewohnte Liegenschaft über 20 Jahre alt (übrige 20 %); kein Pauschalabzug bei Bruttomietertrag über CHF 150 000" }

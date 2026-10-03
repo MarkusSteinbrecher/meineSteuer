@@ -1,0 +1,48 @@
+---
+titel: Tarif und Progression
+beschreibung: Wer mehr verdient, zahlt einen höheren Anteil. So funktioniert der Tarif der direkten Bundessteuer, mit zwei Rechenbeispielen.
+bereich: system
+reihenfolge: 25
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+quellen:
+  - titel: Bundesgesetz über die direkte Bundessteuer (DBG, SR 642.11)
+    url: https://www.fedlex.admin.ch/eli/cc/1991/1184_1184_1184/de
+    artikel: Art. 36
+  - titel: ESTV, Rundschreiben 2-210-D-2024 – Abzüge und Tarife, Steuerjahr 2025
+    url: https://www.estv.admin.ch/dam/de/sd-web/zkUbFt0fCQiy/dbst-rs-2-210-d-2024-de.pdf
+---
+import Betrag from '../../../components/Betrag.astro';
+import BundTarif from '../../../components/BundTarif.astro';
+import BundSteuer from '../../../components/BundSteuer.astro';
+import { pfad } from '../../../lib/site';
+
+Die Schweiz besteuert das Einkommen **progressiv**: Mit jedem zusätzlichen Franken steigt nicht nur der Steuerbetrag, sondern auch der Anteil, den Sie abgeben. Wer wenig verdient, zahlt bei der Bundessteuer nichts.
+
+## Steuerbares Einkommen ist nicht der Lohn
+
+Der Tarif gilt für das **steuerbare** Einkommen. Das ist, was nach allen Abzügen übrig bleibt: Lohn und übrige Einkünfte, minus Berufskosten, Sozialversicherungsbeiträge, Säule 3a, Versicherungsprämien, Kinderabzüge und weitere Abzüge. Wer CHF 100'000 brutto verdient, hat oft ein steuerbares Einkommen von deutlich weniger.
+
+## Der Tarif für Alleinstehende
+
+<BundTarif art="ledig" />
+
+So lesen Sie die Tabelle: Liegt Ihr steuerbares Einkommen bei CHF 100'000, gilt die Zeile ab CHF 82'000. Die Steuer beträgt CHF 1'500 plus CHF 6.60 für jede weiteren vollen CHF 100, also 180 × 6.60. Das ergibt <BundSteuer einkommen={100000} art="ledig" />, rund 2.7 % des steuerbaren Einkommens.
+
+Ganz oben ist der Satz auf <Betrag k="hoechstsatz" /> begrenzt. Ab dieser Stufe gilt er für das ganze Einkommen.
+
+## Verheiratete und Alleinerziehende
+
+Für Ehepaare und für Alleinerziehende, die mit ihren Kindern zusammenleben, gilt ein eigener, tieferer Tarif. Von der so berechneten Steuer werden pro Kind <Betrag k="elterntarif_pro_kind" /> abgezogen.
+
+<BundTarif art="verheiratet" />
+
+Ein Ehepaar mit zwei Kindern und CHF 120'000 steuerbarem Einkommen zahlt nach diesem Tarif CHF 2'246 plus 114 × CHF 6, minus 2 × <Betrag k="elterntarif_pro_kind" />. Das sind <BundSteuer einkommen={120000} art="verheiratet" kinder={2} />.
+
+Steuerbeträge unter CHF 25 werden nicht erhoben.
+
+## Und die Kantone?
+
+Die Kantone haben eigene Tarife, die meist stärker ins Gewicht fallen als die Bundessteuer. Wie Kanton und Gemeinde rechnen, erklärt die Seite <a href={pfad('system/steuerfuss')}>Einfache Steuer mal Steuerfuss</a>.
+
+<aside class="sd-notice" role="note"><div class="sd-notice__body"><span>Die Rechenbeispiele sind eigene Berechnungen aus dem amtlichen Tarif, keine amtlichen Werte. Für Ihre persönliche Berechnung gibt es den <a href="https://swisstaxcalculator.estv.admin.ch/">Steuerrechner der ESTV</a>.</span></div></aside>

@@ -1,0 +1,61 @@
+# Kanton Thurgau, Steuerjahr 2025. Quellen: research_notes/…/02, 05, 09
+kanton: TG
+name: Thurgau
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://steuerverwaltung.tg.ch/informationen/faq/natuerliche-personen.html/3823
+quellen:
+  sm-kinderabzug:
+    titel: ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  tg-frist:
+    titel: Steuerverwaltung Thurgau – Fristverlängerungen
+    url: https://steuerverwaltung.tg.ch/hauptrubrik-1/veranlagung-und-bezug/fristverlaengerungen.html/2884
+  tg-faq:
+    titel: Steuerverwaltung Thurgau – FAQ natürliche Personen
+    url: https://steuerverwaltung.tg.ch/informationen/faq/natuerliche-personen.html/3823
+  sm-fahrkosten:
+    titel: ESTV-Steuermäppchen 2025 – Fahrkosten
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-drittbetreuung:
+    titel: ESTV-Steuermäppchen 2025 – Drittbetreuungskosten
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-ehepaare:
+    titel: ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-persoenlich-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, persönlicher Abzug
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-v-de-fr.pdf
+  sm-kinderabzug-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, Kinderabzug
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-v-de-fr.pdf
+  sm-liegenschaft:
+    titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
+    url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+frist:
+  text: Vom Gemeindesteueramt festgelegt und auf der Steuererklärung aufgedruckt.
+  verlaengerung: Über die Gemeinde (oft per eFristverlängerung). Erste Verlängerung gebührenfrei bis höchstens 30. September; weitere nur mit Begründung bis 30. November (noch nicht bestätigt).
+  quelle: tg-frist
+software:
+  name: eFisc
+  quelle: tg-faq
+ehepaare:
+  modell: splitting
+  divisor: 2
+  beschreibung: Vollsplitting – das gemeinsame Einkommen wird zum Satz für die Hälfte besteuert.
+  quelle: sm-ehepaare
+werte:
+  kinderabzug: { wert: 7400, typ: abzug, quelle: sm-kinderabzug, hinweis: "bis 16 Jahre; 8'500 in Ausbildung bis 20; 10'600 in Ausbildung bis 26; zusätzlich Steuergutschrift bis 100 Franken" }
+  fahrkosten_max: { wert: 6000, typ: abzug, quelle: sm-fahrkosten }
+  kinderdrittbetreuung_max: { wert: 10100, typ: abzug, quelle: sm-drittbetreuung, hinweis: "75 % der nachgewiesenen Kosten, höchstens dieser Betrag" }
+  versicherung_alleinstehend: { wert: 3500, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet: { wert: 7000, typ: abzug, quelle: sm-versicherung }
+  versicherung_pro_kind: { wert: 1000, typ: abzug, quelle: sm-versicherung }
+  vermoegen_freibetrag_alleinstehend: { wert: 100000, typ: freibetrag, quelle: sm-persoenlich-vermoegen }
+  vermoegen_freibetrag_verheiratet: { wert: 200000, typ: freibetrag, quelle: sm-persoenlich-vermoegen }
+  vermoegen_freibetrag_pro_kind: { wert: 100000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
+  liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre alt; kein Pauschalabzug bei Bruttomietertrag über CHF 50 000" }
+  liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude über 10 Jahre alt; kein Pauschalabzug bei Bruttomietertrag über CHF 50 000" }

@@ -1,0 +1,61 @@
+# Kanton Wallis, Steuerjahr 2025. Quellen: research_notes/…/02, 05, 09
+kanton: VS
+name: Wallis
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://geo.vs.ch/documents/d/scc/guide-2025_f_final
+quellen:
+  sm-kinderabzug:
+    titel: ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  vs-calendrier:
+    titel: Kanton Wallis – Calendrier 2025 personnes physiques
+    url: https://www.vs.ch/documents/d/scc/zeitplan_2025_np_fr_final
+  vs-guide:
+    titel: Kanton Wallis – Guide 2025
+    url: https://geo.vs.ch/documents/d/scc/guide-2025_f_final
+  sm-fahrkosten:
+    titel: ESTV-Steuermäppchen 2025 – Fahrkosten
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-drittbetreuung:
+    titel: ESTV-Steuermäppchen 2025 – Drittbetreuungskosten
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-zweiverdiener:
+    titel: ESTV-Steuermäppchen 2025 – Zweiverdienerabzug
+    url: https://www.estv2.admin.ch/stp/sm/zweitverdiener-de-fr.pdf
+  sm-ehepaare:
+    titel: ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-persoenlich-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, persönlicher Abzug
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-v-de-fr.pdf
+  sm-liegenschaft:
+    titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
+    url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+frist:
+  datum: 2026-03-31
+  text: 31. März 2026
+  verlaengerung: Durch Bezahlen des der Steuererklärung beiliegenden Einzahlungsscheins über CHF 20 (Betrag noch nicht bestätigt). Unselbständigerwerbende bis 31. Juli 2026, Selbständigerwerbende und Treuhänder bis 31. Oktober 2026, Sonderfälle bis 31. Dezember 2026.
+  quelle: vs-calendrier
+software:
+  name: VSTax
+  quelle: vs-guide
+ehepaare:
+  modell: rabatt
+  beschreibung: Einheitstarif mit einem Rabatt von 35 % auf der Kantons- und Gemeindeeinkommenssteuer für Verheiratete und Alleinerziehende, mindestens CHF 680, höchstens CHF 4900.
+  quelle: sm-ehepaare
+fahrkosten_unbegrenzt: { quelle: sm-fahrkosten }
+werte:
+  kinderabzug: { wert: 7860, typ: abzug, quelle: sm-kinderabzug, hinweis: "bis 6 Jahre; 8'940 von 6 bis 16; 11'930 ab 16 in Ausbildung; zusätzlich 300 Franken Reduktion der Kantonssteuer" }
+  kinderdrittbetreuung_max: { wert: 10000, typ: abzug, quelle: sm-drittbetreuung, hinweis: "alternativ CHF 3130 bei Eigenbetreuung, nicht kumulierbar" }
+  versicherung_alleinstehend: { wert: 3620, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet: { wert: 7240, typ: abzug, quelle: sm-versicherung }
+  versicherung_pro_kind: { wert: 1130, typ: abzug, quelle: sm-versicherung }
+  zweiverdiener: { wert: 6290, typ: abzug, quelle: sm-zweiverdiener }
+  vermoegen_freibetrag_alleinstehend: { wert: 45000, typ: freibetrag, quelle: sm-persoenlich-vermoegen }
+  vermoegen_freibetrag_verheiratet: { wert: 90000, typ: freibetrag, quelle: sm-persoenlich-vermoegen, hinweis: "gilt auch für Alleinerziehende" }
+  liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre alt" }
+  liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude über 10 Jahre alt" }

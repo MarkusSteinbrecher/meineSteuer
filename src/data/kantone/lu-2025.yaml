@@ -1,0 +1,70 @@
+# Kanton Luzern, Steuerjahr 2025. Quellen: research_notes/…/02, 05, 09
+kanton: LU
+name: Luzern
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://steuerbuch.lu.ch/band2/verfahren/frist_zur_einreichung_der_steuererklaerung
+quellen:
+  lu-merkblatt-2025:
+    titel: Kanton Luzern – Merkblatt 2025 A, Information zur Steuererklärung
+    url: https://steuern.lu.ch/-/media/Steuern/Dokumente/Publikationen/2026/Merkblatt_2025_A_Information_zur_Steuererklrung.pdf
+  lu-steuerbuch-frist:
+    titel: Steuerbuch Luzern – Frist zur Einreichung der Steuererklärung
+    url: https://steuerbuch.lu.ch/band2/verfahren/frist_zur_einreichung_der_steuererklaerung
+  sm-fahrkosten:
+    titel: ESTV-Steuermäppchen 2025 – Fahrkosten
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-kinderabzug:
+    titel: ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  sm-drittbetreuung:
+    titel: ESTV-Steuermäppchen 2025 – Drittbetreuungskosten
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-zweiverdiener:
+    titel: ESTV-Steuermäppchen 2025 – Zweiverdienerabzug
+    url: https://www.estv2.admin.ch/stp/sm/zweitverdiener-de-fr.pdf
+  sm-ehepaare:
+    titel: ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-abzug-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, persönlicher Abzug
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-v-de-fr.pdf
+  sm-kinderabzug-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, Kinderabzug
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-v-de-fr.pdf
+  sm-minimum-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, steuerfreies Minimum
+    url: https://www.estv2.admin.ch/stp/sm/steuerfreies-minimum-v-de-fr.pdf
+  sm-liegenschaft:
+    titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
+    url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+frist:
+  text: Auf dem persönlichen Formular aufgedruckt (für Unselbständigerwerbende vermutlich 31. März 2026, noch nicht bestätigt)
+  verlaengerung: "Online-Fristerstreckung auf steuern.lu.ch (QR-Code auf dem Formular); online höchstens bis 31. August 2026 für Unselbständigerwerbende und 30. November 2026 für Selbständigerwerbende oder Vertretene (ungeprüft); keine Gebühr erwähnt."
+  quelle: lu-merkblatt-2025
+software:
+  name: eSteuern.lu.ch
+  unterschriftsfrei: true
+  quelle: lu-merkblatt-2025
+ehepaare:
+  modell: doppeltarif
+  beschreibung: Eigener, tieferer Tarif für Verheiratete.
+  quelle: sm-ehepaare
+werte:
+  fahrkosten_max: { wert: 6500, typ: abzug, quelle: sm-fahrkosten }
+  kinderabzug: { wert: 8000, typ: abzug, quelle: sm-kinderabzug }
+  kinderdrittbetreuung_max: { wert: 20000, typ: abzug, quelle: sm-drittbetreuung, hinweis: "zusätzlich 2000 für Eigenbetreuung" }
+  versicherung_alleinstehend: { wert: 2600, typ: abzug, quelle: sm-versicherung }
+  versicherung_alleinstehend_ohne_vorsorge: { wert: 3300, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet: { wert: 5200, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet_ohne_vorsorge: { wert: 6700, typ: abzug, quelle: sm-versicherung }
+  versicherung_pro_kind: { wert: 700, typ: abzug, quelle: sm-versicherung }
+  zweiverdiener: { wert: 5000, typ: abzug, quelle: sm-zweiverdiener, hinweis: fester Betrag }
+  vermoegen_freibetrag_alleinstehend: { wert: 62500, typ: freibetrag, quelle: sm-abzug-vermoegen }
+  vermoegen_freibetrag_verheiratet: { wert: 125000, typ: freibetrag, quelle: sm-abzug-vermoegen }
+  vermoegen_freibetrag_pro_kind: { wert: 12500, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
+  liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre alt; reduziert, wenn Mieter den Unterhalt tragen" }
+  liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude älter als 10 Jahre; reduziert, wenn Mieter den Unterhalt tragen" }

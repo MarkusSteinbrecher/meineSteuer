@@ -29,6 +29,12 @@ const wert = z.object({
   ungeprueft: z.boolean().default(false),
 });
 
+/** One bracket of a progressive tariff. The last bracket may instead apply one rate to the whole income. */
+const tarifStufe = z.union([
+  z.object({ ab: z.number(), steuer: z.number(), je100: z.number() }),
+  z.object({ ab: z.number(), satz_ganz: z.number() }),
+]);
+
 /** Every `quelle` reference inside a data file must point to an entry in its `quellen` map. */
 function quellenPruefen<T extends { quellen: Record<string, unknown> }>(daten: T, ctx: z.RefinementCtx) {
   const bekannt = new Set(Object.keys(daten.quellen));
@@ -68,6 +74,13 @@ const bund = defineCollection({
       geprueft_am: z.coerce.date(),
       quellen: z.record(z.string(), quelle),
       werte: z.record(z.string(), wert),
+      tarife: z
+        .object({
+          quelle: z.string(),
+          ledig: z.array(tarifStufe).min(2),
+          verheiratet: z.array(tarifStufe).min(2),
+        })
+        .optional(),
     })
     .superRefine(quellenPruefen),
 });
@@ -101,6 +114,8 @@ const kantone = defineCollection({
         beschreibung: z.string(),
         quelle: z.string(),
       }),
+      /** Commuting costs deductible without cap. Set explicitly: a missing fahrkosten_max alone means «unknown». */
+      fahrkosten_unbegrenzt: z.object({ quelle: z.string() }).optional(),
       werte: z.record(z.string(), wert),
     })
     .superRefine(quellenPruefen),

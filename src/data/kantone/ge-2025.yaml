@@ -1,0 +1,68 @@
+# Kanton Genf, Steuerjahr 2025. Quellen: research_notes/…/02, 05, 09
+kanton: GE
+name: Genf
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://www.ge.ch/remplir-ma-declaration-impot-tant-que-particulier/demander-delai-ma-declaration-impot
+quellen:
+  sm-kinderabzug:
+    titel: ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  ge-delai:
+    titel: Kanton Genf – Demander un délai pour ma déclaration d'impôt
+    url: https://www.ge.ch/remplir-ma-declaration-impot-tant-que-particulier/demander-delai-ma-declaration-impot
+  ge-getax:
+    titel: Kanton Genf – GeTax herunterladen und installieren
+    url: https://www.ge.ch/getax/telecharger-installer-getax-particuliers
+  sm-fahrkosten:
+    titel: ESTV-Steuermäppchen 2025 – Fahrkosten
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-drittbetreuung:
+    titel: ESTV-Steuermäppchen 2025 – Drittbetreuungskosten
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-zweiverdiener:
+    titel: ESTV-Steuermäppchen 2025 – Zweiverdienerabzug
+    url: https://www.estv2.admin.ch/stp/sm/zweitverdiener-de-fr.pdf
+  sm-ehepaare:
+    titel: ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-persoenlich-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, persönlicher Abzug
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-v-de-fr.pdf
+  sm-kinderabzug-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, Kinderabzug
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-v-de-fr.pdf
+  sm-liegenschaft:
+    titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
+    url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+frist:
+  text: 31. März 2026 (noch nicht bestätigt)
+  verlaengerung: Über e-démarches, anonymes Formular, Telefon 022 546 94 00 oder Post (1. Januar bis 31. Oktober; November und Dezember nur schriftlich). Bis 3 Monate CHF 20, bis 5 Monate CHF 40, über 5 Monate CHF 60.
+  quelle: ge-delai
+software:
+  name: GeTax
+  url: https://www.ge.ch/getax/telecharger-installer-getax-particuliers
+  quelle: ge-getax
+ehepaare:
+  modell: splitting
+  divisor: 2
+  beschreibung: Vollsplitting – das gemeinsame Einkommen wird zum Satz für die Hälfte besteuert. Getrennt lebende Elternteile mit geteilter Obhut erhalten ein Teilsplitting von 55,56 %.
+  quelle: sm-ehepaare
+werte:
+  kinderabzug: { wert: 13660, typ: abzug, quelle: sm-kinderabzug, hinweis: "pro «charge de famille»; halbe Charge 6'830" }
+  fahrkosten_max: { wert: 534, typ: abzug, quelle: sm-fahrkosten, hinweis: "Pauschale für alle Verkehrsmittel" }
+  kinderdrittbetreuung_max: { wert: 26320, typ: abzug, quelle: sm-drittbetreuung }
+  versicherung_alleinstehend: { wert: 2345, typ: abzug, quelle: sm-versicherung, hinweis: "Kranken- und Unfallprämien separat abziehbar bis zum Doppelten der kantonalen Durchschnittsprämie: 0–18 Jahre CHF 3965, 19–25 Jahre CHF 12 842, ab 26 Jahren CHF 17 122" }
+  versicherung_alleinstehend_ohne_vorsorge: { wert: 4690, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet: { wert: 3518, typ: abzug, quelle: sm-versicherung, hinweis: "Kranken- und Unfallprämien separat abziehbar (altersabhängige Höchstbeträge); ist nur ein Ehegatte einer Vorsorgeeinrichtung angeschlossen, CHF 5277" }
+  versicherung_verheiratet_ohne_vorsorge: { wert: 7036, typ: abzug, quelle: sm-versicherung }
+  versicherung_pro_kind: { wert: 959, typ: abzug, quelle: sm-versicherung, hinweis: "pro unterstützte Person (charge de famille)" }
+  zweiverdiener: { wert: 1051, typ: abzug, quelle: sm-zweiverdiener }
+  vermoegen_freibetrag_alleinstehend: { wert: 87632, typ: freibetrag, quelle: sm-persoenlich-vermoegen }
+  vermoegen_freibetrag_verheiratet: { wert: 175264, typ: freibetrag, quelle: sm-persoenlich-vermoegen, hinweis: "gilt auch für Alleinerziehende" }
+  vermoegen_freibetrag_pro_kind: { wert: 43816, typ: freibetrag, quelle: sm-kinderabzug-vermoegen, hinweis: "abzüglich des eigenen Vermögens des Kindes" }
+  liegenschaft_pauschal_neu: { wert: 15, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre alt; auf dem Eigenmietwert nach Abschlag" }
+  liegenschaft_pauschal_alt: { wert: 25, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude über 10 Jahre alt; auf dem Eigenmietwert nach Abschlag" }

@@ -1,0 +1,72 @@
+# Kanton St. Gallen, Steuerjahr 2025. Quellen: research_notes/…/02, 05, 09
+kanton: SG
+name: St. Gallen
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://www.sg.ch/steuern-finanzen/steuern/elektronische-steuererklaerung/etaxnp.html
+quellen:
+  sm-kinderabzug:
+    titel: ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  sg-frist:
+    titel: "Kanton St. Gallen – Fristverlängerung Privatpersonen"
+    url: https://www.sg.ch/steuern-finanzen/steuern/fristverlaengerung/privatpersonen.html
+  sg-etax:
+    titel: "Kanton St. Gallen – E-Tax für natürliche Personen"
+    url: https://www.sg.ch/steuern-finanzen/steuern/elektronische-steuererklaerung/etaxnp.html
+  sg-news-etax:
+    titel: "Kanton St. Gallen – Neue Online-Steuererklärung E-Tax SG (Januar 2026)"
+    url: https://www.sg.ch/news/sgch_allgemein/2026/01/neue-online-steuererklaerung-e-tax-sg.html
+  sm-fahrkosten:
+    titel: "ESTV-Steuermäppchen 2025 – Fahrkosten"
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-drittbetreuung:
+    titel: "ESTV-Steuermäppchen 2025 – Drittbetreuungskosten"
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: "ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen"
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-zweiverdiener:
+    titel: "ESTV-Steuermäppchen 2025 – Zweiverdienerabzug"
+    url: https://www.estv2.admin.ch/stp/sm/zweitverdiener-de-fr.pdf
+  sm-ehepaare:
+    titel: "ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting"
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-abzug-vermoegen:
+    titel: "ESTV-Steuermäppchen 2025 – Vermögenssteuer, persönlicher Abzug"
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-v-de-fr.pdf
+  sm-kinderabzug-vermoegen:
+    titel: "ESTV-Steuermäppchen 2025 – Vermögenssteuer, Kinderabzug"
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-v-de-fr.pdf
+  sm-liegenschaft:
+    titel: "ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)"
+    url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+frist:
+  text: "31. März 2026 (nicht bestätigt)"
+  verlaengerung: "Online mit Register-Nummer und Geburtsdatum (Schalter E / eGov-Bot), sofortiger Entscheid; nur wenn fällige Rechnungen bezahlt sind. Gebühr und Höchstdauer nicht bekannt."
+  quelle: sg-frist
+software:
+  name: "E-Tax SG"
+  url: https://www.sg.ch/steuern-finanzen/steuern/elektronische-steuererklaerung/etaxnp.html
+  unterschriftsfrei: true
+  login: "E-Login mit AGOV"
+  quelle: sg-news-etax
+ehepaare:
+  modell: splitting
+  divisor: 2
+  beschreibung: "Vollsplitting: Das gemeinsame Einkommen wird zum Satz der Hälfte besteuert."
+  quelle: sm-ehepaare
+werte:
+  kinderabzug: { wert: 7600, typ: abzug, quelle: sm-kinderabzug, hinweis: "noch nicht schulpflichtig; 10'800 in schulischer oder beruflicher Ausbildung" }
+  fahrkosten_max: { wert: 8000, typ: abzug, quelle: sm-fahrkosten }
+  kinderdrittbetreuung_max: { wert: 26700, typ: abzug, quelle: sm-drittbetreuung }
+  versicherung_alleinstehend: { wert: 3400, typ: abzug, quelle: sm-versicherung }
+  versicherung_alleinstehend_ohne_vorsorge: { wert: 3900, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet: { wert: 6800, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet_ohne_vorsorge: { wert: 7900, typ: abzug, quelle: sm-versicherung }
+  versicherung_pro_kind: { wert: 1100, typ: abzug, quelle: sm-versicherung }
+  zweiverdiener: { wert: 500, typ: abzug, quelle: sm-zweiverdiener }
+  vermoegen_freibetrag_alleinstehend: { wert: 75000, typ: freibetrag, quelle: sm-abzug-vermoegen }
+  vermoegen_freibetrag_verheiratet: { wert: 150000, typ: freibetrag, quelle: sm-abzug-vermoegen }
+  vermoegen_freibetrag_pro_kind: { wert: 20000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
+  liegenschaft_pauschal: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "unabhängig vom Alter des Gebäudes; vom Bruttomietertrag ohne Nebenkosten oder vom Eigenmietwert" }

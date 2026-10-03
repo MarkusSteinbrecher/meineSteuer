@@ -1,0 +1,66 @@
+# Kanton Neuenburg, Steuerjahr 2025. Quellen: research_notes/…/02, 05, 09
+kanton: NE
+name: Neuenburg
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://www.ne.ch/autorites/DFS/SCCO/clic-tax/Pages/accueil.aspx
+quellen:
+  sm-kinderabzug:
+    titel: ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  ne-instructions:
+    titel: Kanton Neuenburg – Instructions générales personnes physiques
+    url: https://www.ne.ch/sites/default/files/2025-10/SCCO_I754_InstructionsGenerales_PP.pdf
+  ne-delai:
+    titel: Kanton Neuenburg – Formulaire demande de délai
+    url: https://www.ne.ch/autorites/DFS/SCCO/impot-pp/Pages/form-demande-delais-pp.aspx
+  ne-clictax:
+    titel: Kanton Neuenburg – Clic&Tax
+    url: https://www.ne.ch/autorites/DFS/SCCO/clic-tax/Pages/accueil.aspx
+  sm-fahrkosten:
+    titel: ESTV-Steuermäppchen 2025 – Fahrkosten
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-drittbetreuung:
+    titel: ESTV-Steuermäppchen 2025 – Drittbetreuungskosten
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-zweiverdiener:
+    titel: ESTV-Steuermäppchen 2025 – Zweiverdienerabzug
+    url: https://www.estv2.admin.ch/stp/sm/zweitverdiener-de-fr.pdf
+  sm-ehepaare:
+    titel: ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-minimum-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, steuerfreies Minimum
+    url: https://www.estv2.admin.ch/stp/sm/steuerfreies-minimum-v-de-fr.pdf
+  sm-liegenschaft:
+    titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
+    url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+frist:
+  text: 20. Februar 2026 (noch nicht bestätigt)
+  verlaengerung: Schriftliches, begründetes Gesuch (Online-Formular oder Guichet unique); bis 30. April gebührenfrei, danach bis CHF 40; nie über den 31. Oktober hinaus (noch nicht bestätigt).
+  quelle: ne-delai
+software:
+  name: Clic&Tax
+  url: https://www.ne.ch/autorites/DFS/SCCO/clic-tax/Pages/accueil.aspx
+  quelle: ne-clictax
+ehepaare:
+  modell: splitting
+  beschreibung: Teilsplitting – das gemeinsame Einkommen wird zum Satz für 52 % besteuert (entspricht etwa Divisor 1,92); gilt auch für das Vermögen.
+  quelle: sm-ehepaare
+fahrkosten_unbegrenzt: { quelle: sm-fahrkosten }
+werte:
+  kinderabzug: { wert: 6200, typ: abzug, quelle: sm-kinderabzug, hinweis: "0 bis 4 Jahre; 6'700 von 4 bis 14; 8'200 über 14; zusätzlich 200 Franken Reduktion der Kantonssteuer" }
+  kinderdrittbetreuung_max: { wert: 20400, typ: abzug, quelle: sm-drittbetreuung, hinweis: "begrenzt auf den Elternbeitrag nach dem kantonalen Betreuungsgesetz (LAE)" }
+  versicherung_alleinstehend: { wert: 2500, typ: abzug, quelle: sm-versicherung }
+  versicherung_alleinstehend_ohne_vorsorge: { wert: 3125, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet: { wert: 4900, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet_ohne_vorsorge: { wert: 6125, typ: abzug, quelle: sm-versicherung }
+  versicherung_pro_kind: { wert: 800, typ: abzug, quelle: sm-versicherung }
+  zweiverdiener: { wert: 1200, typ: abzug, quelle: sm-zweiverdiener, hinweis: "25 % des tieferen Nettoeinkommens, höchstens dieser Betrag" }
+  vermoegen_minimum_alleinstehend: { wert: 50000, typ: nullstufe, quelle: sm-minimum-vermoegen }
+  vermoegen_minimum_verheiratet: { wert: 93000, typ: nullstufe, quelle: sm-minimum-vermoegen, ungeprueft: true, hinweis: "ESTV-Wert; mit dem 52-%-Splitting wären rechnerisch etwa CHF 96 154 zu erwarten" }
+  liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre alt; höchstens CHF 7200" }
+  liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude über 10 Jahre alt; höchstens CHF 12 000" }

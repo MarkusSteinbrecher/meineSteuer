@@ -1,0 +1,15 @@
+---
+/** Computes the federal tax for an example income from the tariff data (not an official calculation). */
+import { getEntry } from 'astro:content';
+import { AKTUELLES_STEUERJAHR } from '../lib/site';
+import { bundessteuer } from '../lib/tarif';
+
+interface Props { einkommen: number; art: 'ledig' | 'verheiratet'; kinder?: number; jahr?: number }
+const { einkommen, art, kinder = 0, jahr = AKTUELLES_STEUERJAHR } = Astro.props;
+const daten = (await getEntry('bund', String(jahr)))?.data;
+if (!daten?.tarife) throw new Error(`Kein Bundestarif für ${jahr}`);
+const gutschrift = kinder * (daten.werte.elterntarif_pro_kind?.wert ?? 0);
+const steuer = Math.max(0, bundessteuer(einkommen, daten.tarife[art]) - gutschrift);
+const text = `CHF ${new Intl.NumberFormat('de-CH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(steuer)}`;
+---
+<span class="betrag" title={`Berechnet aus dem Bundestarif ${jahr} (${art}${kinder ? `, ${kinder} Kinder` : ''}); keine amtliche Berechnung`}>{text}</span>

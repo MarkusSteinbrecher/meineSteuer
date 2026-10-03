@@ -1,0 +1,63 @@
+# Kanton Basel-Stadt, Steuerjahr 2025. Quellen: research_notes/…/02, 05, 09
+kanton: BS
+name: Basel-Stadt
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://www.bs.ch/themen/arbeit-und-steuern/steuererklaerung/steuererklaerung-als-natuerliche-person-einreichen
+quellen:
+  bs-einreichen:
+    titel: "Kanton Basel-Stadt – Steuererklärung als natürliche Person einreichen"
+    url: https://www.bs.ch/themen/arbeit-und-steuern/steuererklaerung/steuererklaerung-als-natuerliche-person-einreichen
+  sm-fahrkosten:
+    titel: "ESTV-Steuermäppchen 2025 – Fahrkosten"
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-kinderabzug:
+    titel: "ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)"
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  sm-drittbetreuung:
+    titel: "ESTV-Steuermäppchen 2025 – Drittbetreuungskosten"
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: "ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen"
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-zweiverdiener:
+    titel: "ESTV-Steuermäppchen 2025 – Zweiverdienerabzug"
+    url: https://www.estv2.admin.ch/stp/sm/zweitverdiener-de-fr.pdf
+  sm-ehepaare:
+    titel: "ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting"
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-abzug-vermoegen:
+    titel: "ESTV-Steuermäppchen 2025 – Vermögenssteuer, persönlicher Abzug"
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-v-de-fr.pdf
+  sm-kinderabzug-vermoegen:
+    titel: "ESTV-Steuermäppchen 2025 – Vermögenssteuer, Kinderabzug"
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-v-de-fr.pdf
+  sm-liegenschaft:
+    titel: "ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)"
+    url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+frist:
+  datum: 2026-03-31
+  text: "31. März 2026"
+  verlaengerung: "Online in eSteuern.BS: gebührenfrei bis 30. September 2026; jede weitere Verlängerung CHF 40; über das Jahresende hinaus nur mit wichtigen Gründen und Vorauszahlung."
+  quelle: bs-einreichen
+software:
+  name: "BalTax Online (eSteuern.BS)"
+  unterschriftsfrei: true
+  login: "AGOV"
+  quelle: bs-einreichen
+ehepaare:
+  modell: doppeltarif
+  beschreibung: "Eigener Tarif B für Verheiratete, dazu hohe persönliche Abzüge (19 500 Alleinstehende, 32 600 Alleinerziehende, 38 000 Verheiratete)."
+  quelle: sm-ehepaare
+werte:
+  fahrkosten_max: { wert: 3200, typ: abzug, quelle: sm-fahrkosten }
+  kinderabzug: { wert: 9000, typ: abzug, quelle: sm-kinderabzug }
+  kinderdrittbetreuung_max: { wert: 26000, typ: abzug, quelle: sm-drittbetreuung }
+  versicherung_alleinstehend: { wert: 4200, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet: { wert: 8400, typ: abzug, quelle: sm-versicherung }
+  zweiverdiener: { wert: 1100, typ: abzug, quelle: sm-zweiverdiener }
+  vermoegen_freibetrag_alleinstehend: { wert: 75000, typ: freibetrag, quelle: sm-abzug-vermoegen }
+  vermoegen_freibetrag_verheiratet: { wert: 150000, typ: freibetrag, quelle: sm-abzug-vermoegen, hinweis: "gilt auch für Alleinerziehende" }
+  vermoegen_freibetrag_pro_kind: { wert: 15000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
+  liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre" }
+  liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude über 10 Jahre" }

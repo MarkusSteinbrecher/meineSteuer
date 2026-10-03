@@ -1,0 +1,67 @@
+# Kanton Appenzell Innerrhoden, Steuerjahr 2025. Quellen: research_notes/…/02, 05, 09
+kanton: AI
+name: Appenzell Innerrhoden
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://www.ai.ch/themen/steuern/steuererklaerung-ausfuellen/fristerstreckung-steuererklaerung
+quellen:
+  sm-kinderabzug:
+    titel: ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  ai-frist:
+    titel: "Kanton Appenzell Innerrhoden – Fristerstreckung Steuererklärung"
+    url: https://www.ai.ch/themen/steuern/steuererklaerung-ausfuellen/fristerstreckung-steuererklaerung
+  ai-digital:
+    titel: "Kanton Appenzell Innerrhoden – Die Zukunft der Steuererklärung ist digital"
+    url: https://www.ai.ch/themen/steuern/aktuelles/die-zukunft-der-steuererklaerung-ist-digital
+  sm-fahrkosten:
+    titel: "ESTV-Steuermäppchen 2025 – Fahrkosten"
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-drittbetreuung:
+    titel: "ESTV-Steuermäppchen 2025 – Drittbetreuungskosten"
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: "ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen"
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-zweiverdiener:
+    titel: "ESTV-Steuermäppchen 2025 – Zweiverdienerabzug"
+    url: https://www.estv2.admin.ch/stp/sm/zweitverdiener-de-fr.pdf
+  sm-ehepaare:
+    titel: "ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting"
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-abzug-vermoegen:
+    titel: "ESTV-Steuermäppchen 2025 – Vermögenssteuer, persönlicher Abzug"
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-v-de-fr.pdf
+  sm-kinderabzug-vermoegen:
+    titel: "ESTV-Steuermäppchen 2025 – Vermögenssteuer, Kinderabzug"
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-v-de-fr.pdf
+  sm-liegenschaft:
+    titel: "ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)"
+    url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+frist:
+  datum: 2026-04-30
+  text: "30. April 2026"
+  verlaengerung: "Höchstens bis 30. November; gilt als gewährt, wenn innert 14 Tagen kein Widerspruch kommt; nur wenn die Rechnungen bis Steuerjahr 2025 bezahlt sind. Gebühr nicht bekannt."
+  quelle: ai-frist
+software:
+  name: "eTax.AI"
+  quelle: ai-digital
+ehepaare:
+  modell: splitting
+  divisor: 2
+  beschreibung: "Vollsplitting: Das gemeinsame Einkommen wird zum Satz der Hälfte besteuert."
+  quelle: sm-ehepaare
+fahrkosten_unbegrenzt: { quelle: sm-fahrkosten }
+werte:
+  kinderabzug: { wert: 6000, typ: abzug, quelle: sm-kinderabzug, hinweis: "für das 1. und 2. Kind; ab dem 3. Kind 8'000; Zuschlag 8'000 bei auswärtiger Ausbildung" }
+  kinderdrittbetreuung_max: { wert: 18000, typ: abzug, quelle: sm-drittbetreuung }
+  versicherung_alleinstehend: { wert: 2900, typ: abzug, quelle: sm-versicherung }
+  versicherung_alleinstehend_ohne_vorsorge: { wert: 3400, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet: { wert: 5800, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet_ohne_vorsorge: { wert: 6800, typ: abzug, quelle: sm-versicherung }
+  versicherung_pro_kind: { wert: 600, typ: abzug, quelle: sm-versicherung }
+  zweiverdiener: { wert: 500, typ: abzug, quelle: sm-zweiverdiener }
+  vermoegen_freibetrag_alleinstehend: { wert: 50000, typ: freibetrag, quelle: sm-abzug-vermoegen }
+  vermoegen_freibetrag_verheiratet: { wert: 100000, typ: freibetrag, quelle: sm-abzug-vermoegen }
+  vermoegen_freibetrag_pro_kind: { wert: 20000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
+  liegenschaft_pauschal: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "unabhängig vom Alter des Gebäudes" }

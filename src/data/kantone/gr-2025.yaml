@@ -1,0 +1,68 @@
+# Kanton Graubünden, Steuerjahr 2025. Quellen: research_notes/…/02, 05, 09
+kanton: GR
+name: Graubünden
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://www.gr.ch/DE/institutionen/verwaltung/dfg/stv/steuererklaerung/einkommens_und_vermoegenssteuer/Seiten/default.aspx
+quellen:
+  sm-kinderabzug:
+    titel: ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  gr-steuererklaerung:
+    titel: "Kanton Graubünden – Einkommens- und Vermögenssteuer"
+    url: https://www.gr.ch/DE/institutionen/verwaltung/dfg/stv/steuererklaerung/einkommens_und_vermoegenssteuer/Seiten/default.aspx
+  gr-praxis-127:
+    titel: "Kanton Graubünden – Praxis 127-01 (Fristerstreckung)"
+    url: https://www.gr.ch/DE/institutionen/verwaltung/dfg/stv/dokumentation/praxis/Verfahren/127-01.pdf
+  sm-fahrkosten:
+    titel: "ESTV-Steuermäppchen 2025 – Fahrkosten"
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-drittbetreuung:
+    titel: "ESTV-Steuermäppchen 2025 – Drittbetreuungskosten"
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: "ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen"
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-zweiverdiener:
+    titel: "ESTV-Steuermäppchen 2025 – Zweiverdienerabzug"
+    url: https://www.estv2.admin.ch/stp/sm/zweitverdiener-de-fr.pdf
+  sm-ehepaare:
+    titel: "ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting"
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-abzug-vermoegen:
+    titel: "ESTV-Steuermäppchen 2025 – Vermögenssteuer, persönlicher Abzug"
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-v-de-fr.pdf
+  sm-kinderabzug-vermoegen:
+    titel: "ESTV-Steuermäppchen 2025 – Vermögenssteuer, Kinderabzug"
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-v-de-fr.pdf
+  sm-liegenschaft:
+    titel: "ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)"
+    url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+frist:
+  datum: 2026-03-31
+  text: "31. März 2026 für Unselbständigerwerbende, Rentner, Studierende und Erben; 30. September 2026 für Selbständigerwerbende"
+  verlaengerung: "Gesuch bis 20. Mai für eine Verlängerung bis höchstens Ende September; zweite Verlängerung mit Begründung vor dem 20. September; über eportal.gr.ch, E-Mail oder Brief. Gebühr nicht bekannt."
+  quelle: gr-praxis-127
+software:
+  name: "SofTax NP (Download)"
+  quelle: gr-steuererklaerung
+ehepaare:
+  modell: splitting
+  divisor: 1.9
+  beschreibung: "Teilsplitting: Das gemeinsame Einkommen wird zum Satz von 52,63 % besteuert."
+  quelle: sm-ehepaare
+fahrkosten_unbegrenzt: { quelle: sm-fahrkosten }
+werte:
+  kinderabzug: { wert: 6600, typ: abzug, quelle: sm-kinderabzug, hinweis: "im Vorschulalter; 9'900 für ältere Kinder und Kinder in Ausbildung; 19'700 bei Wochenaufenthalt am Ausbildungsort" }
+  kinderdrittbetreuung_max: { wert: 10900, typ: abzug, quelle: sm-drittbetreuung, hinweis: "ESTV-Wert 2025; das Kantonsblatt GR nennt 25000 (indexiert 27300 ab 2026); Gesetzestext 2025 nicht geprüft", ungeprueft: true }
+  versicherung_alleinstehend: { wert: 4600, typ: abzug, quelle: sm-versicherung }
+  versicherung_alleinstehend_ohne_vorsorge: { wert: 5800, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet: { wert: 9200, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet_ohne_vorsorge: { wert: 11600, typ: abzug, quelle: sm-versicherung }
+  versicherung_pro_kind: { wert: 1000, typ: abzug, quelle: sm-versicherung }
+  zweiverdiener: { wert: 600, typ: abzug, quelle: sm-zweiverdiener, hinweis: "ESTV-Wert 2025 (Sozialabzug); das Kantonsblatt GR nennt 2000 (indexiert 2200 ab 2026); Gesetzestext 2025 nicht geprüft", ungeprueft: true }
+  vermoegen_freibetrag_alleinstehend: { wert: 69000, typ: freibetrag, quelle: sm-abzug-vermoegen }
+  vermoegen_freibetrag_verheiratet: { wert: 138000, typ: freibetrag, quelle: sm-abzug-vermoegen }
+  vermoegen_freibetrag_pro_kind: { wert: 28000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
+  liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre" }
+  liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude über 10 Jahre; kein Pauschalabzug bei Bruttoeinkommen über 153000" }

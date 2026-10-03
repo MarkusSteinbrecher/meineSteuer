@@ -1,0 +1,72 @@
+# Kanton Bern, Steuerjahr 2025. Quellen: research_notes/…/02, 05, 09
+kanton: BE
+name: Bern
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://www.sv.fin.be.ch/de/start/themen/frist-verlaengern/fristverlaengerung-privatpersonen.html
+quellen:
+  be-fristverlaengerung:
+    titel: Steuerverwaltung Bern – Fristverlängerung Privatpersonen
+    url: https://www.sv.fin.be.ch/de/start/themen/frist-verlaengern/fristverlaengerung-privatpersonen.html
+  be-taxme:
+    titel: Finanzdirektion Bern – Mitteilung zu TaxMe-Online und BE-Login
+    url: https://www.fin.be.ch/de/start.html?newsID=b64c741c-c4d4-4ea9-96a3-ff4015b2c2cf
+  sm-fahrkosten:
+    titel: ESTV-Steuermäppchen 2025 – Fahrkosten
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-kinderabzug:
+    titel: ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  sm-drittbetreuung:
+    titel: ESTV-Steuermäppchen 2025 – Drittbetreuungskosten
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-zweiverdiener:
+    titel: ESTV-Steuermäppchen 2025 – Zweiverdienerabzug
+    url: https://www.estv2.admin.ch/stp/sm/zweitverdiener-de-fr.pdf
+  sm-ehepaare:
+    titel: ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-abzug-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, persönlicher Abzug
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-v-de-fr.pdf
+  sm-kinderabzug-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, Kinderabzug
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-v-de-fr.pdf
+  sm-minimum-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, steuerfreies Minimum
+    url: https://www.estv2.admin.ch/stp/sm/steuerfreies-minimum-v-de-fr.pdf
+  sm-liegenschaft:
+    titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
+    url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+frist:
+  datum: 2026-03-15
+  text: 15. März 2026 (Selbständigerwerbende und Landwirte 15. Mai 2026)
+  verlaengerung: "Über BE-Login (AGOV) unter «Fristverlängerung erfassen»: bis 15. Juli online gratis (sonst CHF 20), bis 15. September CHF 20 online (sonst CHF 40), bis 15. November höchstens CHF 40 online (sonst CHF 60); die Gebühren kommen auf die Schlussrechnung. Wegen eines Betriebsunterbruchs vom 23.10. bis 1.11.2026 gilt statt 15. November der 30. November 2026."
+  quelle: be-fristverlaengerung
+software:
+  name: TaxMe-Online
+  login: AGOV (BE-Login)
+  quelle: be-taxme
+ehepaare:
+  modell: doppeltarif
+  beschreibung: "Eigener, tieferer Tarif für Verheiratete. Persönlicher Abzug: 5300 für Alleinstehende, 7700 für Alleinerziehende und Alleinstehende mit eigenem Haushalt, 10'600 für Verheiratete."
+  quelle: sm-ehepaare
+werte:
+  fahrkosten_max: { wert: 7000, typ: abzug, quelle: sm-fahrkosten }
+  kinderabzug: { wert: 8300, typ: abzug, quelle: sm-kinderabzug, hinweis: "zuzüglich weiterer Zuschläge laut ESTV-Tabelle" }
+  kinderdrittbetreuung_max: { wert: 16000, typ: abzug, quelle: sm-drittbetreuung }
+  versicherung_alleinstehend: { wert: 2450, typ: abzug, quelle: sm-versicherung }
+  versicherung_alleinstehend_ohne_vorsorge: { wert: 3600, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet: { wert: 4900, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet_ohne_vorsorge: { wert: 7200, typ: abzug, quelle: sm-versicherung }
+  versicherung_pro_kind: { wert: 700, typ: abzug, quelle: sm-versicherung }
+  zweiverdiener: { wert: 9500, typ: abzug, quelle: sm-zweiverdiener, hinweis: "2 % des Erwerbseinkommens beider Ehegatten, höchstens 9500 und höchstens das tiefere Einkommen" }
+  vermoegen_freibetrag_verheiratet: { wert: 18000, typ: freibetrag, quelle: sm-abzug-vermoegen }
+  vermoegen_freibetrag_pro_kind: { wert: 18000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
+  vermoegen_minimum_alleinstehend: { wert: 100000, typ: nullstufe, quelle: sm-minimum-vermoegen, hinweis: "Freigrenze: unter 100'000 satzbestimmendem Vermögen keine Steuer; darüber ist das ganze Vermögen steuerbar" }
+  vermoegen_minimum_verheiratet: { wert: 100000, typ: nullstufe, quelle: sm-minimum-vermoegen, hinweis: "Freigrenze: unter 100'000 satzbestimmendem Vermögen keine Steuer; darüber ist das ganze Vermögen steuerbar" }
+  liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre alt" }
+  liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude älter als 10 Jahre" }

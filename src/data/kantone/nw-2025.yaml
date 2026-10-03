@@ -1,0 +1,73 @@
+# Kanton Nidwalden, Steuerjahr 2025. Quellen: research_notes/…/02, 05, 09
+kanton: NW
+name: Nidwalden
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://www.steuern-nw.ch/services/steuererklaerung-etax/
+quellen:
+  nw-fristerstreckung:
+    titel: Steuerverwaltung Nidwalden – Fristerstreckung
+    url: https://www.steuern-nw.ch/services/fristerstreckung/
+  nw-etax:
+    titel: Steuerverwaltung Nidwalden – Steuererklärung eTax
+    url: https://www.steuern-nw.ch/services/steuererklaerung-etax/
+  sm-fahrkosten:
+    titel: ESTV-Steuermäppchen 2025 – Fahrkosten
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-kinderabzug:
+    titel: ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  sm-drittbetreuung:
+    titel: ESTV-Steuermäppchen 2025 – Drittbetreuungskosten
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-zweiverdiener:
+    titel: ESTV-Steuermäppchen 2025 – Zweiverdienerabzug
+    url: https://www.estv2.admin.ch/stp/sm/zweitverdiener-de-fr.pdf
+  sm-ehepaare:
+    titel: ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-abzug-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, persönlicher Abzug
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-v-de-fr.pdf
+  sm-kinderabzug-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, Kinderabzug
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-v-de-fr.pdf
+  sm-minimum-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, steuerfreies Minimum
+    url: https://www.estv2.admin.ch/stp/sm/steuerfreies-minimum-v-de-fr.pdf
+  sm-liegenschaft:
+    titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
+    url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+frist:
+  datum: 2026-03-31
+  text: 31. März 2026
+  verlaengerung: Online (steuern-nw.ch, Services) oder schriftlich; weitere Verlängerungen nur aus Gründen wie Krankheit, Unfall, Militärdienst oder Abwesenheit. Gebühr und Höchstdauer nicht bekannt.
+  quelle: nw-fristerstreckung
+software:
+  name: eTax Nidwalden
+  url: https://www.steuern-nw.ch/services/steuererklaerung-etax/
+  unterschriftsfrei: true
+  quelle: nw-etax
+ehepaare:
+  modell: splitting
+  divisor: 1.85
+  beschreibung: "Teilsplitting für Verheiratete und Alleinerziehende: das Einkommen wird zum Satz von 54,05 % besteuert (Divisor 1,85)."
+  quelle: sm-ehepaare
+werte:
+  fahrkosten_max: { wert: 6000, typ: abzug, quelle: sm-fahrkosten }
+  kinderabzug: { wert: 6400, typ: abzug, quelle: sm-kinderabzug }
+  kinderdrittbetreuung_max: { wert: 8100, typ: abzug, quelle: sm-drittbetreuung, hinweis: "zusätzlich 3100 für Eigenbetreuung" }
+  versicherung_alleinstehend: { wert: 1800, typ: abzug, quelle: sm-versicherung }
+  versicherung_alleinstehend_ohne_vorsorge: { wert: 2700, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet: { wert: 3700, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet_ohne_vorsorge: { wert: 5550, typ: abzug, quelle: sm-versicherung }
+  versicherung_pro_kind: { wert: 700, typ: abzug, quelle: sm-versicherung }
+  zweiverdiener: { wert: 1200, typ: abzug, quelle: sm-zweiverdiener }
+  vermoegen_freibetrag_alleinstehend: { wert: 35000, typ: freibetrag, quelle: sm-abzug-vermoegen }
+  vermoegen_freibetrag_verheiratet: { wert: 70000, typ: freibetrag, quelle: sm-abzug-vermoegen }
+  vermoegen_freibetrag_pro_kind: { wert: 15000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
+  liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre alt" }
+  liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude älter als 10 Jahre" }

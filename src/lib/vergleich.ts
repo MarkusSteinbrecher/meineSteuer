@@ -8,4 +8,6 @@ export const ABZUG_ZEILEN: { label: string; kanton: string; bund: string | null 
   { label: 'Versicherungsprämien, pro Kind', kanton: 'versicherung_pro_kind', bund: 'versicherung_pro_kind' },
   { label: 'Zweiverdienerabzug', kanton: 'zweiverdiener', bund: 'zweiverdiener_max' },
   { label: 'Pauschalabzug Liegenschaftsunterhalt', kanton: 'liegenschaft_pauschal', bund: 'liegenschaft_pauschal_alt' },
+  { label: 'Pauschalabzug Liegenschaftsunterhalt, neuere Gebäude', kanton: 'liegenschaft_pauschal_neu', bund: 'liegenschaft_pauschal_neu' },
+  { label: 'Pauschalabzug Liegenschaftsunterhalt, ältere Gebäude', kanton: 'liegenschaft_pauschal_alt', bund: 'liegenschaft_pauschal_alt' },
 ];

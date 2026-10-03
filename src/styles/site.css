@@ -45,3 +45,9 @@ body { background: var(--bg-page); }
 
 .sd-prose > :first-child { margin-top: 0; }
 .zelle-hinweis { display: block; font: var(--font-caption); letter-spacing: var(--tracking-xs); color: var(--fg-muted); white-space: normal; }
+
+/* Desktop first: prose keeps the reading measure, figures and tables may use the full column */
+.seite-rumpf .sd-prose { max-width: none; }
+.seite-rumpf .sd-prose > :not(figure, table, details) { max-width: var(--measure); }
+.seite-rumpf .sd-prose > details { max-width: var(--measure); }
+.seite-rumpf .sd-prose td .zelle-hinweis { max-width: 32ch; margin-left: auto; }

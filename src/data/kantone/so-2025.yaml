@@ -1,0 +1,70 @@
+# Kanton Solothurn, Steuerjahr 2025. Quellen: research_notes/…/02, 05, 09
+kanton: SO
+name: Solothurn
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://so.ch/verwaltung/finanzdepartement/steueramt/privatpersonen-und-selbstaendig-erwerbende/fristverlaengerungen/
+quellen:
+  so-frist:
+    titel: "Kanton Solothurn – Fristverlängerungen"
+    url: https://so.ch/verwaltung/finanzdepartement/steueramt/privatpersonen-und-selbstaendig-erwerbende/fristverlaengerungen/
+  so-etax:
+    titel: "Kanton Solothurn – Hinweisblatt eTax 2025"
+    url: https://so.ch/fileadmin/internet/fd/fd-ksta/pdf/np/ste/2025_ordentlich/125_Hinweisblatt_eTax_primaer_2025_HA_DEF.pdf
+  sm-fahrkosten:
+    titel: "ESTV-Steuermäppchen 2025 – Fahrkosten"
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-kinderabzug:
+    titel: "ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)"
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  sm-drittbetreuung:
+    titel: "ESTV-Steuermäppchen 2025 – Drittbetreuungskosten"
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: "ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen"
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-zweiverdiener:
+    titel: "ESTV-Steuermäppchen 2025 – Zweiverdienerabzug"
+    url: https://www.estv2.admin.ch/stp/sm/zweitverdiener-de-fr.pdf
+  sm-ehepaare:
+    titel: "ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting"
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-abzug-vermoegen:
+    titel: "ESTV-Steuermäppchen 2025 – Vermögenssteuer, persönlicher Abzug"
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-v-de-fr.pdf
+  sm-kinderabzug-vermoegen:
+    titel: "ESTV-Steuermäppchen 2025 – Vermögenssteuer, Kinderabzug"
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-v-de-fr.pdf
+  sm-liegenschaft:
+    titel: "ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)"
+    url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+frist:
+  datum: 2026-03-31
+  text: "31. März 2026"
+  verlaengerung: "Online über so.ch/fristverlaengerung: bis 31. Juli 2026 gebührenfrei ohne Antwort; bis 30. November 2026 CHF 30 mit Begründung und schriftlicher Antwort; darüber hinaus nur in ausserordentlichen Fällen, je CHF 30."
+  quelle: so-frist
+software:
+  name: "eTax SO"
+  unterschriftsfrei: true
+  login: "eTax-ID, Code und Fall-ID aus dem Steuerbrief"
+  quelle: so-etax
+ehepaare:
+  modell: splitting
+  divisor: 1.9
+  beschreibung: "Teilsplitting: Das gemeinsame Einkommen wird zum Satz von 52,63 % besteuert; gilt auch für Verwitwete im Todesjahr und zwei weitere Jahre."
+  quelle: sm-ehepaare
+werte:
+  fahrkosten_max: { wert: 7000, typ: abzug, quelle: sm-fahrkosten }
+  kinderabzug: { wert: 9000, typ: abzug, quelle: sm-kinderabzug }
+  kinderdrittbetreuung_max: { wert: 25000, typ: abzug, quelle: sm-drittbetreuung }
+  versicherung_alleinstehend: { wert: 2500, typ: abzug, quelle: sm-versicherung }
+  versicherung_alleinstehend_ohne_vorsorge: { wert: 3750, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet: { wert: 5000, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet_ohne_vorsorge: { wert: 7500, typ: abzug, quelle: sm-versicherung }
+  versicherung_pro_kind: { wert: 650, typ: abzug, quelle: sm-versicherung, hinweis: "975 ohne Beiträge an 2. Säule oder 3a" }
+  zweiverdiener: { wert: 1000, typ: abzug, quelle: sm-zweiverdiener }
+  vermoegen_freibetrag_alleinstehend: { wert: 60000, typ: freibetrag, quelle: sm-abzug-vermoegen }
+  vermoegen_freibetrag_verheiratet: { wert: 100000, typ: freibetrag, quelle: sm-abzug-vermoegen, hinweis: "gilt auch für Alleinerziehende" }
+  vermoegen_freibetrag_pro_kind: { wert: 20000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
+  liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre" }
+  liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude über 10 Jahre" }

@@ -1,0 +1,69 @@
+# Kanton Tessin, Steuerjahr 2025. Quellen: research_notes/…/02, 05, 09
+kanton: TI
+name: Tessin
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://www4.ti.ch/tich/area-media/comunicati/dettaglio-comunicato?NEWS_ID=257983&cHash=155880c40e5f8328a3c7c401c6afa133
+quellen:
+  sm-kinderabzug:
+    titel: ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  ti-comunicato:
+    titel: Kanton Tessin – Comunicato stampa zur Steuererklärung 2025
+    url: https://www4.ti.ch/tich/area-media/comunicati/dettaglio-comunicato?NEWS_ID=257983&cHash=155880c40e5f8328a3c7c401c6afa133
+  sm-fahrkosten:
+    titel: ESTV-Steuermäppchen 2025 – Fahrkosten
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-drittbetreuung:
+    titel: ESTV-Steuermäppchen 2025 – Drittbetreuungskosten
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-zweiverdiener:
+    titel: ESTV-Steuermäppchen 2025 – Zweiverdienerabzug
+    url: https://www.estv2.admin.ch/stp/sm/zweitverdiener-de-fr.pdf
+  sm-ehepaare:
+    titel: ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-persoenlich-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, persönlicher Abzug
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-v-de-fr.pdf
+  sm-kinderabzug-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, Kinderabzug
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-v-de-fr.pdf
+  sm-minimum-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, steuerfreies Minimum
+    url: https://www.estv2.admin.ch/stp/sm/steuerfreies-minimum-v-de-fr.pdf
+  sm-liegenschaft:
+    titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
+    url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+frist:
+  datum: 2026-04-30
+  text: 30. April 2026
+  verlaengerung: Online unter ti.ch/pf-proroga mit Registernummer und Geburtsdatum, Bestätigung als PDF. Bis 31. Dezember 2026 möglich (noch nicht bestätigt); Gebühr nicht angegeben.
+  quelle: ti-comunicato
+software:
+  name: eTax TI
+  unterschriftsfrei: true
+  quelle: ti-comunicato
+ehepaare:
+  modell: doppeltarif
+  beschreibung: Eigener, tieferer Tarif für Verheiratete; gilt auch für Verwitwete, für Geschiedene und Getrenntlebende nur im laufenden Jahr.
+  quelle: sm-ehepaare
+fahrkosten_unbegrenzt: { quelle: sm-fahrkosten }
+werte:
+  kinderabzug: { wert: 11500, typ: abzug, quelle: sm-kinderabzug, hinweis: "pro Kind; zusätzlich bis 13'900 für Kinder in Ausbildung bis 28" }
+  kinderdrittbetreuung_max: { wert: 26200, typ: abzug, quelle: sm-drittbetreuung }
+  versicherung_alleinstehend: { wert: 5500, typ: abzug, quelle: sm-versicherung }
+  versicherung_alleinstehend_ohne_vorsorge: { wert: 7800, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet: { wert: 10900, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet_ohne_vorsorge: { wert: 15400, typ: abzug, quelle: sm-versicherung }
+  versicherung_pro_kind: { wert: 1200, typ: abzug, quelle: sm-versicherung }
+  zweiverdiener: { wert: 8100, typ: abzug, quelle: sm-zweiverdiener }
+  vermoegen_freibetrag_verheiratet: { wert: 60000, typ: freibetrag, quelle: sm-persoenlich-vermoegen }
+  vermoegen_freibetrag_pro_kind: { wert: 30000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
+  vermoegen_minimum_alleinstehend: { wert: 200000, typ: nullstufe, quelle: sm-minimum-vermoegen, hinweis: "keine Vermögenssteuer unterhalb dieses Betrags" }
+  vermoegen_minimum_verheiratet: { wert: 200000, typ: nullstufe, quelle: sm-minimum-vermoegen, hinweis: "keine Vermögenssteuer unterhalb dieses Betrags" }
+  liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre alt" }
+  liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude über 10 Jahre alt" }

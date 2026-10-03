@@ -1,0 +1,76 @@
+# Kanton Jura, Steuerjahr 2025. Quellen: research_notes/…/02, 05, 09
+kanton: JU
+name: Jura
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://www.jura.ch/DFI/CTR/JuraTax-Online/JuraTax-Online.html
+quellen:
+  sm-kinderabzug:
+    titel: ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  ju-faq-delai:
+    titel: Kanton Jura – FAQ Frist für die Steuererklärung
+    url: https://faq.jura.ch/space/CTR/634716623/Dans+quel+d+lai+dois-je+retourner+ma+d+claration+d+imp+t
+  ju-nouveautes:
+    titel: Kanton Jura – Nouveautés pour l'année fiscale 2025
+    url: https://guichet.jura.ch/fr/Actualites/Nouveautes-pour-l-annee-fiscale-2025.html
+  ju-juratax:
+    titel: Kanton Jura – JuraTax Online
+    url: https://www.jura.ch/DFI/CTR/JuraTax-Online/JuraTax-Online.html
+  sm-fahrkosten:
+    titel: ESTV-Steuermäppchen 2025 – Fahrkosten
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-drittbetreuung:
+    titel: ESTV-Steuermäppchen 2025 – Drittbetreuungskosten
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-zweiverdiener:
+    titel: ESTV-Steuermäppchen 2025 – Zweiverdienerabzug
+    url: https://www.estv2.admin.ch/stp/sm/zweitverdiener-de-fr.pdf
+  sm-ehepaare:
+    titel: ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-persoenlich-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, persönlicher Abzug
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-v-de-fr.pdf
+  sm-kinderabzug-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, Kinderabzug
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-v-de-fr.pdf
+  sm-minimum-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, steuerfreies Minimum
+    url: https://www.estv2.admin.ch/stp/sm/steuerfreies-minimum-v-de-fr.pdf
+  sm-liegenschaft:
+    titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
+    url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+frist:
+  text: Ende Februar 2026 (laut FAQ); wer bis 13. August 2026 einreicht, erhält keine Mahnung, bis 18. September 2026 keine Sommation.
+  verlaengerung: Bis 31. Oktober 2026 online oder per PDF-Formular; für Vertreter bis 15. Dezember. Gebühr nicht angegeben.
+  quelle: ju-faq-delai
+software:
+  name: JuraTax Online
+  url: https://www.jura.ch/DFI/CTR/JuraTax-Online/JuraTax-Online.html
+  login: SwissID (verifiziert)
+  quelle: ju-juratax
+ehepaare:
+  modell: doppeltarif
+  beschreibung: Eigener, tieferer Tarif für Verheiratete.
+  quelle: sm-ehepaare
+fahrkosten_unbegrenzt: { quelle: sm-fahrkosten }
+werte:
+  kinderabzug: { wert: 5700, typ: abzug, quelle: sm-kinderabzug, hinweis: "pro Kind; 6'400 ab 3 Kindern; Zuschläge bei auswärtiger Ausbildung" }
+  kinderdrittbetreuung_max: { wert: 10600, typ: abzug, quelle: sm-drittbetreuung }
+  versicherung_alleinstehend: { wert: 3400, typ: abzug, quelle: sm-versicherung }
+  versicherung_alleinstehend_ohne_vorsorge: { wert: 4190, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet: { wert: 6800, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet_ohne_vorsorge: { wert: 8380, typ: abzug, quelle: sm-versicherung, hinweis: "wenn kein Ehegatte Beiträge an 2. Säule oder 3a leistet; nur einer: CHF 7590" }
+  versicherung_pro_kind: { wert: 1020, typ: abzug, quelle: sm-versicherung, hinweis: "CHF 3400 für junge Erwachsene in Ausbildung" }
+  zweiverdiener: { wert: 2700, typ: abzug, quelle: sm-zweiverdiener }
+  vermoegen_freibetrag_alleinstehend: { wert: 28500, typ: freibetrag, quelle: sm-persoenlich-vermoegen }
+  vermoegen_freibetrag_verheiratet: { wert: 57000, typ: freibetrag, quelle: sm-persoenlich-vermoegen }
+  vermoegen_freibetrag_pro_kind: { wert: 28500, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
+  vermoegen_minimum_alleinstehend: { wert: 58000, typ: nullstufe, quelle: sm-minimum-vermoegen, hinweis: "keine Vermögenssteuer unterhalb dieses Betrags" }
+  vermoegen_minimum_verheiratet: { wert: 58000, typ: nullstufe, quelle: sm-minimum-vermoegen, hinweis: "keine Vermögenssteuer unterhalb dieses Betrags" }
+  liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre alt" }
+  liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude über 10 Jahre alt" }
