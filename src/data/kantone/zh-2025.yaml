@@ -1,0 +1,69 @@
+# Kanton Zürich, Steuerjahr 2025. Quellen: research_notes/…/05, 06, 09
+kanton: ZH
+name: Zürich
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+steuerverwaltung: https://www.zh.ch/de/steuern-finanzen/steuern.html
+quellen:
+  zh-steuererklaerung:
+    titel: Kanton Zürich – Steuererklärung natürliche Personen
+    url: https://www.zh.ch/de/steuern-finanzen/steuern/steuern-natuerliche-personen/steuererklaerung-natuerliche-personen.html
+  zh-wegleitung-2025:
+    titel: Kanton Zürich – Wegleitung zur Steuererklärung 2025
+    url: https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/steuern-finanzen/steuern/natuerlichepersonen/2025/est-wegleitungen-uj/305%20Wegleitung%20ZH%202025%20UJ%20bf%20DEF.pdf
+  estv-stf-2026:
+    titel: ESTV – Steuersatz und Steuerfuss (Stand 1.1.2026)
+    url: https://www.estv2.admin.ch/stp/ds/e-steuersatz-steuerfuss-de.pdf
+  sm-fahrkosten:
+    titel: ESTV-Steuermäppchen 2025 – Fahrkosten
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-kinderabzug:
+    titel: ESTV-Steuermäppchen 2025 – Kinderabzug (Einkommen)
+    url: https://www.estv2.admin.ch/stp/sm/kinderabzug-e-de-fr.pdf
+  sm-drittbetreuung:
+    titel: ESTV-Steuermäppchen 2025 – Drittbetreuungskosten
+    url: https://www.estv2.admin.ch/stp/sm/drittbetreuungskosten-de-fr.pdf
+  sm-versicherung:
+    titel: ESTV-Steuermäppchen 2025 – Versicherungsprämien und Sparzinsen
+    url: https://www.estv2.admin.ch/stp/sm/versicherungspraemien-zinsen-de-fr.pdf
+  sm-zweiverdiener:
+    titel: ESTV-Steuermäppchen 2025 – Zweiverdienerabzug
+    url: https://www.estv2.admin.ch/stp/sm/zweitverdiener-de-fr.pdf
+  sm-ehepaare:
+    titel: ESTV-Steuermäppchen 2025 – Persönlicher Abzug, Doppeltarif, Splitting
+    url: https://www.estv2.admin.ch/stp/sm/persoenlicher-abzug-e-de-fr.pdf
+  sm-minimum-vermoegen:
+    titel: ESTV-Steuermäppchen 2025 – Vermögenssteuer, steuerfreies Minimum
+    url: https://www.estv2.admin.ch/stp/sm/steuerfreies-minimum-v-de-fr.pdf
+  sm-liegenschaft:
+    titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
+    url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+frist:
+  datum: 2026-03-31
+  text: 31. März 2026
+  verlaengerung: Beim Gemeindesteueramt vor Fristablauf beantragen, gebührenfrei; über den 30. November hinaus nur aus ausserordentlichen Gründen.
+  quelle: zh-steuererklaerung
+software:
+  name: ZHprivateTax
+  url: https://www.zh.ch/de/steuern-finanzen/steuern/steuern-natuerliche-personen/steuererklaerung-natuerliche-personen.html
+  unterschriftsfrei: true
+  login: AGOV
+  quelle: zh-steuererklaerung
+ehepaare:
+  modell: doppeltarif
+  beschreibung: Eigener, tieferer Tarif für Verheiratete und Alleinerziehende.
+  quelle: sm-ehepaare
+werte:
+  steuerfuss_kanton: { wert: 98, einheit: prozent, quelle: estv-stf-2026, hinweis: "2025er-Wert aus dem Vergleich zur Senkung auf 95 % für 2026", ungeprueft: true }
+  fahrkosten_max: { wert: 5200, typ: abzug, quelle: sm-fahrkosten }
+  kinderabzug: { wert: 9300, typ: abzug, quelle: sm-kinderabzug }
+  kinderdrittbetreuung_max: { wert: 25000, typ: abzug, quelle: sm-drittbetreuung }
+  versicherung_alleinstehend: { wert: 2900, typ: abzug, quelle: sm-versicherung }
+  versicherung_alleinstehend_ohne_vorsorge: { wert: 4350, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet: { wert: 5800, typ: abzug, quelle: sm-versicherung }
+  versicherung_verheiratet_ohne_vorsorge: { wert: 8700, typ: abzug, quelle: sm-versicherung }
+  versicherung_pro_kind: { wert: 1300, typ: abzug, quelle: sm-versicherung }
+  zweiverdiener: { wert: 6100, typ: abzug, quelle: sm-zweiverdiener, hinweis: "fester Betrag, höchstens das tiefere Einkommen" }
+  vermoegen_minimum_alleinstehend: { wert: 80000, typ: nullstufe, quelle: sm-minimum-vermoegen }
+  vermoegen_minimum_verheiratet: { wert: 159000, typ: nullstufe, quelle: sm-minimum-vermoegen, hinweis: "gilt auch für Alleinerziehende" }
+  liegenschaft_pauschal: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "unabhängig vom Alter des Gebäudes" }

@@ -1,0 +1,39 @@
+---
+import Basis from '../../layouts/Basis.astro';
+import { AKTUELLES_STEUERJAHR, KANTONE, pfad } from '../../lib/site';
+import { kantoneImJahr } from '../../lib/daten';
+import { formatWert } from '../../lib/format';
+
+const daten = new Map((await kantoneImJahr()).map((k) => [k.data.kanton, k.data]));
+const ehepaarText = { doppeltarif: 'Doppeltarif', splitting: 'Splitting', familienquotient: 'Familienquotient', rabatt: 'Rabatt', pauschal: 'Einheitstarif' } as const;
+---
+<Basis titel="Kantone" beschreibung="Fristen, Software, Abzüge und Steuerfüsse aller 26 Kantone." bereich="kantone">
+  <header class="seite-kopf">
+    <ol class="sd-breadcrumb" aria-label="Pfad"><li><a href={pfad()}>Start</a></li><li><span aria-current="page">Kantone</span></li></ol>
+    <h1 class="seite-titel">Kantone</h1>
+    <p class="seite-lede">Der Bund regelt das Wie, die Kantone das Wieviel. Hier steht, was in Ihrem Kanton gilt.</p>
+    <div class="sd-meta"><span>Steuerjahr {AKTUELLES_STEUERJAHR}</span><span>{daten.size} von 26 Kantonen erfasst</span></div>
+  </header>
+  <div class="uebersicht">
+    <table>
+      <thead><tr><th>Kanton</th><th>Frist</th><th>Software</th><th>Ehepaare</th><th data-num>Fahrkosten max.</th><th data-num>Kinderabzug</th></tr></thead>
+      <tbody>
+        {KANTONE.map(([code, name]) => {
+          const k = daten.get(code);
+          return k ? (
+            <tr>
+              <td><a href={pfad(`kantone/${code.toLowerCase()}`)}>{name}</a></td>
+              <td>{k.frist.text}</td>
+              <td>{k.software.name}</td>
+              <td>{ehepaarText[k.ehepaare.modell]}{k.ehepaare.divisor ? ` ${k.ehepaare.divisor}` : ''}</td>
+              <td data-num>{k.werte.fahrkosten_max ? formatWert(k.werte.fahrkosten_max.wert, 'CHF') : 'unbegrenzt'}</td>
+              <td data-num>{k.werte.kinderabzug ? formatWert(k.werte.kinderabzug.wert, 'CHF') : '–'}</td>
+            </tr>
+          ) : (
+            <tr><td>{name}</td><td colspan="5" style="color: var(--fg-subtle)">Daten folgen</td></tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
+</Basis>

@@ -1,0 +1,47 @@
+/* meineSteuer site layout. Only SteinerDesign role tokens — no raw colours, sizes or spacing. */
+
+body { background: var(--bg-page); }
+
+.icon { display: inline-block; flex: none; background: currentColor; mask: var(--icon-url) center / contain no-repeat; }
+
+.site-main { min-height: 70vh; }
+
+/* Page head */
+.seite-kopf { display: grid; gap: var(--space-4); padding-block: var(--space-12) var(--space-8); border-bottom: var(--border-hairline) solid var(--border-subtle); }
+.seite-titel { font: var(--weight-bold) var(--text-3xl) / var(--leading-3xl) var(--font-sans); letter-spacing: var(--tracking-3xl); max-width: 24ch; text-wrap: balance; }
+.seite-lede { font: var(--weight-regular) var(--text-xl) / var(--leading-xl) var(--font-sans); letter-spacing: var(--tracking-xl); color: var(--fg-muted); max-width: 56ch; }
+
+/* Body: prose + on-page index (desktop first) */
+.seite-rumpf { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: var(--space-16); padding-block: var(--space-10) var(--space-16); }
+.seite-index { position: sticky; top: var(--space-6); align-self: start; }
+.seite-fuss { display: grid; gap: var(--space-8); max-width: var(--measure); }
+@media (max-width: 860px) { .seite-rumpf { grid-template-columns: minmax(0, 1fr); } .seite-index { display: none; } }
+
+/* Figures from the data files: tabular, dotted underline = "hover for year and source" */
+.betrag { font-variant-numeric: tabular-nums; white-space: nowrap; text-decoration: underline dotted var(--border-default); text-underline-offset: 0.2em; cursor: help; }
+.betrag[data-ungeprueft] { text-decoration-color: var(--warn-border); }
+
+/* Tables inside prose may be wider than the measure */
+.sd-prose table { width: 100%; }
+.sd-prose td[data-num], .sd-prose th[data-num] { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* Overview lists */
+.uebersicht { padding-block: var(--space-10) var(--space-16); display: grid; gap: var(--space-12); }
+.uebersicht h2 { font: var(--font-title); letter-spacing: var(--tracking-xl); margin-bottom: var(--space-3); }
+
+/* Home */
+.start-kopf { display: grid; gap: var(--space-5); padding-block: var(--space-section) var(--space-12); border-bottom: var(--border-hairline) solid var(--border-subtle); }
+.start-titel { font: var(--weight-bold) var(--text-display) / var(--leading-display) var(--font-sans); letter-spacing: var(--tracking-display); max-width: 18ch; text-wrap: balance; }
+.bereiche { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-8); padding-block: var(--space-12); }
+.bereich { display: grid; gap: var(--space-2); align-content: start; padding-top: var(--space-4); border-top: var(--border-hairline) solid var(--fg-default); color: inherit; text-decoration: none; }
+.bereich:hover .bereich__titel { text-decoration: underline; }
+.bereich__titel { display: flex; align-items: center; gap: var(--space-2); font: var(--font-title); letter-spacing: var(--tracking-xl); }
+.bereich__text { font: var(--font-body); letter-spacing: var(--tracking-md); color: var(--fg-muted); }
+@media (max-width: 860px) { .bereiche { grid-template-columns: minmax(0, 1fr); } }
+
+/* Footer */
+.site-fuss { border-top: var(--border-hairline) solid var(--border-subtle); padding-block: var(--space-8) var(--space-12); display: grid; gap: var(--space-2); font: var(--font-caption); letter-spacing: var(--tracking-xs); color: var(--fg-muted); }
+.site-fuss a { color: inherit; }
+
+.sd-prose > :first-child { margin-top: 0; }
+.zelle-hinweis { display: block; font: var(--font-caption); letter-spacing: var(--tracking-xs); color: var(--fg-muted); white-space: normal; }

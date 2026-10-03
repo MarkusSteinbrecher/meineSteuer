@@ -1,0 +1,46 @@
+# Direkte Bundessteuer, Steuerjahr 2025. Quelle: research_notes/…/02_income_and_deductions.md
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+quellen:
+  dbg:
+    titel: Bundesgesetz über die direkte Bundessteuer (DBG, SR 642.11)
+    url: https://www.fedlex.admin.ch/eli/cc/1991/1184_1184_1184/de
+  estv-rs-2025:
+    titel: ESTV, Rundschreiben 2-210-D-2024 – Abzüge und Tarife, Steuerjahr 2025
+    url: https://www.estv.admin.ch/dam/de/sd-web/zkUbFt0fCQiy/dbst-rs-2-210-d-2024-de.pdf
+  bkv:
+    titel: Berufskostenverordnung (BKV, SR 642.118.1)
+    url: https://www.fedlex.admin.ch/eli/cc/1993/1363_1363_1363/de
+  bsv-3a:
+    titel: BSV, Kennzahlen berufliche Vorsorge und Säule 3a 2026
+    url: https://www.bsv.admin.ch/dam/de/sd-web/3jZGqTLgADbl/BPP_Zahlen_85_2026.pdf
+werte:
+  fahrkosten_max: { wert: 3300, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 26 Abs. 1 lit. a }
+  verpflegung_tag: { wert: 15, einheit: CHF/Tag, typ: abzug, quelle: bkv, artikel: BKV Art. 6 }
+  verpflegung_jahr: { wert: 3200, typ: abzug, quelle: bkv, artikel: BKV Art. 6 }
+  uebrige_berufskosten_satz: { wert: 3, einheit: prozent, typ: abzug, quelle: bkv, artikel: BKV Art. 7, hinweis: "des Nettolohns" }
+  uebrige_berufskosten_min: { wert: 2000, typ: abzug, quelle: bkv, artikel: BKV Art. 7 }
+  uebrige_berufskosten_max: { wert: 4000, typ: abzug, quelle: bkv, artikel: BKV Art. 7 }
+  saeule3a_mit_pk: { wert: 7258, typ: abzug, quelle: bsv-3a, artikel: DBG Art. 33 Abs. 1 lit. e }
+  saeule3a_ohne_pk: { wert: 36288, typ: abzug, quelle: bsv-3a, artikel: DBG Art. 33 Abs. 1 lit. e, hinweis: "höchstens 20 % des Erwerbseinkommens" }
+  saeule3a_ohne_pk_satz: { wert: 20, einheit: prozent, typ: abzug, quelle: bsv-3a }
+  versicherung_alleinstehend: { wert: 1800, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 1bis }
+  versicherung_alleinstehend_ohne_vorsorge: { wert: 2700, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 1bis }
+  versicherung_verheiratet: { wert: 3700, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 1bis }
+  versicherung_verheiratet_ohne_vorsorge: { wert: 5550, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 1bis }
+  versicherung_pro_kind: { wert: 700, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 1bis }
+  zweiverdiener_min: { wert: 8600, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 2 }
+  zweiverdiener_max: { wert: 14100, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 2, hinweis: "50 % des tieferen Einkommens, mindestens CHF 8’600" }
+  kinderdrittbetreuung_max: { wert: 25800, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 3 }
+  weiterbildung_max: { wert: 13000, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 1 lit. j }
+  parteispenden_max: { wert: 10600, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 1 lit. i }
+  spenden_min: { wert: 100, typ: abzug, quelle: dbg, artikel: DBG Art. 33a }
+  spenden_max_satz: { wert: 20, einheit: prozent, typ: abzug, quelle: dbg, artikel: DBG Art. 33a, hinweis: "des Reineinkommens" }
+  krankheitskosten_selbstbehalt: { wert: 5, einheit: prozent, quelle: dbg, artikel: DBG Art. 33 Abs. 1 lit. h, hinweis: "des Reineinkommens" }
+  kinderabzug: { wert: 6800, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 35 Abs. 1 lit. a }
+  unterstuetzungsabzug: { wert: 6800, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 35 Abs. 1 lit. b }
+  verheiratetenabzug: { wert: 2800, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 35 Abs. 1 lit. c }
+  elterntarif_pro_kind: { wert: 263, typ: steuergutschrift, quelle: estv-rs-2025, artikel: DBG Art. 36 Abs. 2bis }
+  liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: dbg, hinweis: "Gebäude bis 10 Jahre alt, des Mietertrags bzw. Eigenmietwerts" }
+  liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: dbg, hinweis: "Gebäude älter als 10 Jahre" }
+  hoechstsatz: { wert: 11.5, einheit: prozent, quelle: dbg, artikel: DBG Art. 36 }

@@ -1,0 +1,40 @@
+---
+import '../styles/site.css';
+import { ENTWURFSPHASE, NAVIGATION, pfad } from '../lib/site';
+
+interface Props { titel: string; beschreibung: string; bereich?: string }
+const { titel, beschreibung, bereich } = Astro.props;
+const seitentitel = titel === 'meineSteuer' ? titel : `${titel} – meineSteuer`;
+---
+<!doctype html>
+<html lang="de-CH">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{seitentitel}</title>
+    <meta name="description" content={beschreibung} />
+    {ENTWURFSPHASE && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="icon" type="image/svg+xml" href={pfad('favicon.svg').replace(/\/$/, '')} />
+    <link rel="stylesheet" href={pfad('vendor/steinerdesign/dist/steiner.css').replace(/\/$/, '')} />
+  </head>
+  <body>
+    <nav class="sd-nav" aria-label="Hauptnavigation">
+      <a class="sd-nav__brand" href={pfad()}>meineSteuer</a>
+      <ul class="sd-nav__links" role="list">
+        {NAVIGATION.map((n) => (
+          <li style="display:flex"><a class="sd-nav__link" href={pfad(n.href)} aria-current={n.bereich === bereich ? 'page' : undefined}>{n.label}</a></li>
+        ))}
+      </ul>
+      {ENTWURFSPHASE && <div class="sd-nav__end"><span class="sd-badge" data-tone="warn">Entwurf</span></div>}
+    </nav>
+    <main class="site-main sd-container" style="--container:1120px">
+      <slot />
+    </main>
+    <footer class="sd-container" style="--container:1120px">
+      <div class="site-fuss">
+        <span>meineSteuer erklärt das Schweizer Steuerrecht für Privatpersonen. Allgemeine Information, keine Steuerberatung.</span>
+        <span>Quelltext und Daten: <a href="https://github.com/MarkusSteinbrecher/meineSteuer">github.com/MarkusSteinbrecher/meineSteuer</a> · Fehler gefunden? Bitte als Issue melden.</span>
+      </div>
+    </footer>
+  </body>
+</html>

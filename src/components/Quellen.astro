@@ -1,0 +1,12 @@
+---
+interface Props { quellen: { titel: string; url: string; artikel?: string }[] }
+const { quellen } = Astro.props;
+---
+<section class="sd-sources" aria-labelledby="quellen-titel">
+  <h2 class="sd-sources__heading" id="quellen-titel">Quellen</h2>
+  <ol>
+    {quellen.map((q, i) => (
+      <li id={`q${i + 1}`}><a href={q.url} rel="noopener">{q.titel}</a>{q.artikel && <span>, {q.artikel}</span>}</li>
+    ))}
+  </ol>
+</section>

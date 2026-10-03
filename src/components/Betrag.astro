@@ -1,0 +1,20 @@
+---
+/**
+ * Inserts one figure from the data files, with tax year and source as a tooltip.
+ * Usage in MDX: <Betrag k="saeule3a_mit_pk" />  ·  <Betrag ebene="zh" k="kinderabzug" />
+ */
+import { wertHolen } from '../lib/daten';
+import { formatWert } from '../lib/format';
+
+interface Props { k: string; ebene?: string; jahr?: number }
+const { k, ebene = 'bund', jahr } = Astro.props;
+const w = await wertHolen(ebene, k, jahr);
+const ebeneText = ebene === 'bund' ? 'Bund' : `Kanton ${ebene.toUpperCase()}`;
+const titel = [
+  `${ebeneText}, Steuerjahr ${w.steuerjahr}`,
+  w.artikel,
+  `Quelle: ${w.quelleDaten?.titel ?? w.quelle}`,
+  w.ungeprueft ? 'noch nicht geprüft' : undefined,
+].filter(Boolean).join(' · ');
+---
+<span class="betrag" title={titel} data-ungeprueft={w.ungeprueft || undefined}>{formatWert(w.wert, w.einheit)}</span>

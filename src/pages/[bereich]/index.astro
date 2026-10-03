@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import Basis from '../../layouts/Basis.astro';
+import { BEREICHE, pfad, type Bereich } from '../../lib/site';
+
+export async function getStaticPaths() {
+  return (Object.keys(BEREICHE) as Bereich[])
+    .filter((b) => b !== 'kantone')
+    .map((bereich) => ({ params: { bereich } }));
+}
+const bereich = Astro.params.bereich as Bereich;
+const seiten = (await getCollection('seiten', (s) => s.data.bereich === bereich))
+  .sort((a, b) => a.data.reihenfolge - b.data.reihenfolge);
+---
+<Basis titel={BEREICHE[bereich]} beschreibung={`Übersicht: ${BEREICHE[bereich]}`} bereich={bereich}>
+  <header class="seite-kopf">
+    <ol class="sd-breadcrumb" aria-label="Pfad"><li><a href={pfad()}>Start</a></li><li><span aria-current="page">{BEREICHE[bereich]}</span></li></ol>
+    <h1 class="seite-titel">{BEREICHE[bereich]}</h1>
+  </header>
+  <div class="uebersicht">
+    {seiten.length === 0 ? (
+      <p class="seite-lede">Dieser Bereich ist in Arbeit.</p>
+    ) : (
+      <ol class="sd-steps">
+        {seiten.map((s) => (
+          <li class="sd-step"><div class="sd-step__main">
+            <a class="sd-step__title" href={pfad(s.id)}>{s.data.titel}</a>
+            <p class="sd-step__body">{s.data.beschreibung}</p>
+          </div></li>
+        ))}
+      </ol>
+    )}
+  </div>
+</Basis>

@@ -1,0 +1,52 @@
+---
+import type { MarkdownHeading } from 'astro';
+import Basis from './Basis.astro';
+import Quellen from '../components/Quellen.astro';
+import KeineBeratung from '../components/KeineBeratung.astro';
+import { BEREICHE, pfad, type Bereich } from '../lib/site';
+import { formatDatum } from '../lib/format';
+
+interface Props {
+  titel: string;
+  beschreibung: string;
+  bereich: Bereich;
+  steuerjahr: number;
+  geprueft_am: Date;
+  quellen: { titel: string; url: string; artikel?: string }[];
+  entwurf?: boolean;
+  headings?: MarkdownHeading[];
+}
+const { titel, beschreibung, bereich, steuerjahr, geprueft_am, quellen, entwurf, headings = [] } = Astro.props;
+const abschnitte = headings.filter((h) => h.depth === 2);
+---
+<Basis titel={titel} beschreibung={beschreibung} bereich={bereich}>
+  <header class="seite-kopf">
+    <ol class="sd-breadcrumb" aria-label="Pfad">
+      <li><a href={pfad()}>Start</a></li>
+      <li><a href={pfad(bereich)}>{BEREICHE[bereich]}</a></li>
+      <li><span aria-current="page">{titel}</span></li>
+    </ol>
+    <h1 class="seite-titel">{titel}</h1>
+    <p class="seite-lede">{beschreibung}</p>
+    <div class="sd-meta">
+      <span>Steuerjahr {steuerjahr}</span>
+      <span>Geprüft am {formatDatum(geprueft_am)}</span>
+      {entwurf && <span class="sd-badge" data-tone="warn">Entwurf</span>}
+    </div>
+  </header>
+  <div class="seite-rumpf">
+    <div>
+      <article class="sd-prose"><slot /></article>
+      <div class="seite-fuss" style="margin-top: var(--space-12)">
+        <Quellen quellen={quellen} />
+        <KeineBeratung />
+      </div>
+    </div>
+    {abschnitte.length > 1 && (
+      <nav class="seite-index sd-toc" aria-label="Auf dieser Seite">
+        <span class="sd-toc__heading">Auf dieser Seite</span>
+        <ol>{abschnitte.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+      </nav>
+    )}
+  </div>
+</Basis>

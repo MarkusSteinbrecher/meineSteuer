@@ -1,0 +1,60 @@
+---
+import Seite from '../../layouts/Seite.astro';
+import { kantoneImJahr, wertHolen } from '../../lib/daten';
+import { formatDatum, formatWert } from '../../lib/format';
+import { ABZUG_ZEILEN } from '../../lib/vergleich';
+
+export async function getStaticPaths() {
+  return (await kantoneImJahr()).map((k) => ({ params: { kt: k.data.kanton.toLowerCase() }, props: { k: k.data } }));
+}
+const { k } = Astro.props;
+const quellenListe = Object.values(k.quellen);
+const zeilen = await Promise.all(ABZUG_ZEILEN.filter((z) => k.werte[z.kanton]).map(async (z) => ({
+  ...z,
+  kantonWert: k.werte[z.kanton],
+  bundWert: z.bund ? await wertHolen('bund', z.bund, k.steuerjahr) : null,
+})));
+const headings = [
+  { depth: 2, slug: 'einreichen', text: 'Frist und Einreichen' },
+  { depth: 2, slug: 'abzuege', text: 'Abzüge im Vergleich zum Bund' },
+  { depth: 2, slug: 'ehepaare', text: 'Ehepaare' },
+  { depth: 2, slug: 'vermoegen', text: 'Vermögenssteuer' },
+];
+const zelle = (w: { wert: number; einheit: string; ungeprueft?: boolean; hinweis?: string }) =>
+  `${formatWert(w.wert, w.einheit)}${w.ungeprueft ? ' (ungeprüft)' : ''}`;
+---
+<Seite titel={`Kanton ${k.name}`} beschreibung={`Was im Kanton ${k.name} für die Steuererklärung ${k.steuerjahr} gilt: Frist, Software, Abzüge und Besonderheiten.`}
+  bereich="kantone" steuerjahr={k.steuerjahr} geprueft_am={k.geprueft_am} quellen={quellenListe} headings={headings}>
+  <h2 id="einreichen">Frist und Einreichen</h2>
+  <p>Die Steuererklärung {k.steuerjahr} ist im Kanton {k.name} bis am <strong>{k.frist.datum ? formatDatum(k.frist.datum) : k.frist.text}</strong> einzureichen. Massgebend ist die Frist in Ihrem Steuerbrief.</p>
+  <p>{k.frist.verlaengerung}</p>
+  <p>Ausfüllen können Sie die Erklärung mit <strong>{k.software.url ? <a href={k.software.url}>{k.software.name}</a> : k.software.name}</strong>
+    {k.software.login && <>, Anmeldung mit {k.software.login}</>}.
+    {k.software.unterschriftsfrei && ' Die Einreichung ist ohne Unterschrift auf Papier möglich.'}</p>
+
+  <h2 id="abzuege">Abzüge im Vergleich zum Bund</h2>
+  <p>Die meisten Abzüge gibt es bei der Staats- und Gemeindesteuer und bei der Bundessteuer, aber mit verschiedenen Höchstbeträgen. In der Steuererklärung stehen deshalb zwei Spalten.</p>
+  <figure>
+    <table>
+      <thead><tr><th>Abzug</th><th data-num>Kanton {k.name}</th><th data-num>Bund</th></tr></thead>
+      <tbody>
+        {zeilen.map((z) => (
+          <tr>
+            <td>{z.label}</td>
+            <td data-num>{zelle(z.kantonWert)}{z.kantonWert.hinweis && <span class="zelle-hinweis">{z.kantonWert.hinweis}</span>}</td>
+            <td data-num>{z.bundWert ? zelle(z.bundWert) : '–'}{z.bundWert?.hinweis && <span class="zelle-hinweis">{z.bundWert.hinweis}</span>}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <figcaption>Steuerjahr {k.steuerjahr}. Quellen: ESTV-Steuermäppchen und kantonale Angaben, siehe unten.</figcaption>
+  </figure>
+
+  <h2 id="ehepaare">Ehepaare</h2>
+  <p>{k.ehepaare.beschreibung}</p>
+
+  <h2 id="vermoegen">Vermögenssteuer</h2>
+  {k.werte.vermoegen_minimum_alleinstehend ? (
+    <p>Vermögen bis {formatWert(k.werte.vermoegen_minimum_alleinstehend.wert, 'CHF')} (Alleinstehende) bzw. {formatWert(k.werte.vermoegen_minimum_verheiratet?.wert ?? 0, 'CHF')} (Verheiratete) ist steuerfrei. Massgebend ist das Reinvermögen am 31. Dezember. Der Bund erhebt keine Vermögenssteuer.</p>
+  ) : <p>Angaben folgen.</p>}
+</Seite>

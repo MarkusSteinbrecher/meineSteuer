@@ -1,0 +1,28 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Icon from '../components/Icon.astro';
+import { AKTUELLES_STEUERJAHR, pfad } from '../lib/site';
+
+const bereiche = [
+  { href: 'system', icon: 'landmark', titel: 'So funktioniert das System', text: 'Bund, Kanton und Gemeinde, Steuerfuss, Wohnsitz und warum dasselbe Einkommen je nach Ort sehr verschieden besteuert wird.' },
+  { href: 'steuererklaerung', icon: 'list-checks', titel: 'Steuererklärung Schritt für Schritt', text: 'Von den Unterlagen über Lohnausweis und Abzüge bis zur Veranlagung und Einsprache.' },
+  { href: 'kantone', icon: 'map-pin', titel: 'Kantone', text: 'Fristen, Software, Abzüge und Steuerfüsse Ihres Kantons, mit Link zur offiziellen Quelle.' },
+  { href: 'reformen', icon: 'calendar', titel: 'Reformen', text: 'Eigenmietwert ab 2029, Individualbesteuerung ab 2032: was sich ändert und ab wann.' },
+  { href: 'nachschlagen', icon: 'book-open', titel: 'Nachschlagen', text: 'Glossar, Beträge und Tarife des Bundes nach Steuerjahr, Fristen und Quellen.' },
+];
+---
+<Basis titel="meineSteuer" beschreibung="Das Schweizer Steuerrecht für Privatpersonen verständlich erklärt: System, Steuererklärung Schritt für Schritt, alle 26 Kantone.">
+  <header class="start-kopf">
+    <div class="sd-meta"><span>Stand: Steuerjahr {AKTUELLES_STEUERJAHR}</span><span>Neutral, werbefrei, mit Quellen</span></div>
+    <h1 class="start-titel">Die eigene Steuererklärung verstehen</h1>
+    <p class="seite-lede">meineSteuer erklärt das Schweizer Steuerrecht für Privatpersonen: wie das System funktioniert, was in welche Zeile gehört und was in Ihrem Kanton anders ist. Jede Zahl mit Steuerjahr und Quelle.</p>
+  </header>
+  <div class="bereiche">
+    {bereiche.map((b) => (
+      <a class="bereich" href={pfad(b.href)}>
+        <span class="bereich__titel"><Icon name={b.icon} />{b.titel}</span>
+        <span class="bereich__text">{b.text}</span>
+      </a>
+    ))}
+  </div>
+</Basis>

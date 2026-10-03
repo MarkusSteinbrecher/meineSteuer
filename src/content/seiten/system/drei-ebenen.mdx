@@ -1,0 +1,42 @@
+---
+titel: Bund, Kanton, Gemeinde
+beschreibung: Mit einer einzigen Steuererklärung deklarieren Sie drei Steuern. Wer was erhebt und warum die Kantone so verschieden sind.
+bereich: system
+reihenfolge: 10
+steuerjahr: 2025
+geprueft_am: 2026-10-03
+quellen:
+  - titel: Bundesverfassung (BV, SR 101)
+    url: https://www.fedlex.admin.ch/eli/cc/1999/404/de
+    artikel: Art. 3, 128, 129
+  - titel: Steuerharmonisierungsgesetz (StHG, SR 642.14)
+    url: https://www.fedlex.admin.ch/eli/cc/1991/1256_1256_1256/de
+    artikel: Art. 1 Abs. 3
+  - titel: Bundesgesetz über die direkte Bundessteuer (DBG, SR 642.11)
+    url: https://www.fedlex.admin.ch/eli/cc/1991/1184_1184_1184/de
+  - titel: ESTV – Das Steuersystem der Schweiz
+    url: https://www.estv.admin.ch/de/steuersystem-schweiz
+---
+import Betrag from '../../../components/Betrag.astro';
+
+Wer in der Schweiz wohnt, füllt jedes Jahr **eine** Steuererklärung aus. Damit deklariert man aber drei Steuern: die direkte Bundessteuer, die Staatssteuer des Kantons und die Gemeindesteuer, oft dazu die Kirchensteuer. Das Steueramt Ihres Kantons veranlagt alle zusammen.
+
+## Die Kantone waren zuerst da
+
+Nach der Bundesverfassung haben die Kantone die ursprüngliche Steuerhoheit (Art. 3 BV). Der Bund darf nur die Steuern erheben, die ihm die Verfassung ausdrücklich erlaubt. Für Privatpersonen ist das vor allem die **direkte Bundessteuer** auf dem Einkommen. Sie beträgt höchstens <Betrag k="hoechstsatz" /> (Art. 128 BV). Eine Vermögenssteuer des Bundes gibt es nicht.
+
+| Ebene | Was sie bei Privatpersonen besteuert |
+|---|---|
+| Bund | Einkommen (direkte Bundessteuer), dazu Verrechnungssteuer und Mehrwertsteuer |
+| Kanton | Einkommen und Vermögen, Grundstückgewinne, meist Erbschaften und Schenkungen |
+| Gemeinde | Zuschlag auf die kantonale Einkommens- und Vermögenssteuer (Steuerfuss) |
+
+## Zwei Bundesgesetze mit verschiedenen Aufgaben
+
+Das **DBG** regelt die Bundessteuer vollständig: wer steuerpflichtig ist, was als Einkommen gilt, welche Abzüge erlaubt sind und wie hoch der Tarif ist.
+
+Das **StHG** richtet sich an die Kantone. Es vereinheitlicht, *was* besteuert wird und *wie* das Verfahren abläuft. Die Höhe überlässt es ausdrücklich den Kantonen: «Die Bestimmung der Steuertarife, Steuersätze und Steuerfreibeträge bleibt Sache der Kantone» (Art. 1 Abs. 3 StHG).
+
+## Was das für Ihre Steuererklärung bedeutet
+
+Weil Bund und Kanton dieselben Abzüge kennen, aber verschiedene Höchstbeträge haben, hat die Steuererklärung oft **zwei Spalten**: eine für die Staats- und Gemeindesteuer, eine für die Bundessteuer. Ein Beispiel sind die Fahrkosten zur Arbeit. Beim Bund sind höchstens <Betrag k="fahrkosten_max" /> abziehbar, im Kanton Zürich <Betrag ebene="zh" k="fahrkosten_max" />.

@@ -1,0 +1,8 @@
+---
+/** Lucide icon from the vendored SteinerDesign assets, coloured with currentColor via CSS mask. */
+import { pfad } from '../lib/site';
+interface Props { name: string; class?: string }
+const { name, class: klasse = 'sd-icon' } = Astro.props;
+const url = pfad(`vendor/steinerdesign/assets/icons/${name}.svg`).replace(/\/$/, '');
+---
+<span class={`icon ${klasse}`} aria-hidden="true" style={`--icon-url: url("${url}")`}></span>
