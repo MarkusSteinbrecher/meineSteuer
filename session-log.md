@@ -17,4 +17,5 @@
 
 - **Done:** Astro 7 + Svelte + MDX project with schema-checked content and data collections, `<Betrag>` component, layouts on SteinerDesign v1.1.0 (vendored), home, section overviews, canton overview + generated canton page, three draft pages (Bund/Kanton/Gemeinde, Steuerfuss, Säule 3a). Data: `bund/2025.yaml`, `kantone/zh-2025.yaml`. GitHub Pages workflow.
 - **Verified:** build fails for a page without sources, an unknown source id in data, and an unknown `<Betrag>` key (each tested by breaking it). Pages checked in the browser at 1440 px.
+- **Deployed:** https://markussteinbrecher.github.io/meineSteuer/ (noindex draft). Fixed `.gitignore` (`/dist/`) after the vendored stylesheet 404d on the first deploy.
 - **Open:** Pagefind search not added yet; remaining 25 canton data files; Steuerfuss ZH 2025 marked unverified; Impressum page; content for step-by-step guide.
