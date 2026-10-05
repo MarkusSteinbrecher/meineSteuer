@@ -1,5 +1,6 @@
 ---
 import Seite from '../../layouts/Seite.astro';
+import Eigenmietwert from '../../components/Eigenmietwert.astro';
 import { kantoneImJahr, wertHolen } from '../../lib/daten';
 import { formatDatum, formatWert } from '../../lib/format';
 import { ABZUG_ZEILEN } from '../../lib/vergleich';
@@ -22,6 +23,7 @@ const headings = [
   { depth: 2, slug: 'abzuege', text: 'Abzüge im Vergleich zum Bund' },
   { depth: 2, slug: 'ehepaare', text: 'Ehepaare' },
   { depth: 2, slug: 'vermoegen', text: 'Vermögenssteuer' },
+  ...(k.eigenmietwert ? [{ depth: 2, slug: 'eigenmietwert', text: 'Eigenmietwert' }] : []),
 ];
 const zelle = (w: { wert: number; einheit: string; ungeprueft?: boolean; unbegrenzt?: boolean }) =>
   w.unbegrenzt ? 'unbegrenzt' : `${formatWert(w.wert, w.einheit)}${w.ungeprueft ? ' (ungeprüft)' : ''}`;
@@ -67,4 +69,6 @@ const chf = (w?: { wert: number }) => (w ? formatWert(w.wert, 'CHF') : undefined
     <p>Vom Reinvermögen werden {chf(v.vermoegen_freibetrag_alleinstehend)} (Alleinstehende){v.vermoegen_freibetrag_verheiratet && <> bzw. {chf(v.vermoegen_freibetrag_verheiratet)} (Verheiratete)</>}{v.vermoegen_freibetrag_pro_kind && <> und {chf(v.vermoegen_freibetrag_pro_kind)} pro Kind</>} abgezogen. Nur der Rest wird besteuert.</p>
   )}
   {!v.vermoegen_minimum_alleinstehend && !v.vermoegen_freibetrag_alleinstehend && <p>Die steuerfreien Beträge für diesen Kanton sind noch nicht erfasst.</p>}
+
+  {k.eigenmietwert && <Eigenmietwert k={k} />}
 </Seite>

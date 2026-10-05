@@ -50,4 +50,5 @@ body { background: var(--bg-page); }
 .seite-rumpf .sd-prose { max-width: none; }
 .seite-rumpf .sd-prose > :not(figure, table, details) { max-width: var(--measure); }
 .seite-rumpf .sd-prose > details { max-width: var(--measure); }
-.seite-rumpf .sd-prose td .zelle-hinweis { max-width: 32ch; margin-left: auto; }
+.seite-rumpf .sd-prose td .zelle-hinweis { max-width: 32ch; }
+.seite-rumpf .sd-prose td[data-num] .zelle-hinweis { margin-left: auto; }

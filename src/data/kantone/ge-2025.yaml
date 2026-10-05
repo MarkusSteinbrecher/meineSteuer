@@ -78,7 +78,7 @@ eigenmietwert:
     moeglich: false
     quelle: sm-eigenmietwert
   haertefall:
-    text: "Taux d’effort: Eigenmietwert höchstens 20 % der Bruttoeinkünfte, berechnet mindestens auf CHF 18 649 für Alleinstehende (doppelt bei Ehepaaren); nur, wenn die Finanzierungszinsen nicht höher sind."
+    text: "Taux d’effort: Eigenmietwert höchstens 20 % der Bruttoeinkünfte, berechnet mindestens auf CHF 18’649 für Alleinstehende (doppelt bei Ehepaaren); nur, wenn die Finanzierungszinsen nicht höher sind."
     quelle: sm-eigenmietwert
     artikel: "Art. 24 Abs. 2 LIPP"
 werte:

@@ -76,7 +76,7 @@ eigenmietwert:
     moeglich: false
     quelle: sm-eigenmietwert
   haertefall:
-    text: "Auf Antrag Herabsetzung, soweit der Mietwert 25 % der Einkünfte ohne Mietwert übersteigt und unter CHF 19 400 (Alleinstehende) bzw. CHF 27 200 (Verheiratete) liegt; mindestens 60 % der mittleren Marktmiete. Entfällt bei Vermögen über CHF 55 000 bzw. 110 000, ausser das Wohneigentum macht mehr als 75 % der Aktiven aus."
+    text: "Auf Antrag Herabsetzung, soweit der Mietwert 25 % der Einkünfte ohne Mietwert übersteigt und unter CHF 19’400 (Alleinstehende) bzw. CHF 27’200 (Verheiratete) liegt; mindestens 60 % der mittleren Marktmiete. Entfällt bei Vermögen über CHF 55’000 bzw. 110’000, ausser das Wohneigentum macht mehr als 75 % der Aktiven aus."
     quelle: kb-lu
     artikel: "§ 28 Abs. 4 StG LU, § 8b StV LU"
 werte:

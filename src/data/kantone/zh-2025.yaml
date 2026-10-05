@@ -73,7 +73,7 @@ eigenmietwert:
     moeglich: true
     quelle: sm-eigenmietwert
   haertefall:
-    text: "Angemessener Einschlag, in der Regel wenn der Eigenmietwert mehr als einen Drittel der für die Lebenshaltung verfügbaren Einkünfte ausmacht; kein Einschlag bei steuerbarem Vermögen über CHF 600 000."
+    text: "Angemessener Einschlag, in der Regel wenn der Eigenmietwert mehr als einen Drittel der für die Lebenshaltung verfügbaren Einkünfte ausmacht; kein Einschlag bei steuerbarem Vermögen über CHF 600’000."
     quelle: sm-eigenmietwert
     artikel: "Weisung 2009, Ziff. 62"
 werte:
@@ -90,5 +90,5 @@ werte:
   vermoegen_minimum_alleinstehend: { wert: 80000, typ: nullstufe, quelle: sm-minimum-vermoegen }
   vermoegen_minimum_verheiratet: { wert: 159000, typ: nullstufe, quelle: sm-minimum-vermoegen, hinweis: "gilt auch für Alleinerziehende" }
   liegenschaft_pauschal: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "unabhängig vom Alter des Gebäudes" }
-  emw_satz_efh: { wert: 3.5, einheit: prozent, quelle: sm-eigenmietwert, artikel: Weisung 2009 Ziff. 59–60, hinweis: "des Land- und Zeitbauwerts; Gebäudeanteil über einem Versicherungs-Basiswert von CHF 120 000 nur zu 1 %" }
-  emw_satz_stwe: { wert: 4.25, einheit: prozent, quelle: sm-eigenmietwert, artikel: Weisung 2009 Ziff. 59–60, hinweis: "des Land- und Zeitbauwertanteils; Gebäudeanteil über einem Versicherungs-Basiswert von CHF 40 000 nur zu 1 %" }
+  emw_satz_efh: { wert: 3.5, einheit: prozent, quelle: sm-eigenmietwert, artikel: Weisung 2009 Ziff. 59–60, hinweis: "des Land- und Zeitbauwerts; Gebäudeanteil über einem Versicherungs-Basiswert von CHF 120’000 nur zu 1 %" }
+  emw_satz_stwe: { wert: 4.25, einheit: prozent, quelle: sm-eigenmietwert, artikel: Weisung 2009 Ziff. 59–60, hinweis: "des Land- und Zeitbauwertanteils; Gebäudeanteil über einem Versicherungs-Basiswert von CHF 40’000 nur zu 1 %" }

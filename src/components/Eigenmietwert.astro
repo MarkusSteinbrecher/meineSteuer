@@ -1,0 +1,79 @@
+---
+/**
+ * Eigenmietwert section of a canton page, generated from the canton's `eigenmietwert` block and `emw_*` figures.
+ * Only for tax years up to 2028 (abolished from 1.1.2029).
+ */
+import type { CollectionEntry } from 'astro:content';
+import Betrag from './Betrag.astro';
+import Icon from './Icon.astro';
+import { emwWerte, tabellenZeilen } from '../lib/eigenmietwert';
+import { formatWert } from '../lib/format';
+
+interface Props { k: CollectionEntry<'kantone'>['data'] }
+const { k } = Astro.props;
+const e = k.eigenmietwert!;
+const kt = k.kanton.toLowerCase();
+const werte = emwWerte(k.werte);
+const offen = (a: { ungeprueft?: boolean }) => (a.ungeprueft ? ' (noch nicht bestätigt)' : '');
+const quellen = (ids: string[]) => [...new Set(ids)].map((id) => k.quellen[id]?.titel ?? id).join('; ');
+
+const kennzahlenQuellen = quellen([e.methode.quelle, e.ziel.quelle, e.bundessteuer.quelle, e.unternutzung.quelle, ...werte.map((x) => x.w.quelle)]);
+const t = e.tabelle;
+const tabellenTitel = t && { staffel: 'Sätze nach Stufen', degressiv: 'Sätze nach Wert', gruppen: 'Sätze nach Gemeindegruppe' }[t.art];
+const tabellenText = t && {
+  staffel: `Grundlage: ${t.basis}. Jeder Teil des Werts zählt zum Satz seiner Stufe; die Ergebnisse werden zusammengezählt.`,
+  degressiv: `Grundlage: ${t.basis}. Ein einziger Satz gilt für den ganzen Wert, und er sinkt, je höher der Wert ist.`,
+  gruppen: `Grundlage: ${t.basis}${t.art === 'gruppen' && t.bis ? ` bis ${formatWert(t.bis, 'CHF')}` : ''}. Der Satz hängt von der Gemeindegruppe ab und gilt für den ganzen Wert.`,
+}[t.art];
+---
+<h2 id="eigenmietwert">Eigenmietwert</h2>
+<p>Wer im eigenen Haus oder in der eigenen Wohnung lebt, versteuert den Eigenmietwert als Einkommen: die Miete, die man dadurch spart. Davon abziehen lassen sich die Hypothekarzinsen und der Unterhalt, effektiv oder pauschal. Den Pauschalabzug des Kantons finden Sie unter <a href="#abzuege">Abzüge im Vergleich zum Bund</a>. Wie hoch der Eigenmietwert ist, legt jeder Kanton selbst fest; das Steueramt teilt ihn Ihnen mit.</p>
+<aside class="sd-notice" role="note">
+  <Icon name="info" class="sd-notice__icon" />
+  <div class="sd-notice__body">
+    <span class="sd-notice__title">Gilt bis Steuerjahr 2028</span>
+    <span>Ab dem 1. Januar 2029 ist der Eigenmietwert abgeschafft. Dann entfällt auch der Abzug für den Unterhalt der selbst bewohnten Liegenschaft, und Hypothekarzinsen sind nur noch eingeschränkt abziehbar.</span>
+  </div>
+</aside>
+
+<h3>So rechnet der Kanton {k.name}</h3>
+<p>{e.methode.text}{offen(e.methode)}</p>
+<figure>
+  <table>
+    <thead><tr><th>Eigenmietwert</th><th>Kanton {k.name}</th></tr></thead>
+    <tbody>
+      <tr><td>Zielniveau</td><td>{e.ziel.text}{offen(e.ziel)}</td></tr>
+      {werte.map((x) => (
+        <tr><td>{x.label}</td><td><Betrag ebene={kt} k={x.key} jahr={k.steuerjahr} />{x.w.hinweis && <span class="zelle-hinweis">{x.w.hinweis}</span>}</td></tr>
+      ))}
+      <tr><td>Bundessteuer</td><td>{e.bundessteuer.abweichend ? `${e.bundessteuer.text}${offen(e.bundessteuer)}` : 'gleicher Wert wie beim Kanton'}</td></tr>
+      <tr><td>Abzug bei Unternutzung</td><td>{e.unternutzung.moeglich ? 'möglich' : 'nicht vorgesehen'}{e.unternutzung.hinweis && <span class="zelle-hinweis">{e.unternutzung.hinweis}</span>}</td></tr>
+    </tbody>
+  </table>
+  <figcaption>Steuerjahr {k.steuerjahr}. Quellen: {kennzahlenQuellen}.</figcaption>
+</figure>
+
+{t && (
+  <>
+    <h3>{tabellenTitel}</h3>
+    <p>{tabellenText}</p>
+    <figure>
+      <table>
+        <thead><tr><th>{t.art === 'gruppen' ? 'Gemeindegruppe' : t.basis}</th><th data-num={t.art !== 'degressiv' || undefined}>Satz</th></tr></thead>
+        <tbody>
+          {tabellenZeilen(t).map(([bereich, satz]) => (
+            <tr><td>{bereich}</td><td data-num={t.art !== 'degressiv' || undefined}>{satz}</td></tr>
+          ))}
+        </tbody>
+      </table>
+      <figcaption>{t.hinweis && <>{t.hinweis} </>}Steuerjahr {k.steuerjahr}. Quelle: {quellen([t.quelle])}{t.artikel && <>, {t.artikel}</>}.</figcaption>
+    </figure>
+  </>
+)}
+
+{e.haertefall && (
+  <>
+    <h3>Härtefälle</h3>
+    <p>{e.haertefall.text}{offen(e.haertefall)}</p>
+  </>
+)}

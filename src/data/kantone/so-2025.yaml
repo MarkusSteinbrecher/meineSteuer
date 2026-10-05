@@ -65,7 +65,7 @@ ehepaare:
 # Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
 eigenmietwert:
   methode:
-    text: "Katasterschätzung bis CHF 240 000: fester Prozentsatz je Gemeindegruppe. Darüber (überdurchschnittliche Bauart): Einzelbewertung."
+    text: "Katasterschätzung bis CHF 240’000: fester Prozentsatz je Gemeindegruppe. Darüber (überdurchschnittliche Bauart): Einzelbewertung."
     quelle: kb-so
     artikel: "§ 28 StG SO, StV Nr. 15 §§ 1, 4–5"
   ziel:
@@ -73,7 +73,7 @@ eigenmietwert:
     quelle: sm-eigenmietwert
   bundessteuer:
     abweichend: true
-    text: "Bei Katasterschätzung bis CHF 240 000: 125 % des kantonalen Werts; darüber kein Zuschlag (Rundschreiben 172)."
+    text: "Bei Katasterschätzung bis CHF 240’000: 125 % des kantonalen Werts; darüber kein Zuschlag (Rundschreiben 172)."
     quelle: estv-rs-172
   unternutzung:
     moeglich: false

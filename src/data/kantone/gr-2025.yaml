@@ -79,7 +79,7 @@ eigenmietwert:
     quelle: sm-eigenmietwert
     hinweis: "nur am Wohnsitz und nur bei ungewollt zu grosser Liegenschaft"
   haertefall:
-    text: "Bei Vermögen unter CHF 600 000 höchstens 30 % der Bareinkünfte, aber stets mindestens 60 % des Marktmietwerts."
+    text: "Bei Vermögen unter CHF 600’000 höchstens 30 % der Bareinkünfte, aber stets mindestens 60 % des Marktmietwerts."
     quelle: kb-gr
     artikel: "Art. 10 ABzStG GR"
 werte:

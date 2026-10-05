@@ -47,3 +47,10 @@
 - **Done:** Eigenmietwert figures for all 26 cantons and the federal level in `src/data/`, from the report and the ESTV Kantonsblätter. Schema: `eigenmietwert` block per canton (`methode`, `ziel`, `bundessteuer` with `abweichend`, `unternutzung`, `haertefall`, optional `tabelle` of kind `staffel` OW/NE, `degressiv` BL, `gruppen` SO); single figures as `emw_*` in `werte` (ZH rates, BS rate/cap/dBSt, Wohnsitz deductions, share of market rent). Federal: `emw_untergrenze_bger`, `emw_mindestniveau_dbst`, `schuldzins_zusatz` in `bund/2025.yaml`; new `bund/2029.yaml` with the first-time-buyer deduction. New unit `Jahre`.
 - **Verified:** build passes; the BL table is checked for continuity at build time (tested by breaking a value); unknown source ids fail; report examples recomputed from the data (OW 15 900, NE 39 400, BS 28 000/32 000). BL, NE, SO and OW tables re-read from the Kantonsblatt PDFs; OW rate above CHF 1.5 Mio. is blank in the official text (`satz: null`).
 - **Open:** the data is not shown on any page yet (canton page section or an Eigenmietwert page). Marked `ungeprueft`: dBSt for OW, NW, BE (factors), GE (RS 172 vs. Steuermäppchen conflict). RS 172 URL returned 502 today. Not committed.
+
+## 2026-10-05 (Eigenmietwert section)
+
+- **Done:** «Eigenmietwert» section on all 26 generated canton pages (`src/components/Eigenmietwert.astro`, labels and table rows in `src/lib/eigenmietwert.ts`): explanation, «gilt bis Steuerjahr 2028» notice, method, key-figure table (target level, `emw_*` figures via `<Betrag>`, federal tax, under-use), rate table for OW/NE/BL/SO, hardship rule. An `emw_*` key without label fails the build.
+- **Changed:** `.zelle-hinweis` is right-aligned only in number cells; Eigenmietwert data text uses ’ as thousands separator; OW/NW federal-tax wording shortened.
+- **Verified:** build passes; BL, OW, SO, ZH checked in the browser at 1440 px; Eigenmietwert tables fit at 390 px.
+- **Open:** pre-existing 11 px horizontal overflow at 390 px from the «Abzüge im Vergleich zum Bund» table (BL page, cell notes); decimal style is mixed site-wide (data text «1,2», formatted figures «63.23 %»).

@@ -12,6 +12,11 @@ export function formatWert(wert: number, einheit: string): string {
   }
 }
 
+/** Plain Swiss number: 250’000, 0,192963. */
+export function formatZahl(wert: number, stellen = 2): string {
+  return new Intl.NumberFormat('de-CH', { maximumFractionDigits: stellen }).format(wert);
+}
+
 export function formatDatum(d: Date): string {
   return datum.format(d);
 }

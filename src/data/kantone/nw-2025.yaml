@@ -76,7 +76,7 @@ eigenmietwert:
     quelle: sm-eigenmietwert
   bundessteuer:
     abweichend: true
-    text: "Abweichender Wert für die Bundessteuer. Rundschreiben 172 nennt noch den früheren Abzug (25 % statt 30 %); die Höhe nach der Erhöhung auf 40 % ist nicht bestätigt."
+    text: "Abweichender Wert für die Bundessteuer. Rundschreiben 172 nennt noch den Abzug vor der Erhöhung auf 40 % (25 % statt 30 %)."
     quelle: estv-rs-172
     ungeprueft: true
   unternutzung:

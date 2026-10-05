@@ -75,7 +75,7 @@ eigenmietwert:
     moeglich: false
     quelle: sm-eigenmietwert
   haertefall:
-    text: "Abzug für Wohnkosten (déduction pour le logement), auch für Mieter: Teil des Wohnwerts über 20 % des Reineinkommens, höchstens CHF 6 400; massgebender Wohnwert höchstens CHF 10 500 (Alleinstehende) bzw. 12 900 (Paare, Einelternfamilien), plus 3 500 pro Kind."
+    text: "Abzug für Wohnkosten (déduction pour le logement), auch für Mieter: Teil des Wohnwerts über 20 % des Reineinkommens, höchstens CHF 6’400; massgebender Wohnwert höchstens CHF 10’500 (Alleinstehende) bzw. 12’900 (Paare, Einelternfamilien), plus 3’500 pro Kind."
     quelle: sm-eigenmietwert
 werte:
   kinderabzug: { wert: 1000, typ: abzug, quelle: sm-kinderabzug, hinweis: "nur bei Nettoeinkommen bis 126'300; Hauptentlastung über den Familienquotienten" }

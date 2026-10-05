@@ -64,7 +64,7 @@ ehepaare:
 # Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
 eigenmietwert:
   methode:
-    text: "Mietwert (100 %) aus dem Steuerwert für die Mietwertberechnung, gestaffelt mit sinkendem Satz je Stufe von CHF 250 000; der Eigenmietwert ist ein fester Anteil davon."
+    text: "Mietwert (100 %) aus dem Steuerwert für die Mietwertberechnung, gestaffelt mit sinkendem Satz je Stufe von CHF 250’000; der Eigenmietwert ist ein fester Anteil davon."
     quelle: kb-ow
     artikel: "Art. 23 Abs. 3 StG OW, Art. 10 Abs. 1 und 1a StV OW"
   ziel:
@@ -72,14 +72,14 @@ eigenmietwert:
     quelle: kb-ow
   bundessteuer:
     abweichend: true
-    text: "Abweichender Wert für die Bundessteuer. Rundschreiben 172 beschreibt noch das alte System (fester Satz des Steuerwerts); die Höhe nach dem Systemwechsel ist nicht bestätigt."
+    text: "Abweichender Wert für die Bundessteuer. Rundschreiben 172 beschreibt noch das alte System (fester Satz des Steuerwerts)."
     quelle: estv-rs-172
     ungeprueft: true
   unternutzung:
     moeglich: true
     quelle: sm-eigenmietwert
   haertefall:
-    text: "Ab Steuerjahr 2026: Einschlag, wenn der Eigenmietwert mehr als einen Drittel der verfügbaren Einkünfte ausmacht und dauernd Vermögen verzehrt werden müsste; entfällt bei Vermögen über CHF 100 000 (Alleinstehende) bzw. 150 000 (übrige), ausser das Eigenheim macht mehr als 75 % der Aktiven aus; mindestens 60 % des Mietwerts."
+    text: "Ab Steuerjahr 2026: Einschlag, wenn der Eigenmietwert mehr als einen Drittel der verfügbaren Einkünfte ausmacht und dauernd Vermögen verzehrt werden müsste; entfällt bei Vermögen über CHF 100’000 (Alleinstehende) bzw. 150’000 (übrige), ausser das Eigenheim macht mehr als 75 % der Aktiven aus; mindestens 60 % des Mietwerts."
     quelle: kb-ow
     artikel: "Art. 23 Abs. 4 StG OW, Art. 2–3 ABEigenmietwert"
   tabelle:
@@ -87,7 +87,7 @@ eigenmietwert:
     basis: Steuerwert für die Mietwertberechnung
     quelle: kb-ow
     artikel: Art. 10 Abs. 1 StV OW
-    hinweis: "Ergibt den Mietwert (100 %); der Eigenmietwert ist davon 60 %. Der Satz ab CHF 1 500 001 ist im Kantonsblatt leer."
+    hinweis: "Ergibt den Mietwert (100 %); der Eigenmietwert ist davon 60 %. Der Satz ab CHF 1’500’001 ist im Kantonsblatt leer."
     stufen:
       - { ab: 0, satz: 4.25 }
       - { ab: 250000, satz: 3.75 }

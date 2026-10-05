@@ -80,7 +80,7 @@ eigenmietwert:
     quelle: sm-eigenmietwert
     hinweis: "auf Antrag"
   haertefall:
-    text: "Kürzung um den Teil über 30 % der Bruttoeinkünfte, wenn das Vermögen höchstens CHF 600 000 beträgt; im AHV-Alter Herabsetzung bei offensichtlichem Missverhältnis; nicht unter 60 % der mittleren Marktmiete."
+    text: "Kürzung um den Teil über 30 % der Bruttoeinkünfte, wenn das Vermögen höchstens CHF 600’000 beträgt; im AHV-Alter Herabsetzung bei offensichtlichem Missverhältnis; nicht unter 60 % der mittleren Marktmiete."
     quelle: kb-sg
     artikel: "Art. 34 Abs. 4 StG SG, Art. 14 StV SG"
 werte:
