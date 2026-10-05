@@ -54,3 +54,13 @@
 - **Changed:** `.zelle-hinweis` is right-aligned only in number cells; Eigenmietwert data text uses ’ as thousands separator; OW/NW federal-tax wording shortened.
 - **Verified:** build passes; BL, OW, SO, ZH checked in the browser at 1440 px; Eigenmietwert tables fit at 390 px.
 - **Open:** pre-existing 11 px horizontal overflow at 390 px from the «Abzüge im Vergleich zum Bund» table (BL page, cell notes); decimal style is mixed site-wide (data text «1,2», formatted figures «63.23 %»).
+
+## 2026-10-05 (wrap-up, MacBook Air)
+
+- **Done:** Eigenmietwert from research to page in one session: report and notes committed (6f5f085), data model and figures for 26 cantons + federal (664a74a), generated canton-page section (dbdc7fb); all pushed and deployed. HQ: project page updated, five lessons added (schema arithmetic checks, PDF table gaps, Chrome viewport/iframe measuring, `astro preview` daemon, conventions kept only in HQ), commit f9ffa12, pushed.
+- **Changed:** nothing beyond the entries above; this log entry is the only uncommitted change.
+- **Open:**
+  - The HQ page (2026-10-03) says the site addresses readers with «du» and that work stays local until beta. Neither is in this repo or its `CLAUDE.md`, and today's work used «Sie» and was deployed. The task-first/Fahrplan work is presumably local on the Mac mini; rebase it onto origin/main before pushing, and switch the Eigenmietwert section to «du» then.
+  - Data: dBSt values for OW/NW, BE factors, GE conflict (RS 172 vs. Steuermäppchen), OW rate above CHF 1.5 Mio., BS rate for 2026; RS 172 URL returned 502.
+  - Layout: 11 px overflow at 390 px from the «Abzüge im Vergleich zum Bund» table; mixed decimal style (data text «1,2», formatted figures «63.23 %»).
+  - Not yet used anywhere: `bund/2029.yaml` and the federal `emw_*` figures (for a future reforms/Eigenmietwert explainer page).
