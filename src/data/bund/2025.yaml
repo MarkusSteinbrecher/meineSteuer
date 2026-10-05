@@ -14,6 +14,9 @@ quellen:
   bsv-3a:
     titel: BSV, Kennzahlen berufliche Vorsorge und Säule 3a 2026
     url: https://www.bsv.admin.ch/dam/de/sd-web/3jZGqTLgADbl/BPP_Zahlen_85_2026.pdf
+  estv-dossier-emw:
+    titel: ESTV – Dossier Steuerinformationen «Besteuerung der Eigenmietwerte» (Februar 2026)
+    url: https://www.estv2.admin.ch/stp/ds/f-besteuerung-eigenmietwerte-de.pdf
 werte:
   fahrkosten_max: { wert: 3300, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 26 Abs. 1 lit. a }
   verpflegung_tag: { wert: 15, einheit: CHF/Tag, typ: abzug, quelle: bkv, artikel: BKV Art. 6 }
@@ -44,6 +47,10 @@ werte:
   liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: dbg, hinweis: "Gebäude bis 10 Jahre alt, des Mietertrags bzw. Eigenmietwerts" }
   liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: dbg, hinweis: "Gebäude älter als 10 Jahre" }
   hoechstsatz: { wert: 11.5, einheit: prozent, quelle: dbg, artikel: DBG Art. 36 }
+  # Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029)
+  emw_untergrenze_bger: { wert: 60, einheit: prozent, quelle: estv-dossier-emw, artikel: BGE 124 I 145, hinweis: "der Marktmiete, im Einzelfall, für die Kantonssteuern" }
+  emw_mindestniveau_dbst: { wert: 70, einheit: prozent, quelle: estv-dossier-emw, artikel: DBG Art. 21 Abs. 2, hinweis: "der Marktmiete, im Durchschnitt eines Kantons" }
+  schuldzins_zusatz: { wert: 50000, typ: abzug, quelle: dbg, artikel: DBG Art. 33 Abs. 1 lit. a, hinweis: "private Schuldzinsen bis zum Vermögensertrag plus dieser Betrag" }
 # Tarif DBG Art. 36, Steuerjahr 2025: ab (steuerbares Einkommen) → Steuer an der Stufe, je weitere CHF 100.
 # Letzte Stufe: satz_ganz = Prozentsatz auf dem ganzen Einkommen.
 tarife:

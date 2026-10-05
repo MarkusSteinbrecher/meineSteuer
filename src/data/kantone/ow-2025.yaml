@@ -41,6 +41,15 @@ quellen:
   sm-liegenschaft:
     titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-ow:
+    titel: ESTV-Kantonsblatt Obwalden – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/ow-de.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
+  estv-rs-172:
+    titel: ESTV-Rundschreiben 172 – Kantone mit unterschiedlichen Eigenmietwerten für Kantons- und Bundessteuer (10.7.2019)
+    url: https://www.estv.admin.ch/dam/estv/it/dokumente/bundessteuer/rundschreiben/2019/2-172-D-2019-d_f_Beilage.pdf.download.pdf/2-172-D-2019-d_f_Beilage.pdf
 frist:
   text: 30. April 2026 (noch nicht bestätigt)
   verlaengerung: "Online auf efristen.ow.ch bis 31. Dezember 2026 gebührenfrei; schriftlich oder über den 31. Dezember hinaus CHF 30 (noch nicht bestätigt)."
@@ -52,6 +61,41 @@ ehepaare:
   modell: pauschal
   beschreibung: "Einheitlicher Steuersatz (Flat Rate Tax) mit persönlichem Abzug von 10'000. Verheiratete und Alleinerziehende ziehen zusätzlich 20 % des Nettoeinkommens ab (mindestens 4300, höchstens 10'000)."
   quelle: sm-ehepaare
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Mietwert (100 %) aus dem Steuerwert für die Mietwertberechnung, gestaffelt mit sinkendem Satz je Stufe von CHF 250 000; der Eigenmietwert ist ein fester Anteil davon."
+    quelle: kb-ow
+    artikel: "Art. 23 Abs. 3 StG OW, Art. 10 Abs. 1 und 1a StV OW"
+  ziel:
+    text: "60 % des Mietwerts"
+    quelle: kb-ow
+  bundessteuer:
+    abweichend: true
+    text: "Abweichender Wert für die Bundessteuer. Rundschreiben 172 beschreibt noch das alte System (fester Satz des Steuerwerts); die Höhe nach dem Systemwechsel ist nicht bestätigt."
+    quelle: estv-rs-172
+    ungeprueft: true
+  unternutzung:
+    moeglich: true
+    quelle: sm-eigenmietwert
+  haertefall:
+    text: "Ab Steuerjahr 2026: Einschlag, wenn der Eigenmietwert mehr als einen Drittel der verfügbaren Einkünfte ausmacht und dauernd Vermögen verzehrt werden müsste; entfällt bei Vermögen über CHF 100 000 (Alleinstehende) bzw. 150 000 (übrige), ausser das Eigenheim macht mehr als 75 % der Aktiven aus; mindestens 60 % des Mietwerts."
+    quelle: kb-ow
+    artikel: "Art. 23 Abs. 4 StG OW, Art. 2–3 ABEigenmietwert"
+  tabelle:
+    art: staffel
+    basis: Steuerwert für die Mietwertberechnung
+    quelle: kb-ow
+    artikel: Art. 10 Abs. 1 StV OW
+    hinweis: "Ergibt den Mietwert (100 %); der Eigenmietwert ist davon 60 %. Der Satz ab CHF 1 500 001 ist im Kantonsblatt leer."
+    stufen:
+      - { ab: 0, satz: 4.25 }
+      - { ab: 250000, satz: 3.75 }
+      - { ab: 500000, satz: 3.25 }
+      - { ab: 750000, satz: 2.75 }
+      - { ab: 1000000, satz: 2.50 }
+      - { ab: 1250000, satz: 2.25 }
+      - { ab: 1500000, satz: null }
 werte:
   fahrkosten_max: { wert: 10000, typ: abzug, quelle: sm-fahrkosten }
   kinderabzug: { wert: 6200, typ: abzug, quelle: sm-kinderabzug }
@@ -67,3 +111,4 @@ werte:
   vermoegen_freibetrag_pro_kind: { wert: 10000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
   liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre alt" }
   liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude älter als 10 Jahre" }
+  emw_anteil: { wert: 60, einheit: prozent, quelle: kb-ow, artikel: Art. 10 Abs. 1a StV OW, hinweis: "des Mietwerts (100 %)" }

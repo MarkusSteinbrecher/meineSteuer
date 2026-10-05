@@ -41,6 +41,12 @@ quellen:
   sm-liegenschaft:
     titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-zg:
+    titel: ESTV-Kantonsblatt Zug – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/zg-de.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
 frist:
   datum: 2026-04-30
   text: 30. April 2026
@@ -54,6 +60,23 @@ ehepaare:
   modell: doppeltarif
   beschreibung: "Eigener, tieferer Tarif für Verheiratete. Persönlicher Abzug: 12'000 für Alleinstehende, 24'000 für Alleinerziehende und Verheiratete (indexierte Beträge ab 2025)."
   quelle: sm-ehepaare
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Marktmiete als fester Prozentsatz des Verkehrswerts (ausser bei besonderen Verhältnissen oder aktueller Schätzung); der Eigenmietwert ist mindestens ein fester Anteil davon."
+    quelle: kb-zg
+    artikel: "§ 20 Abs. 2 StG ZG, § 6 StGV ZG"
+  ziel:
+    text: "mindestens 60 % der Marktmiete"
+    quelle: kb-zg
+  bundessteuer:
+    abweichend: false
+    text: "Der kantonale Wert gilt auch für die Bundessteuer."
+    quelle: sm-eigenmietwert
+  unternutzung:
+    moeglich: true
+    quelle: sm-eigenmietwert
+    hinweis: "mindestens 5 Zimmer, Verzicht auf jede Nutzung, gesunkene Wohnbedürfnisse (§ 7 StGV ZG)"
 werte:
   fahrkosten_max: { wert: 6000, typ: abzug, quelle: sm-fahrkosten }
   kinderabzug: { wert: 12600, typ: abzug, quelle: sm-kinderabzug, hinweis: "laut ESTV-Tabelle zusätzlich 12'200 ab 16 Jahren" }
@@ -69,3 +92,5 @@ werte:
   vermoegen_freibetrag_pro_kind: { wert: 102000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
   liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre alt" }
   liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude älter als 10 Jahre" }
+  emw_marktmiete_satz: { wert: 5, einheit: prozent, quelle: kb-zg, artikel: § 6 StGV ZG, hinweis: "des Verkehrswerts" }
+  emw_anteil: { wert: 60, einheit: prozent, quelle: kb-zg, artikel: § 6 StGV ZG, hinweis: "mindestens; der Marktmiete" }

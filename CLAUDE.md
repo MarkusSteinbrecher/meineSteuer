@@ -15,6 +15,7 @@
 - `src/content/seiten/<bereich>/*.mdx`: pages. Front matter is schema-checked (`src/content.config.ts`): `steuerjahr`, `geprueft_am`, ≥ 1 `quellen` entry are required.
 - `src/data/bund/<jahr>.yaml`, `src/data/kantone/<kt>-<jahr>.yaml`: every figure as `{ wert, einheit, typ, quelle, artikel?, hinweis?, ungeprueft? }`; `quelle` must be a key of the file's `quellen` map (checked at build).
 - In MDX, insert figures with `<Betrag k="saeule3a_mit_pk" />` or `<Betrag ebene="zh" k="kinderabzug" />`; an unknown key fails the build. In YAML flow maps, quote any `hinweis` containing a comma.
+- Eigenmietwert (valid up to tax year 2028): canton files carry an `eigenmietwert` block (method, target level, federal tax, under-use, hardship, optional rate table `staffel`/`degressiv`/`gruppen`); single figures are `emw_*` keys in `werte`. `bund/2029.yaml` holds the post-reform values (first-time-buyer deduction).
 - Canton pages are generated from the data (`src/pages/kantone/`). The canton-vs-federal table rows are in `src/lib/vergleich.ts`.
 - Internal links go through `pfad()` (`src/lib/site.ts`) because of the GitHub Pages base path `/meineSteuer/`.
 - `ENTWURFSPHASE` in `src/lib/site.ts` adds `noindex` and the «Entwurf» badge; switch off only at launch.

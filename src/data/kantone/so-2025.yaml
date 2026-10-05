@@ -38,6 +38,15 @@ quellen:
   sm-liegenschaft:
     titel: "ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)"
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-so:
+    titel: ESTV-Kantonsblatt Solothurn – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/so-de.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
+  estv-rs-172:
+    titel: ESTV-Rundschreiben 172 – Kantone mit unterschiedlichen Eigenmietwerten für Kantons- und Bundessteuer (10.7.2019)
+    url: https://www.estv.admin.ch/dam/estv/it/dokumente/bundessteuer/rundschreiben/2019/2-172-D-2019-d_f_Beilage.pdf.download.pdf/2-172-D-2019-d_f_Beilage.pdf
 frist:
   datum: 2026-03-31
   text: "31. März 2026"
@@ -53,6 +62,34 @@ ehepaare:
   divisor: 1.9
   beschreibung: "Teilsplitting: Das gemeinsame Einkommen wird zum Satz von 52,63 % besteuert; gilt auch für Verwitwete im Todesjahr und zwei weitere Jahre."
   quelle: sm-ehepaare
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Katasterschätzung bis CHF 240 000: fester Prozentsatz je Gemeindegruppe. Darüber (überdurchschnittliche Bauart): Einzelbewertung."
+    quelle: kb-so
+    artikel: "§ 28 StG SO, StV Nr. 15 §§ 1, 4–5"
+  ziel:
+    text: "60–90 % der Marktmiete"
+    quelle: sm-eigenmietwert
+  bundessteuer:
+    abweichend: true
+    text: "Bei Katasterschätzung bis CHF 240 000: 125 % des kantonalen Werts; darüber kein Zuschlag (Rundschreiben 172)."
+    quelle: estv-rs-172
+  unternutzung:
+    moeglich: false
+    quelle: sm-eigenmietwert
+  tabelle:
+    art: gruppen
+    basis: Katasterschätzung (Gebäude und normaler Umschwung)
+    bis: 240000
+    quelle: kb-so
+    artikel: StV Nr. 15 § 1
+    gruppen:
+      - { gruppe: I, satz: 10.63 }
+      - { gruppe: II, satz: 10.02 }
+      - { gruppe: III, satz: 9.42 }
+      - { gruppe: IV, satz: 9.11 }
+      - { gruppe: V, satz: 8.80 }
 werte:
   fahrkosten_max: { wert: 7000, typ: abzug, quelle: sm-fahrkosten }
   kinderabzug: { wert: 9000, typ: abzug, quelle: sm-kinderabzug }

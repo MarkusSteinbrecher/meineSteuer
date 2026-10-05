@@ -41,6 +41,15 @@ quellen:
   sm-liegenschaft:
     titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-sz:
+    titel: ESTV-Kantonsblatt Schwyz – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/sz-de.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
+  estv-rs-172:
+    titel: ESTV-Rundschreiben 172 – Kantone mit unterschiedlichen Eigenmietwerten für Kantons- und Bundessteuer (10.7.2019)
+    url: https://www.estv.admin.ch/dam/estv/it/dokumente/bundessteuer/rundschreiben/2019/2-172-D-2019-d_f_Beilage.pdf.download.pdf/2-172-D-2019-d_f_Beilage.pdf
 frist:
   text: 31. März 2026 (noch nicht bestätigt)
   verlaengerung: Online auf efristen.sz.ch/np mit PID und Geburtsdatum; wählbar bis Ende Oktober, November oder Dezember 2026; Gebühr nicht bekannt.
@@ -54,6 +63,23 @@ ehepaare:
   divisor: 1.9
   beschreibung: "Teilsplitting: das gemeinsame Einkommen wird zum Satz von 52,63 % besteuert (Divisor 1,9). Persönlicher Abzug: 3200 für Alleinstehende (Alleinerziehende zusätzlich 6300), 6400 für Verheiratete."
   quelle: sm-ehepaare
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Schätzung nach dem Mietpreisniveau der Ortschaft."
+    quelle: sm-eigenmietwert
+    artikel: "§ 22 Abs. 2 StG SZ"
+  ziel:
+    text: "65 % der Marktmiete"
+    quelle: kb-sz
+  bundessteuer:
+    abweichend: true
+    text: "Zuschlag von 5 % auf den kantonalen Wert (Rundschreiben 172)."
+    quelle: estv-rs-172
+  unternutzung:
+    moeglich: true
+    quelle: sm-eigenmietwert
+    hinweis: "auf Antrag"
 werte:
   fahrkosten_max: { wert: 8000, typ: abzug, quelle: sm-fahrkosten }
   kinderabzug: { wert: 9000, typ: abzug, quelle: sm-kinderabzug }

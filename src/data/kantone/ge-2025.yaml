@@ -38,6 +38,15 @@ quellen:
   sm-liegenschaft:
     titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-ge:
+    titel: ESTV-Kantonsblatt Genf – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/ge-fr.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
+  estv-rs-172:
+    titel: ESTV-Rundschreiben 172 – Kantone mit unterschiedlichen Eigenmietwerten für Kantons- und Bundessteuer (10.7.2019)
+    url: https://www.estv.admin.ch/dam/estv/it/dokumente/bundessteuer/rundschreiben/2019/2-172-D-2019-d_f_Beilage.pdf.download.pdf/2-172-D-2019-d_f_Beilage.pdf
 frist:
   text: 31. März 2026 (noch nicht bestätigt)
   verlaengerung: Über e-démarches, anonymes Formular, Telefon 022 546 94 00 oder Post (1. Januar bis 31. Oktober; November und Dezember nur schriftlich). Bis 3 Monate CHF 20, bis 5 Monate CHF 40, über 5 Monate CHF 60.
@@ -51,6 +60,27 @@ ehepaare:
   divisor: 2
   beschreibung: Vollsplitting – das gemeinsame Einkommen wird zum Satz für die Hälfte besteuert. Getrennt lebende Elternteile mit geteilter Obhut erhalten ein Teilsplitting von 55,56 %.
   quelle: sm-ehepaare
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Theoretische Miete (loyer théorique) nach Fläche, Zimmerzahl, Ausstattung, Alter, Immissionen und Lage, gewichtet nach der Dauer der ununterbrochenen Nutzung; gedeckelt durch den «taux d’effort»."
+    quelle: kb-ge
+    artikel: "Art. 24 Abs. 2 LIPP"
+  ziel:
+    text: "kein fester Anteil der Marktmiete; höchstens 20 % der Bruttoeinkünfte"
+    quelle: sm-eigenmietwert
+  bundessteuer:
+    abweichend: true
+    text: "Laut Rundschreiben 172 gilt der Abschlag nach Besitzesdauer nicht für die Bundessteuer. Das Steuermäppchen 2025 meldet dagegen keine Abweichung."
+    quelle: estv-rs-172
+    ungeprueft: true
+  unternutzung:
+    moeglich: false
+    quelle: sm-eigenmietwert
+  haertefall:
+    text: "Taux d’effort: Eigenmietwert höchstens 20 % der Bruttoeinkünfte, berechnet mindestens auf CHF 18 649 für Alleinstehende (doppelt bei Ehepaaren); nur, wenn die Finanzierungszinsen nicht höher sind."
+    quelle: sm-eigenmietwert
+    artikel: "Art. 24 Abs. 2 LIPP"
 werte:
   kinderabzug: { wert: 13660, typ: abzug, quelle: sm-kinderabzug, hinweis: "pro «charge de famille»; halbe Charge 6'830" }
   fahrkosten_max: { wert: 534, typ: abzug, quelle: sm-fahrkosten, hinweis: "Pauschale für alle Verkehrsmittel" }

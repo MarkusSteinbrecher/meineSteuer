@@ -38,6 +38,9 @@ quellen:
   sm-liegenschaft:
     titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
 frist:
   datum: 2026-03-31
   text: 31. März 2026
@@ -53,6 +56,26 @@ ehepaare:
   modell: doppeltarif
   beschreibung: Eigener, tieferer Tarif für Verheiratete und Alleinerziehende.
   quelle: sm-ehepaare
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Einfamilienhaus und Stockwerkeigentum: fester Prozentsatz des Land- und Zeitbauwerts. Wohnung im eigenen Mehrfamilienhaus: Mieten im gleichen Haus, abzüglich 30 %."
+    quelle: sm-eigenmietwert
+    artikel: "Weisung des Regierungsrates ab Steuerperiode 2009 (LS 631.32), Ziff. 59–66"
+  ziel:
+    text: "höchstens 70 % der Marktmiete"
+    quelle: sm-eigenmietwert
+  bundessteuer:
+    abweichend: false
+    text: "Der kantonale Wert gilt auch für die Bundessteuer."
+    quelle: sm-eigenmietwert
+  unternutzung:
+    moeglich: true
+    quelle: sm-eigenmietwert
+  haertefall:
+    text: "Angemessener Einschlag, in der Regel wenn der Eigenmietwert mehr als einen Drittel der für die Lebenshaltung verfügbaren Einkünfte ausmacht; kein Einschlag bei steuerbarem Vermögen über CHF 600 000."
+    quelle: sm-eigenmietwert
+    artikel: "Weisung 2009, Ziff. 62"
 werte:
   steuerfuss_kanton: { wert: 98, einheit: prozent, quelle: estv-stf-2026, hinweis: "2025er-Wert aus dem Vergleich zur Senkung auf 95 % für 2026", ungeprueft: true }
   fahrkosten_max: { wert: 5200, typ: abzug, quelle: sm-fahrkosten }
@@ -67,3 +90,5 @@ werte:
   vermoegen_minimum_alleinstehend: { wert: 80000, typ: nullstufe, quelle: sm-minimum-vermoegen }
   vermoegen_minimum_verheiratet: { wert: 159000, typ: nullstufe, quelle: sm-minimum-vermoegen, hinweis: "gilt auch für Alleinerziehende" }
   liegenschaft_pauschal: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "unabhängig vom Alter des Gebäudes" }
+  emw_satz_efh: { wert: 3.5, einheit: prozent, quelle: sm-eigenmietwert, artikel: Weisung 2009 Ziff. 59–60, hinweis: "des Land- und Zeitbauwerts; Gebäudeanteil über einem Versicherungs-Basiswert von CHF 120 000 nur zu 1 %" }
+  emw_satz_stwe: { wert: 4.25, einheit: prozent, quelle: sm-eigenmietwert, artikel: Weisung 2009 Ziff. 59–60, hinweis: "des Land- und Zeitbauwertanteils; Gebäudeanteil über einem Versicherungs-Basiswert von CHF 40 000 nur zu 1 %" }

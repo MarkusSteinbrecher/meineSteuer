@@ -38,6 +38,15 @@ quellen:
   sm-liegenschaft:
     titel: "ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)"
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-bl:
+    titel: ESTV-Kantonsblatt Basel-Landschaft – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/bl-de.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
+  estv-rs-172:
+    titel: ESTV-Rundschreiben 172 – Kantone mit unterschiedlichen Eigenmietwerten für Kantons- und Bundessteuer (10.7.2019)
+    url: https://www.estv.admin.ch/dam/estv/it/dokumente/bundessteuer/rundschreiben/2019/2-172-D-2019-d_f_Beilage.pdf.download.pdf/2-172-D-2019-d_f_Beilage.pdf
 frist:
   text: "Steht auf dem persönlichen Formular (meist 31. März 2026, nicht bestätigt)"
   verlaengerung: "Über den Online-Schalter (konto.bl.ch) oder auf Papier: gebührenfrei bis zwei Monate nach der aufgedruckten Frist; länger CHF 40."
@@ -53,6 +62,42 @@ ehepaare:
   divisor: 2
   beschreibung: "Vollsplitting: Das gemeinsame Einkommen wird zum Satz der Hälfte besteuert."
   quelle: sm-ehepaare
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Steuerlicher Brandlagerwert (einfacher Brandlagerwert × Gemeinde-, Alters- und Stockwerkeigentumsfaktor) × Satz, der mit steigendem Wert sinkt; über einem Höchstwert ein fester Betrag. Ergebnis zwischen 60 % und 65 % der Marktmiete, sonst Korrektur auf 60 %."
+    quelle: kb-bl
+    artikel: "§ 27ter StG BL"
+  ziel:
+    text: "60–65 % der Marktmiete"
+    quelle: kb-bl
+  bundessteuer:
+    abweichend: true
+    text: "Kantonaler Wert × 1,2 (Rundschreiben 172)."
+    quelle: estv-rs-172
+  unternutzung:
+    moeglich: true
+    quelle: sm-eigenmietwert
+    hinweis: "auf Antrag, bei erheblicher raummässiger Unternutzung"
+  tabelle:
+    art: degressiv
+    basis: steuerlicher Brandlagerwert
+    quelle: kb-bl
+    artikel: § 27ter Abs. 5 StG BL
+    hinweis: "Altersfaktor: bis 25 Jahre keiner, 26–85 Jahre 0,9, ab 86 Jahren 0,8; Stockwerkeigentum 0,9."
+    start: { bis: 20000, satz: 63.23 }
+    stufen:
+      - { bis: 26000, je100: 0.192963, auf: 51.65 }
+      - { bis: 35000, je100: 0.085751, auf: 43.93 }
+      - { bis: 46000, je100: 0.067110, auf: 36.55 }
+      - { bis: 61000, je100: 0.040663, auf: 30.45 }
+      - { bis: 78000, je100: 0.017287, auf: 27.51 }
+      - { bis: 99000, je100: 0.012380, auf: 24.91 }
+      - { bis: 122000, je100: 0.007468, auf: 23.19 }
+      - { bis: 203000, je100: 0.002373, auf: 21.27 }
+      - { bis: 290000, je100: 0.001963, auf: 19.56 }
+      - { bis: 435000, je100: 0.001702, auf: 17.09 }
+    darueber_betrag: 74340
 werte:
   fahrkosten_max: { wert: 6000, typ: abzug, quelle: sm-fahrkosten }
   kinderabzug: { wert: 750, typ: steuergutschrift, quelle: sm-kinderabzug, hinweis: "Steuergutschrift pro Kind: wird vom Steuerbetrag abgezogen statt vom Einkommen" }

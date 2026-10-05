@@ -35,6 +35,12 @@ quellen:
   sm-liegenschaft:
     titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-vs:
+    titel: ESTV-Kantonsblatt Wallis – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/vs-fr.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
 frist:
   datum: 2026-03-31
   text: 31. März 2026
@@ -48,6 +54,22 @@ ehepaare:
   beschreibung: Einheitstarif mit einem Rabatt von 35 % auf der Kantons- und Gemeindeeinkommenssteuer für Verheiratete und Alleinerziehende, mindestens CHF 680, höchstens CHF 4900.
   quelle: sm-ehepaare
 fahrkosten_unbegrenzt: { quelle: sm-fahrkosten }
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Schätzung «de manière raisonnable» nach den ortsüblichen Verhältnissen; Anpassung frühestens alle zwei Veranlagungsperioden."
+    quelle: kb-vs
+    artikel: "Art. 17 Abs. 2–3 LF VS"
+  ziel:
+    text: "60 % der Marktmiete"
+    quelle: sm-eigenmietwert
+  bundessteuer:
+    abweichend: false
+    text: "Der kantonale Wert gilt auch für die Bundessteuer."
+    quelle: sm-eigenmietwert
+  unternutzung:
+    moeglich: true
+    quelle: sm-eigenmietwert
 werte:
   kinderabzug: { wert: 7860, typ: abzug, quelle: sm-kinderabzug, hinweis: "bis 6 Jahre; 8'940 von 6 bis 16; 11'930 ab 16 in Ausbildung; zusätzlich 300 Franken Reduktion der Kantonssteuer" }
   kinderdrittbetreuung_max: { wert: 10000, typ: abzug, quelle: sm-drittbetreuung, hinweis: "alternativ CHF 3130 bei Eigenbetreuung, nicht kumulierbar" }

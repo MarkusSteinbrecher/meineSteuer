@@ -1,0 +1,16 @@
+# Direkte Bundessteuer, Steuerjahr 2029: erstes Jahr nach dem Systemwechsel bei der Wohneigentumsbesteuerung
+# (Eigenmietwert abgeschafft, in Kraft 1.1.2029). Nur die neuen Werte. Quelle: reports/Eigenmietwert Berechnung nach Kanton.md
+steuerjahr: 2029
+geprueft_am: 2026-10-05
+quellen:
+  bbl-2025-23:
+    titel: Bundesgesetz über den Systemwechsel bei der Wohneigentumsbesteuerung vom 20. Dezember 2024 (BBl 2025 23)
+    url: https://www.fedlex.admin.ch/filestore/fedlex.data.admin.ch/eli/fga/2025/23/de/pdf-a/fedlex-data-admin-ch-eli-fga-2025-23-de-pdf-a.pdf
+  bundesrat-2026-04-01:
+    titel: Bundesrat – Inkrafttreten der Abschaffung des Eigenmietwerts auf den 1. Januar 2029 (1.4.2026)
+    url: https://www.admin.ch/de/newnsb/yGTqBPowRqyVh0zPokW-q
+werte:
+  ersterwerber_max_verheiratet: { wert: 10000, typ: abzug, quelle: bbl-2025-23, artikel: DBG Art. 33a (neu), hinweis: "Schuldzinsen im ersten Steuerjahr nach dem Erwerb; Ehepaare in ungetrennter Ehe" }
+  ersterwerber_max_uebrige: { wert: 5000, typ: abzug, quelle: bbl-2025-23, artikel: DBG Art. 33a (neu), hinweis: "Schuldzinsen im ersten Steuerjahr nach dem Erwerb" }
+  ersterwerber_reduktion: { wert: 10, einheit: prozent, quelle: bbl-2025-23, artikel: DBG Art. 33a Abs. 3 (neu), hinweis: "des ursprünglichen Höchstbetrags, in jedem Folgejahr" }
+  ersterwerber_uebergang_jahre: { wert: 10, einheit: Jahre, quelle: bbl-2025-23, artikel: DBG Art. 205g (neu), hinweis: "Erstkauf höchstens so viele Jahre vor dem Inkrafttreten: Abzug für die verbleibenden Jahre" }

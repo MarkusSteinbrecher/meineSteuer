@@ -41,6 +41,15 @@ quellen:
   sm-liegenschaft:
     titel: "ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)"
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-sh:
+    titel: ESTV-Kantonsblatt Schaffhausen – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/sh-de.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
+  estv-rs-172:
+    titel: ESTV-Rundschreiben 172 – Kantone mit unterschiedlichen Eigenmietwerten für Kantons- und Bundessteuer (10.7.2019)
+    url: https://www.estv.admin.ch/dam/estv/it/dokumente/bundessteuer/rundschreiben/2019/2-172-D-2019-d_f_Beilage.pdf.download.pdf/2-172-D-2019-d_f_Beilage.pdf
 frist:
   datum: 2026-03-31
   text: "31. März 2026"
@@ -55,6 +64,25 @@ ehepaare:
   divisor: 1.9
   beschreibung: "Teilsplitting: Das gemeinsame Einkommen wird zum Satz von 52,63 % besteuert."
   quelle: sm-ehepaare
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Schätzung nach dem ortsüblichen Mietzinsniveau und wertbildenden Faktoren (Dekret über den Eigenmietwert)."
+    quelle: kb-sh
+    artikel: "Art. 23 Abs. 2 StG SH, DEMW §§ 1–2"
+  ziel:
+    text: "höchstens 70 % der Marktmiete"
+    quelle: kb-sh
+  bundessteuer:
+    abweichend: true
+    text: "Kantonaler Wert × 1,08 (Rundschreiben 172)."
+    quelle: estv-rs-172
+  unternutzung:
+    moeglich: true
+    quelle: sm-eigenmietwert
+  haertefall:
+    text: "Bei steuerbarem Vermögen bis CHF 500 000 höchstens ein Drittel der Bareinkünfte."
+    quelle: sm-eigenmietwert
 werte:
   fahrkosten_max: { wert: 6000, typ: abzug, quelle: sm-fahrkosten }
   kinderabzug: { wert: 8400, typ: abzug, quelle: sm-kinderabzug }

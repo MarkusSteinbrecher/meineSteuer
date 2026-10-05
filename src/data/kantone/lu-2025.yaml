@@ -41,6 +41,12 @@ quellen:
   sm-liegenschaft:
     titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-lu:
+    titel: ESTV-Kantonsblatt Luzern – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/lu-de.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
 frist:
   text: Auf dem persönlichen Formular aufgedruckt (für Unselbständigerwerbende vermutlich 31. März 2026, noch nicht bestätigt)
   verlaengerung: "Online-Fristerstreckung auf steuern.lu.ch (QR-Code auf dem Formular); online höchstens bis 31. August 2026 für Unselbständigerwerbende und 30. November 2026 für Selbständigerwerbende oder Vertretene (ungeprüft); keine Gebühr erwähnt."
@@ -53,6 +59,26 @@ ehepaare:
   modell: doppeltarif
   beschreibung: Eigener, tieferer Tarif für Verheiratete.
   quelle: sm-ehepaare
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Amtlich geschätzter Mietwert nach Gemeindegruppen, festgesetzt auf einen festen Anteil der mittleren Marktmiete."
+    quelle: kb-lu
+    artikel: "§ 28 Abs. 2 StG LU"
+  ziel:
+    text: "70 % der mittleren Marktmiete"
+    quelle: kb-lu
+  bundessteuer:
+    abweichend: false
+    text: "Der kantonale Wert gilt auch für die Bundessteuer."
+    quelle: sm-eigenmietwert
+  unternutzung:
+    moeglich: false
+    quelle: sm-eigenmietwert
+  haertefall:
+    text: "Auf Antrag Herabsetzung, soweit der Mietwert 25 % der Einkünfte ohne Mietwert übersteigt und unter CHF 19 400 (Alleinstehende) bzw. CHF 27 200 (Verheiratete) liegt; mindestens 60 % der mittleren Marktmiete. Entfällt bei Vermögen über CHF 55 000 bzw. 110 000, ausser das Wohneigentum macht mehr als 75 % der Aktiven aus."
+    quelle: kb-lu
+    artikel: "§ 28 Abs. 4 StG LU, § 8b StV LU"
 werte:
   fahrkosten_max: { wert: 6500, typ: abzug, quelle: sm-fahrkosten }
   kinderabzug: { wert: 8000, typ: abzug, quelle: sm-kinderabzug }
@@ -68,3 +94,4 @@ werte:
   vermoegen_freibetrag_pro_kind: { wert: 12500, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
   liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre alt; reduziert, wenn Mieter den Unterhalt tragen" }
   liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude älter als 10 Jahre; reduziert, wenn Mieter den Unterhalt tragen" }
+  emw_anteil: { wert: 70, einheit: prozent, quelle: kb-lu, artikel: § 28 Abs. 2 StG LU, hinweis: "der mittleren Marktmiete" }

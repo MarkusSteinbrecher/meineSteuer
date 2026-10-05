@@ -38,6 +38,12 @@ quellen:
   sm-liegenschaft:
     titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-ti:
+    titel: ESTV-Kantonsblatt Tessin – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/ti-it.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
 frist:
   datum: 2026-04-30
   text: 30. April 2026
@@ -52,6 +58,22 @@ ehepaare:
   beschreibung: Eigener, tieferer Tarif für Verheiratete; gilt auch für Verwitwete, für Geschiedene und Getrenntlebende nur im laufenden Jahr.
   quelle: sm-ehepaare
 fahrkosten_unbegrenzt: { quelle: sm-fahrkosten }
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Vergleichsmiete; ohne andere Anhaltspunkte 90 % des amtlichen Ertragswerts (valore di reddito). Die Ermässigung gilt nur für den Hauptwohnsitz."
+    quelle: kb-ti
+    artikel: "Art. 20 cpv. 2–3 LT, Art. 1 DIPF"
+  ziel:
+    text: "60–70 % der Marktmiete"
+    quelle: kb-ti
+  bundessteuer:
+    abweichend: false
+    text: "Der kantonale Wert gilt auch für die Bundessteuer."
+    quelle: sm-eigenmietwert
+  unternutzung:
+    moeglich: false
+    quelle: sm-eigenmietwert
 werte:
   kinderabzug: { wert: 11500, typ: abzug, quelle: sm-kinderabzug, hinweis: "pro Kind; zusätzlich bis 13'900 für Kinder in Ausbildung bis 28" }
   kinderdrittbetreuung_max: { wert: 26200, typ: abzug, quelle: sm-drittbetreuung }

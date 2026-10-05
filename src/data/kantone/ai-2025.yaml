@@ -38,6 +38,15 @@ quellen:
   sm-liegenschaft:
     titel: "ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)"
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-ai:
+    titel: ESTV-Kantonsblatt Appenzell Innerrhoden – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/ai-de.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
+  estv-rs-172:
+    titel: ESTV-Rundschreiben 172 – Kantone mit unterschiedlichen Eigenmietwerten für Kantons- und Bundessteuer (10.7.2019)
+    url: https://www.estv.admin.ch/dam/estv/it/dokumente/bundessteuer/rundschreiben/2019/2-172-D-2019-d_f_Beilage.pdf.download.pdf/2-172-D-2019-d_f_Beilage.pdf
 frist:
   datum: 2026-04-30
   text: "30. April 2026"
@@ -52,6 +61,23 @@ ehepaare:
   beschreibung: "Vollsplitting: Das gemeinsame Einkommen wird zum Satz der Hälfte besteuert."
   quelle: sm-ehepaare
 fahrkosten_unbegrenzt: { quelle: sm-fahrkosten }
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Mietwert des Schatzungsamts; für das Eigenheim am Wohnsitz gilt ein Anteil davon."
+    quelle: kb-ai
+    artikel: "Art. 24 StG AI, Art. 2 StKB"
+  ziel:
+    text: "70 % des Mietwerts"
+    quelle: kb-ai
+  bundessteuer:
+    abweichend: true
+    text: "Abzug nur 20 % statt 30 % (Rundschreiben 172)."
+    quelle: estv-rs-172
+  unternutzung:
+    moeglich: false
+    quelle: sm-eigenmietwert
+    hinweis: "ausdrücklich ausgeschlossen"
 werte:
   kinderabzug: { wert: 6000, typ: abzug, quelle: sm-kinderabzug, hinweis: "für das 1. und 2. Kind; ab dem 3. Kind 8'000; Zuschlag 8'000 bei auswärtiger Ausbildung" }
   kinderdrittbetreuung_max: { wert: 18000, typ: abzug, quelle: sm-drittbetreuung }
@@ -65,3 +91,4 @@ werte:
   vermoegen_freibetrag_verheiratet: { wert: 100000, typ: freibetrag, quelle: sm-abzug-vermoegen }
   vermoegen_freibetrag_pro_kind: { wert: 20000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
   liegenschaft_pauschal: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "unabhängig vom Alter des Gebäudes" }
+  emw_abzug_wohnsitz: { wert: 30, einheit: prozent, quelle: kb-ai, artikel: Art. 2 StKB, hinweis: "Eigenheim am Wohnsitz: 70 % des Mietwerts" }

@@ -35,6 +35,15 @@ quellen:
   sm-liegenschaft:
     titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-tg:
+    titel: ESTV-Kantonsblatt Thurgau – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/tg-de.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
+  estv-rs-172:
+    titel: ESTV-Rundschreiben 172 – Kantone mit unterschiedlichen Eigenmietwerten für Kantons- und Bundessteuer (10.7.2019)
+    url: https://www.estv.admin.ch/dam/estv/it/dokumente/bundessteuer/rundschreiben/2019/2-172-D-2019-d_f_Beilage.pdf.download.pdf/2-172-D-2019-d_f_Beilage.pdf
 frist:
   text: Vom Gemeindesteueramt festgelegt und auf der Steuererklärung aufgedruckt.
   verlaengerung: Über die Gemeinde (oft per eFristverlängerung). Erste Verlängerung gebührenfrei bis höchstens 30. September; weitere nur mit Begründung bis 30. November (noch nicht bestätigt).
@@ -47,6 +56,22 @@ ehepaare:
   divisor: 2
   beschreibung: Vollsplitting – das gemeinsame Einkommen wird zum Satz für die Hälfte besteuert.
   quelle: sm-ehepaare
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Mietwert des Liegenschaftenschätzers (Marktwert), jährlich indexiert; für die Wohnung am Wohnsitz danach ein Abzug."
+    quelle: kb-tg
+    artikel: "§ 23 Abs. 2–3 StG TG, § 2 StV TG"
+  ziel:
+    text: "60 % der Marktmiete"
+    quelle: sm-eigenmietwert
+  bundessteuer:
+    abweichend: true
+    text: "Abzug nur 20 % statt 40 % (Rundschreiben 172)."
+    quelle: estv-rs-172
+  unternutzung:
+    moeglich: false
+    quelle: sm-eigenmietwert
 werte:
   kinderabzug: { wert: 7400, typ: abzug, quelle: sm-kinderabzug, hinweis: "bis 16 Jahre; 8'500 in Ausbildung bis 20; 10'600 in Ausbildung bis 26; zusätzlich Steuergutschrift bis 100 Franken" }
   fahrkosten_max: { wert: 6000, typ: abzug, quelle: sm-fahrkosten }
@@ -59,3 +84,4 @@ werte:
   vermoegen_freibetrag_pro_kind: { wert: 100000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
   liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre alt; kein Pauschalabzug bei Bruttomietertrag über CHF 50 000" }
   liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude über 10 Jahre alt; kein Pauschalabzug bei Bruttomietertrag über CHF 50 000" }
+  emw_abzug_wohnsitz: { wert: 40, einheit: prozent, quelle: kb-tg, artikel: § 23 Abs. 3 StG TG }

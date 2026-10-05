@@ -21,7 +21,7 @@ const abzugTyp = z.enum(['abzug', 'freibetrag', 'nullstufe', 'steuergutschrift',
 /** One figure, always with its source. `wert` is CHF unless `einheit` says otherwise. */
 const wert = z.object({
   wert: z.number(),
-  einheit: z.enum(['CHF', 'prozent', 'CHF/km', 'CHF/Tag']).default('CHF'),
+  einheit: z.enum(['CHF', 'prozent', 'CHF/km', 'CHF/Tag', 'Jahre']).default('CHF'),
   typ: abzugTyp.optional(),
   quelle: z.string(),
   artikel: z.string().optional(),
@@ -34,6 +34,78 @@ const tarifStufe = z.union([
   z.object({ ab: z.number(), steuer: z.number(), je100: z.number() }),
   z.object({ ab: z.number(), satz_ganz: z.number() }),
 ]);
+
+/** A statement in words that has no single figure, with its source. */
+const angabe = z.object({
+  text: z.string().min(1),
+  quelle: z.string(),
+  artikel: z.string().optional(),
+  ungeprueft: z.boolean().default(false),
+});
+
+/**
+ * Eigenmietwert rate tables (ADR 0001: figures live in data). Three kinds:
+ * - staffel: each slice of the base value from `ab` counts at its own rate (OW, NE); `satz: null` = not published.
+ * - degressiv: one rate on the whole base value, falling by `je100` per CHF 100 until `auf` (BL).
+ * - gruppen: one rate on the whole base value, by municipality group (SO).
+ */
+const emwTabelle = z.discriminatedUnion('art', [
+  z.object({
+    art: z.literal('staffel'),
+    basis: z.string(),
+    stufen: z.array(z.object({ ab: z.number(), satz: z.number().nullable() })).min(2),
+    quelle: z.string(),
+    artikel: z.string().optional(),
+    hinweis: z.string().optional(),
+  }),
+  z.object({
+    art: z.literal('degressiv'),
+    basis: z.string(),
+    start: z.object({ bis: z.number(), satz: z.number() }),
+    stufen: z.array(z.object({ bis: z.number(), je100: z.number(), auf: z.number() })).min(1),
+    darueber_betrag: z.number(),
+    quelle: z.string(),
+    artikel: z.string().optional(),
+    hinweis: z.string().optional(),
+  }),
+  z.object({
+    art: z.literal('gruppen'),
+    basis: z.string(),
+    bis: z.number().optional(),
+    gruppen: z.array(z.object({ gruppe: z.string(), satz: z.number() })).min(2),
+    quelle: z.string(),
+    artikel: z.string().optional(),
+    hinweis: z.string().optional(),
+  }),
+]).superRefine((t, ctx) => {
+  if (t.art === 'staffel') {
+    t.stufen.forEach((s, i) => {
+      if (i > 0 && s.ab <= t.stufen[i - 1].ab) ctx.addIssue({ code: 'custom', message: 'Stufen müssen aufsteigen', path: ['stufen', i, 'ab'] });
+    });
+  }
+  if (t.art === 'degressiv') {
+    // The stated end rate of each step must follow from the previous one; catches typos in the table.
+    let bis = t.start.bis, satz = t.start.satz;
+    t.stufen.forEach((s, i) => {
+      const erwartet = satz - ((s.bis - bis) / 100) * s.je100;
+      if (Math.abs(erwartet - s.auf) > 0.01) {
+        ctx.addIssue({ code: 'custom', message: `Stufe bis ${s.bis}: ergibt ${erwartet.toFixed(4)} %, nicht ${s.auf} %`, path: ['stufen', i, 'auf'] });
+      }
+      bis = s.bis;
+      satz = s.auf;
+    });
+  }
+});
+
+/** How the canton sets the Eigenmietwert (tax years up to 2028; abolished from 2029). Single figures go in `werte` as `emw_*`. */
+const eigenmietwert = z.object({
+  methode: angabe,
+  ziel: angabe,
+  bundessteuer: angabe.extend({ abweichend: z.boolean() }),
+  unternutzung: z.object({ moeglich: z.boolean(), quelle: z.string(), hinweis: z.string().optional() }),
+  haertefall: angabe.optional(),
+  tabelle: emwTabelle.optional(),
+});
 
 /** Every `quelle` reference inside a data file must point to an entry in its `quellen` map. */
 function quellenPruefen<T extends { quellen: Record<string, unknown> }>(daten: T, ctx: z.RefinementCtx) {
@@ -116,6 +188,7 @@ const kantone = defineCollection({
       }),
       /** Commuting costs deductible without cap. Set explicitly: a missing fahrkosten_max alone means «unknown». */
       fahrkosten_unbegrenzt: z.object({ quelle: z.string() }).optional(),
+      eigenmietwert: eigenmietwert.optional(),
       werte: z.record(z.string(), wert),
     })
     .superRefine(quellenPruefen),

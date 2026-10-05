@@ -38,6 +38,15 @@ quellen:
   sm-liegenschaft:
     titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-ag:
+    titel: ESTV-Kantonsblatt Aargau – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/ag-de.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
+  estv-rs-172:
+    titel: ESTV-Rundschreiben 172 – Kantone mit unterschiedlichen Eigenmietwerten für Kantons- und Bundessteuer (10.7.2019)
+    url: https://www.estv.admin.ch/dam/estv/it/dokumente/bundessteuer/rundschreiben/2019/2-172-D-2019-d_f_Beilage.pdf.download.pdf/2-172-D-2019-d_f_Beilage.pdf
 frist:
   datum: 2026-03-31
   text: 31. März 2026 (Unselbständigerwerbende und Rentner; Selbständigerwerbende und Beteiligte an Familiengesellschaften 30. Juni 2026)
@@ -54,6 +63,22 @@ ehepaare:
   divisor: 2
   beschreibung: Vollsplitting – das gemeinsame Einkommen wird zum Satz für die Hälfte besteuert.
   quelle: sm-ehepaare
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Marktmietwert aus Vergleichsmieten, sonst Verkehrswert × empirischer Zinssatz; der Eigenmietwert ist ein fester Anteil davon."
+    quelle: sm-eigenmietwert
+    artikel: "§ 30 Abs. 2 StG AG, § 6 VBG AG"
+  ziel:
+    text: "62 % der Marktmiete"
+    quelle: kb-ag
+  bundessteuer:
+    abweichend: true
+    text: "116,67 % des kantonalen Werts (Rundschreiben 172)."
+    quelle: estv-rs-172
+  unternutzung:
+    moeglich: false
+    quelle: sm-eigenmietwert
 werte:
   kinderabzug: { wert: 9300, typ: abzug, quelle: sm-kinderabzug, hinweis: "bis 14 Jahre; 10'300 bis 18 Jahre; 12'400 für volljährige Kinder in Ausbildung" }
   fahrkosten_max: { wert: 7000, typ: abzug, quelle: sm-fahrkosten }
@@ -66,3 +91,4 @@ werte:
   vermoegen_freibetrag_pro_kind: { wert: 16000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
   liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre alt" }
   liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude über 10 Jahre alt" }
+  emw_anteil: { wert: 62, einheit: prozent, quelle: kb-ag, artikel: § 30 Abs. 2 StG AG, hinweis: "des Marktmietwerts" }

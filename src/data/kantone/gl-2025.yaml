@@ -41,6 +41,15 @@ quellen:
   sm-liegenschaft:
     titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-gl:
+    titel: ESTV-Kantonsblatt Glarus – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/gl-de.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
+  estv-rs-172:
+    titel: ESTV-Rundschreiben 172 – Kantone mit unterschiedlichen Eigenmietwerten für Kantons- und Bundessteuer (10.7.2019)
+    url: https://www.estv.admin.ch/dam/estv/it/dokumente/bundessteuer/rundschreiben/2019/2-172-D-2019-d_f_Beilage.pdf.download.pdf/2-172-D-2019-d_f_Beilage.pdf
 frist:
   text: Auf dem persönlichen Formular aufgedruckt (Versand Ende Januar)
   verlaengerung: Online auf efristen.gl.ch/np mit PID und Geburtsdatum gebührenfrei bis 31. Dezember 2026; danach schriftlich, CHF 30. Nach der zweiten Mahnung keine Fristverlängerung mehr.
@@ -56,6 +65,22 @@ ehepaare:
   beschreibung: Teilsplitting für Verheiratete und Alleinerziehende mit Divisor 1,7.
   quelle: sm-ehepaare
 fahrkosten_unbegrenzt: { quelle: sm-fahrkosten }
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Normmietwert nach örtlichem Mietpreisniveau und Objektmerkmalen (Grösse, Ausbau, Heizung, Baujahr, Lage u. a.); der Eigenmietwert ist ein fester Anteil davon. Ferien- und Weekendhäuser: voller Marktwert."
+    quelle: kb-gl
+    artikel: "Art. 21 Abs. 2 StG GL, Art. 18 und 24 VBG GL"
+  ziel:
+    text: "60 % der Marktmiete"
+    quelle: kb-gl
+  bundessteuer:
+    abweichend: true
+    text: "70 % statt 60 % des Marktwerts (Rundschreiben 172)."
+    quelle: estv-rs-172
+  unternutzung:
+    moeglich: true
+    quelle: sm-eigenmietwert
 werte:
   kinderabzug: { wert: 7200, typ: abzug, quelle: sm-kinderabzug }
   kinderdrittbetreuung_max: { wert: 25800, typ: abzug, quelle: sm-drittbetreuung }
@@ -70,3 +95,4 @@ werte:
   vermoegen_freibetrag_pro_kind: { wert: 25800, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
   liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre alt; kein Pauschalabzug für unbebaute Grundstücke" }
   liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude älter als 10 Jahre; kein Pauschalabzug für unbebaute Grundstücke" }
+  emw_anteil: { wert: 60, einheit: prozent, quelle: kb-gl, artikel: Art. 24 Abs. 1 VBG GL, hinweis: "des Marktwerts; nicht für Ferien- und Weekendhäuser" }

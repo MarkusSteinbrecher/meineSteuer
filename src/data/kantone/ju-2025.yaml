@@ -44,6 +44,15 @@ quellen:
   sm-liegenschaft:
     titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-ju:
+    titel: ESTV-Kantonsblatt Jura – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/ju-fr.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
+  estv-rs-172:
+    titel: ESTV-Rundschreiben 172 – Kantone mit unterschiedlichen Eigenmietwerten für Kantons- und Bundessteuer (10.7.2019)
+    url: https://www.estv.admin.ch/dam/estv/it/dokumente/bundessteuer/rundschreiben/2019/2-172-D-2019-d_f_Beilage.pdf.download.pdf/2-172-D-2019-d_f_Beilage.pdf
 frist:
   text: Ende Februar 2026 (laut FAQ); wer bis 13. August 2026 einreicht, erhält keine Mahnung, bis 18. September 2026 keine Sommation.
   verlaengerung: Bis 31. Oktober 2026 online oder per PDF-Formular; für Vertreter bis 15. Dezember. Gebühr nicht angegeben.
@@ -58,6 +67,22 @@ ehepaare:
   beschreibung: Eigener, tieferer Tarif für Verheiratete.
   quelle: sm-ehepaare
 fahrkosten_unbegrenzt: { quelle: sm-fahrkosten }
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Festlegung durch das Parlament (Arrêté) in Funktion der amtlichen Werte, «de manière modérée» gegenüber den Marktmieten."
+    quelle: kb-ju
+    artikel: "Art. 19 LI JU"
+  ziel:
+    text: "marktbezogen, eigentumsfördernd"
+    quelle: sm-eigenmietwert
+  bundessteuer:
+    abweichend: true
+    text: "Die lineare Senkung um 5 % gilt nicht für die Bundessteuer (Rundschreiben 172)."
+    quelle: estv-rs-172
+  unternutzung:
+    moeglich: false
+    quelle: sm-eigenmietwert
 werte:
   kinderabzug: { wert: 5700, typ: abzug, quelle: sm-kinderabzug, hinweis: "pro Kind; 6'400 ab 3 Kindern; Zuschläge bei auswärtiger Ausbildung" }
   kinderdrittbetreuung_max: { wert: 10600, typ: abzug, quelle: sm-drittbetreuung }

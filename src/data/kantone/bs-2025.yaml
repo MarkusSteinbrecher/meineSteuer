@@ -35,6 +35,12 @@ quellen:
   sm-liegenschaft:
     titel: "ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)"
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-bs:
+    titel: ESTV-Kantonsblatt Basel-Stadt – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/bs-de.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
 frist:
   datum: 2026-03-31
   text: "31. März 2026"
@@ -49,6 +55,22 @@ ehepaare:
   modell: doppeltarif
   beschreibung: "Eigener Tarif B für Verheiratete, dazu hohe persönliche Abzüge (19 500 Alleinstehende, 32 600 Alleinerziehende, 38 000 Verheiratete)."
   quelle: sm-ehepaare
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Einfamilienhaus und Stockwerkeigentum: Vermögenssteuerwert × Eigenmietwertsatz. Der Satz ist der hypothekarische Referenzzinssatz zu Beginn der Steuerperiode plus Zuschlag, mit Höchstsatz. Wohnung im eigenen Mehrfamilienhaus: Mieten vergleichbarer Wohnungen im Haus."
+    quelle: kb-bs
+    artikel: "§ 16 StV BS"
+  ziel:
+    text: "kein fester Anteil der Marktmiete; der Satz folgt dem Referenzzinssatz"
+    quelle: sm-eigenmietwert
+  bundessteuer:
+    abweichend: true
+    text: "Eigener Satz und Höchstbetrag für die Bundessteuer."
+    quelle: kb-bs
+  unternutzung:
+    moeglich: false
+    quelle: sm-eigenmietwert
 werte:
   fahrkosten_max: { wert: 3200, typ: abzug, quelle: sm-fahrkosten }
   kinderabzug: { wert: 9000, typ: abzug, quelle: sm-kinderabzug }
@@ -61,3 +83,9 @@ werte:
   vermoegen_freibetrag_pro_kind: { wert: 15000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
   liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre" }
   liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude über 10 Jahre" }
+  emw_satz: { wert: 3.5, einheit: prozent, quelle: kb-bs, artikel: Wegleitung 2025 Ziff. 479, hinweis: "des Vermögenssteuerwerts" }
+  emw_satz_zuschlag: { wert: 1.75, einheit: prozent, quelle: kb-bs, artikel: § 16 Abs. 1 StV BS, hinweis: "auf den Referenzzinssatz" }
+  emw_satz_max: { wert: 4.5, einheit: prozent, quelle: kb-bs, artikel: § 16 Abs. 1 StV BS }
+  emw_max: { wert: 72100, quelle: kb-bs, artikel: Wegleitung 2025 Ziff. 479 }
+  emw_satz_dbst: { wert: 4, einheit: prozent, quelle: kb-bs, artikel: Wegleitung 2025 Ziff. 479, hinweis: "des Vermögenssteuerwerts" }
+  emw_max_dbst: { wert: 82400, quelle: kb-bs, artikel: Wegleitung 2025 Ziff. 479 }

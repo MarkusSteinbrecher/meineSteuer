@@ -35,6 +35,12 @@ quellen:
   sm-liegenschaft:
     titel: "ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)"
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-fr:
+    titel: ESTV-Kantonsblatt Freiburg – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/fr-fr.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
 frist:
   text: "31. März 2026 (abgeleitet aus der Frist für das Steuerjahr 2024, für 2025 nicht bestätigt)"
   verlaengerung: "Pro Verlängerung CHF 20 per QR-Rechnung, die der Steuererklärung beiliegt (Zahlung gilt als Verlängerung, erste bis 30. Juni); gebührenfrei nur mit schriftlichem Gesuch aus wichtigen Gründen; höchstens 4 Verlängerungen, nie über den 15. Dezember hinaus."
@@ -48,6 +54,22 @@ ehepaare:
   divisor: 2
   beschreibung: "Vollsplitting: Das gemeinsame Einkommen wird zum Satz der Hälfte besteuert; gilt auch für Alleinerziehende."
   quelle: sm-ehepaare
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Punktesystem: Zimmereinheiten (aus der Wohnfläche) × Wert je Einheit nach Baujahr, Ausbau und Lage × Gemeindequotient."
+    quelle: kb-fr
+    artikel: "Art. 22 Abs. 2 LICD, Art. 1–3 und 10 AINA"
+  ziel:
+    text: "nach dem lokalen und regionalen Wohnungsmarkt, eigentumsfördernd"
+    quelle: sm-eigenmietwert
+  bundessteuer:
+    abweichend: false
+    text: "Der kantonale Wert gilt auch für die Bundessteuer."
+    quelle: sm-eigenmietwert
+  unternutzung:
+    moeglich: true
+    quelle: sm-eigenmietwert
 werte:
   kinderabzug: { wert: 8600, typ: abzug, quelle: sm-kinderabzug, hinweis: "je nach Einkommen zwischen 8600 und 7100 Franken; hier der Höchstbetrag" }
   kinderdrittbetreuung_max: { wert: 12000, typ: abzug, quelle: sm-drittbetreuung }

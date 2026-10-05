@@ -7,6 +7,7 @@ export function formatWert(wert: number, einheit: string): string {
     case 'prozent': return `${zahl.format(wert)} %`;
     case 'CHF/km': return `CHF ${wert.toFixed(2)}/km`;
     case 'CHF/Tag': return `CHF ${zahl.format(wert)} pro Tag`;
+    case 'Jahre': return `${zahl.format(wert)} Jahre`;
     default: return `CHF ${zahl.format(wert)}`;
   }
 }

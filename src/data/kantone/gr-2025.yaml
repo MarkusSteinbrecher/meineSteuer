@@ -38,6 +38,15 @@ quellen:
   sm-liegenschaft:
     titel: "ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)"
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-gr:
+    titel: ESTV-Kantonsblatt Graubünden – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/gr-de.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
+  estv-rs-172:
+    titel: ESTV-Rundschreiben 172 – Kantone mit unterschiedlichen Eigenmietwerten für Kantons- und Bundessteuer (10.7.2019)
+    url: https://www.estv.admin.ch/dam/estv/it/dokumente/bundessteuer/rundschreiben/2019/2-172-D-2019-d_f_Beilage.pdf.download.pdf/2-172-D-2019-d_f_Beilage.pdf
 frist:
   datum: 2026-03-31
   text: "31. März 2026 für Unselbständigerwerbende, Rentner, Studierende und Erben; 30. September 2026 für Selbständigerwerbende"
@@ -52,6 +61,27 @@ ehepaare:
   beschreibung: "Teilsplitting: Das gemeinsame Einkommen wird zum Satz von 52,63 % besteuert."
   quelle: sm-ehepaare
 fahrkosten_unbegrenzt: { quelle: sm-fahrkosten }
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Mietwert der amtlichen Schätzung (Miete bei Vermietung an Dritte); für die Wohnung am Wohnsitz gilt ein Anteil davon."
+    quelle: kb-gr
+    artikel: "Art. 22 Abs. 2–4 StG GR"
+  ziel:
+    text: "70 % der Marktmiete"
+    quelle: sm-eigenmietwert
+  bundessteuer:
+    abweichend: true
+    text: "Abzug nur 20 % statt 30 % (Rundschreiben 172)."
+    quelle: estv-rs-172
+  unternutzung:
+    moeglich: true
+    quelle: sm-eigenmietwert
+    hinweis: "nur am Wohnsitz und nur bei ungewollt zu grosser Liegenschaft"
+  haertefall:
+    text: "Bei Vermögen unter CHF 600 000 höchstens 30 % der Bareinkünfte, aber stets mindestens 60 % des Marktmietwerts."
+    quelle: kb-gr
+    artikel: "Art. 10 ABzStG GR"
 werte:
   kinderabzug: { wert: 6600, typ: abzug, quelle: sm-kinderabzug, hinweis: "im Vorschulalter; 9'900 für ältere Kinder und Kinder in Ausbildung; 19'700 bei Wochenaufenthalt am Ausbildungsort" }
   kinderdrittbetreuung_max: { wert: 10900, typ: abzug, quelle: sm-drittbetreuung, hinweis: "ESTV-Wert 2025; das Kantonsblatt GR nennt 25000 (indexiert 27300 ab 2026); Gesetzestext 2025 nicht geprüft", ungeprueft: true }
@@ -66,3 +96,4 @@ werte:
   vermoegen_freibetrag_pro_kind: { wert: 28000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
   liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre" }
   liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude über 10 Jahre; kein Pauschalabzug bei Bruttoeinkommen über 153000" }
+  emw_abzug_wohnsitz: { wert: 30, einheit: prozent, quelle: kb-gr, artikel: Art. 22 Abs. 3 StG GR, hinweis: "Wohnung am Wohnsitz: 70 % des Mietwerts" }

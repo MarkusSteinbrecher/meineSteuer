@@ -41,6 +41,12 @@ quellen:
   sm-liegenschaft:
     titel: "ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)"
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-sg:
+    titel: ESTV-Kantonsblatt St. Gallen – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/sg-de.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
 frist:
   text: "31. März 2026 (nicht bestätigt)"
   verlaengerung: "Online mit Register-Nummer und Geburtsdatum (Schalter E / eGov-Bot), sofortiger Entscheid; nur wenn fällige Rechnungen bezahlt sind. Gebühr und Höchstdauer nicht bekannt."
@@ -56,6 +62,27 @@ ehepaare:
   divisor: 2
   beschreibung: "Vollsplitting: Das gemeinsame Einkommen wird zum Satz der Hälfte besteuert."
   quelle: sm-ehepaare
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Mietwert aus der amtlichen Grundstückschätzung (mittlerer Preis vergleichbarer Objekte); für das Eigenheim am Wohnsitz danach ein Abzug."
+    quelle: kb-sg
+    artikel: "Art. 34 Abs. 2–3 StG SG, Art. 14 StV SG"
+  ziel:
+    text: "70 % der Marktmiete"
+    quelle: sm-eigenmietwert
+  bundessteuer:
+    abweichend: false
+    text: "Der kantonale Wert gilt auch für die Bundessteuer."
+    quelle: sm-eigenmietwert
+  unternutzung:
+    moeglich: true
+    quelle: sm-eigenmietwert
+    hinweis: "auf Antrag"
+  haertefall:
+    text: "Kürzung um den Teil über 30 % der Bruttoeinkünfte, wenn das Vermögen höchstens CHF 600 000 beträgt; im AHV-Alter Herabsetzung bei offensichtlichem Missverhältnis; nicht unter 60 % der mittleren Marktmiete."
+    quelle: kb-sg
+    artikel: "Art. 34 Abs. 4 StG SG, Art. 14 StV SG"
 werte:
   kinderabzug: { wert: 7600, typ: abzug, quelle: sm-kinderabzug, hinweis: "noch nicht schulpflichtig; 10'800 in schulischer oder beruflicher Ausbildung" }
   fahrkosten_max: { wert: 8000, typ: abzug, quelle: sm-fahrkosten }
@@ -70,3 +97,4 @@ werte:
   vermoegen_freibetrag_verheiratet: { wert: 150000, typ: freibetrag, quelle: sm-abzug-vermoegen }
   vermoegen_freibetrag_pro_kind: { wert: 20000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
   liegenschaft_pauschal: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "unabhängig vom Alter des Gebäudes; vom Bruttomietertrag ohne Nebenkosten oder vom Eigenmietwert" }
+  emw_abzug_wohnsitz: { wert: 30, einheit: prozent, quelle: kb-sg, artikel: Art. 34 Abs. 3 StG SG }

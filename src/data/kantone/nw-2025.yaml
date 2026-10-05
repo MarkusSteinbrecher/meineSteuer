@@ -41,6 +41,15 @@ quellen:
   sm-liegenschaft:
     titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-nw:
+    titel: ESTV-Kantonsblatt Nidwalden – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/nw-de.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
+  estv-rs-172:
+    titel: ESTV-Rundschreiben 172 – Kantone mit unterschiedlichen Eigenmietwerten für Kantons- und Bundessteuer (10.7.2019)
+    url: https://www.estv.admin.ch/dam/estv/it/dokumente/bundessteuer/rundschreiben/2019/2-172-D-2019-d_f_Beilage.pdf.download.pdf/2-172-D-2019-d_f_Beilage.pdf
 frist:
   datum: 2026-03-31
   text: 31. März 2026
@@ -56,6 +65,23 @@ ehepaare:
   divisor: 1.85
   beschreibung: "Teilsplitting für Verheiratete und Alleinerziehende: das Einkommen wird zum Satz von 54,05 % besteuert (Divisor 1,85)."
   quelle: sm-ehepaare
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Mietwertansatz in Prozent des Grundstückswerts (nach Kategorie und Gemeinde, vom Regierungsrat festgelegt); für den steuerbaren Eigenmietwert danach ein Abzug."
+    quelle: kb-nw
+    artikel: "Art. 24 Abs. 2–4 StG NW, § 13 StV NW"
+  ziel:
+    text: "60 % der Marktmiete"
+    quelle: sm-eigenmietwert
+  bundessteuer:
+    abweichend: true
+    text: "Abweichender Wert für die Bundessteuer. Rundschreiben 172 nennt noch den früheren Abzug (25 % statt 30 %); die Höhe nach der Erhöhung auf 40 % ist nicht bestätigt."
+    quelle: estv-rs-172
+    ungeprueft: true
+  unternutzung:
+    moeglich: true
+    quelle: sm-eigenmietwert
 werte:
   fahrkosten_max: { wert: 6000, typ: abzug, quelle: sm-fahrkosten }
   kinderabzug: { wert: 6400, typ: abzug, quelle: sm-kinderabzug }
@@ -71,3 +97,4 @@ werte:
   vermoegen_freibetrag_pro_kind: { wert: 15000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
   liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre alt" }
   liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude älter als 10 Jahre" }
+  emw_abzug_wohnsitz: { wert: 40, einheit: prozent, quelle: kb-nw, artikel: Art. 24 Abs. 4 StG NW, hinweis: "vom Mietwert" }

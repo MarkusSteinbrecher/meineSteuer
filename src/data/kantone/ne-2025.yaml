@@ -38,6 +38,12 @@ quellen:
   sm-liegenschaft:
     titel: ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-ne:
+    titel: ESTV-Kantonsblatt Neuenburg – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/ne-fr.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
 frist:
   text: 20. Februar 2026 (noch nicht bestätigt)
   verlaengerung: Schriftliches, begründetes Gesuch (Online-Formular oder Guichet unique); bis 30. April gebührenfrei, danach bis CHF 40; nie über den 31. Oktober hinaus (noch nicht bestätigt).
@@ -51,6 +57,33 @@ ehepaare:
   beschreibung: Teilsplitting – das gemeinsame Einkommen wird zum Satz für 52 % besteuert (entspricht etwa Divisor 1,92); gilt auch für das Vermögen.
   quelle: sm-ehepaare
 fahrkosten_unbegrenzt: { quelle: sm-fahrkosten }
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Einfamilienhaus und Stockwerkeigentum: Prozentsatz der Katasterschätzung, gestaffelt (jede Stufe mit eigenem Satz). Mehrfamilienhaus: Vergleichsmiete."
+    quelle: kb-ne
+    artikel: "Art. 24 Abs. 2 LCdir, Art. 12 RELCdir"
+  ziel:
+    text: "70 % der Marktmiete"
+    quelle: kb-ne
+  bundessteuer:
+    abweichend: false
+    text: "Der kantonale Wert gilt auch für die Bundessteuer."
+    quelle: sm-eigenmietwert
+  unternutzung:
+    moeglich: false
+    quelle: sm-eigenmietwert
+  tabelle:
+    art: staffel
+    basis: Katasterschätzung (estimation cadastrale)
+    quelle: kb-ne
+    artikel: Art. 12 RELCdir
+    stufen:
+      - { ab: 0, satz: 3.50 }
+      - { ab: 500000, satz: 3.30 }
+      - { ab: 1000000, satz: 2.70 }
+      - { ab: 1500000, satz: 1.80 }
+      - { ab: 2000000, satz: 0.80 }
 werte:
   kinderabzug: { wert: 6200, typ: abzug, quelle: sm-kinderabzug, hinweis: "0 bis 4 Jahre; 6'700 von 4 bis 14; 8'200 über 14; zusätzlich 200 Franken Reduktion der Kantonssteuer" }
   kinderdrittbetreuung_max: { wert: 20400, typ: abzug, quelle: sm-drittbetreuung, hinweis: "begrenzt auf den Elternbeitrag nach dem kantonalen Betreuungsgesetz (LAE)" }

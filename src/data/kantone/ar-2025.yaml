@@ -38,6 +38,12 @@ quellen:
   sm-liegenschaft:
     titel: "ESTV-Steuermäppchen 2025 – Liegenschaftskosten (Pauschalabzug)"
     url: https://www.estv2.admin.ch/stp/sm/liegenschaftskosten-de-fr.pdf
+  kb-ar:
+    titel: ESTV-Kantonsblatt Appenzell Ausserrhoden – Natürliche Personen (Stand Februar 2026)
+    url: https://www.estv2.admin.ch/stp/kb/ar-de.pdf
+  sm-eigenmietwert:
+    titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
+    url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
 frist:
   text: "Steht auf Seite 1 des persönlichen Formulars"
   verlaengerung: "Online über esteuern.ar.ch oder telefonisch (071 353 62 90); die erste Verlängerung ist gebührenfrei, jede weitere kostet CHF 25."
@@ -51,6 +57,22 @@ ehepaare:
   modell: doppeltarif
   beschreibung: "Eigener Tarif für Verheiratete mit einer Nullstufe auf den ersten 16 700 Franken."
   quelle: sm-ehepaare
+# Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029). Quellen: reports/Eigenmietwert Berechnung nach Kanton.md
+eigenmietwert:
+  methode:
+    text: "Mietwert der letzten amtlichen Schätzung, plus 2,8 % nicht erfasster wertvermehrender Investitionen; für die Wohnung am Wohnsitz danach ein Abzug (nicht für Zweit- und Ferienwohnungen)."
+    quelle: kb-ar
+    artikel: "Art. 24 Abs. 2 StG AR, Art. 11 StV AR"
+  ziel:
+    text: "80 % der Marktmiete"
+    quelle: sm-eigenmietwert
+  bundessteuer:
+    abweichend: false
+    text: "Der kantonale Wert gilt auch für die Bundessteuer."
+    quelle: sm-eigenmietwert
+  unternutzung:
+    moeglich: false
+    quelle: sm-eigenmietwert
 werte:
   kinderabzug: { wert: 5300, typ: abzug, quelle: sm-kinderabzug, hinweis: "bis 4 Jahre; 7'400 bis 15 Jahre; 11'600 ab 15 Jahren und in Ausbildung bis 26" }
   fahrkosten_max: { wert: 6000, typ: abzug, quelle: sm-fahrkosten }
@@ -64,3 +86,4 @@ werte:
   vermoegen_freibetrag_pro_kind: { wert: 25000, typ: freibetrag, quelle: sm-kinderabzug-vermoegen }
   liegenschaft_pauschal_neu: { wert: 10, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude bis 10 Jahre" }
   liegenschaft_pauschal_alt: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "Gebäude über 10 Jahre; kein Pauschalabzug bei Bruttomietertrag aller Liegenschaften über 100000" }
+  emw_abzug_wohnsitz: { wert: 20, einheit: prozent, quelle: kb-ar, artikel: Art. 11 StV AR, hinweis: "nicht für Zweit- und Ferienwohnungen" }
