@@ -72,3 +72,8 @@
 - **Privacy:** cases only in localStorage (`meinesteuer.uebung.zh-2025.v1`), no server, no URL data, nothing in the repo (Markus's instruction: course cases are personal data).
 - **Verified:** build passes; example case recomputed by hand (Berufsauslagen, Versicherung, Sonderabzug, Sozialabzüge, Bundessteuer 1’033 − 2 × 263 = 507); in Chrome: load example, edit, cap warning, manual override, persistence after reload; no horizontal page scroll at 390 px on all 15 parts.
 - **Open:** print view not tested (the print dialog blocks browser automation). Staats-/Gemeindesteuer not calculated (no ZH tariff/Steuerfuss data). Not built: Hilfsblatt A/B/G, qualified participations form, DA-1, Beiblatt Liegenschaften, unterjährige Steuerpflicht. Federal 10 % Liegenschaften flat rate for new buildings is only a note. Pre-existing: main nav overflows at phone width (now scrolls). Committed 9979c0a, pushed and deployed (live page returns 200).
+
+## 2026-11-06 (wrap-up)
+
+- **Done:** Übungsformular ZH 2025 built, verified and deployed (9979c0a, a9d12fe). HQ project page and the Chrome lesson updated.
+- **Open:** Markus tests the print view and reports what the course needs (missing Hilfsblätter, lines calculated differently) before the exercise days in the week of 9.11.2026. Later: ZH tariff and Steuerfuss data for the Staats-/Gemeindesteuer; «du»/«Sie» alignment once the Fahrplan work from the Mac mini is merged (it may conflict in `src/lib/site.ts` and `src/pages/index.astro`).
