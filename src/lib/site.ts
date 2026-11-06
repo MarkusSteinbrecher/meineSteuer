@@ -22,12 +22,13 @@ export function pfad(p = ''): string {
 /** Until launch: keep search engines out (ADR 0002: content must be checked first). */
 export const ENTWURFSPHASE = true;
 
-export const NAVIGATION: { label: string; href: string; bereich: Bereich }[] = [
+export const NAVIGATION: { label: string; href: string; bereich: Bereich | 'uebungen' }[] = [
   { label: 'System', href: 'system', bereich: 'system' },
   { label: 'Steuererklärung', href: 'steuererklaerung', bereich: 'steuererklaerung' },
   { label: 'Kantone', href: 'kantone', bereich: 'kantone' },
   { label: 'Reformen', href: 'reformen', bereich: 'reformen' },
   { label: 'Nachschlagen', href: 'nachschlagen', bereich: 'nachschlagen' },
+  { label: 'Übungen', href: 'uebungen', bereich: 'uebungen' },
 ];
 
 export const KANTONE: [code: string, name: string][] = [

@@ -2,8 +2,9 @@
 import '../styles/site.css';
 import { ENTWURFSPHASE, NAVIGATION, pfad } from '../lib/site';
 
-interface Props { titel: string; beschreibung: string; bereich?: string }
-const { titel, beschreibung, bereich } = Astro.props;
+interface Props { titel: string; beschreibung: string; bereich?: string; breit?: boolean }
+const { titel, beschreibung, bereich, breit = false } = Astro.props;
+const container = breit ? '--container:1360px' : '--container:1120px';
 const seitentitel = titel === 'meineSteuer' ? titel : `${titel} – meineSteuer`;
 ---
 <!doctype html>
@@ -27,10 +28,10 @@ const seitentitel = titel === 'meineSteuer' ? titel : `${titel} – meineSteuer`
       </ul>
       {ENTWURFSPHASE && <div class="sd-nav__end"><span class="sd-badge" data-tone="warn">Entwurf</span></div>}
     </nav>
-    <main class="site-main sd-container" style="--container:1120px">
+    <main class="site-main sd-container" style={container}>
       <slot />
     </main>
-    <footer class="sd-container" style="--container:1120px">
+    <footer class="sd-container" style={container}>
       <div class="site-fuss">
         <span>meineSteuer erklärt das Schweizer Steuerrecht für Privatpersonen. Allgemeine Information, keine Steuerberatung.</span>
         <span>Quelltext und Daten: <a href="https://github.com/MarkusSteinbrecher/meineSteuer">github.com/MarkusSteinbrecher/meineSteuer</a> · Fehler gefunden? Bitte als Issue melden.</span>

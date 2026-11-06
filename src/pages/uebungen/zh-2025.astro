@@ -1,0 +1,93 @@
+---
+/**
+ * Übungsformular Kanton Zürich 2025 (ADR 0003). Figures come from src/data/ at build time and
+ * go to the island as `zahlen`; the exercise cases stay in the browser (localStorage).
+ */
+import { getEntry } from 'astro:content';
+import Basis from '../../layouts/Basis.astro';
+import Quellen from '../../components/Quellen.astro';
+import KeineBeratung from '../../components/KeineBeratung.astro';
+import Uebung from '../../components/uebung/Uebung.svelte';
+import { pfad } from '../../lib/site';
+import { formatDatum } from '../../lib/format';
+import type { Zahl, Zahlen } from '../../lib/uebung/zh2025';
+
+const zh = await getEntry('kantone', 'zh-2025');
+const bund = await getEntry('bund', '2025');
+if (!zh || !bund) throw new Error('Daten ZH 2025 oder Bund 2025 fehlen');
+
+function zahlen(eintrag: typeof zh | typeof bund, ebene: string): Record<string, Zahl> {
+  const quellen = eintrag!.data.quellen as Record<string, { titel: string }>;
+  return Object.fromEntries(Object.entries(eintrag!.data.werte).map(([k, w]) => [k, {
+    w: w.wert,
+    t: [`${ebene}, Steuerjahr 2025`, w.artikel, w.hinweis, `Quelle: ${quellen[w.quelle]?.titel ?? w.quelle}`, w.ungeprueft ? 'noch nicht geprüft' : undefined].filter(Boolean).join(' · '),
+  }]));
+}
+
+const tarife = bund.data.tarife;
+if (!tarife) throw new Error('Bundestarif 2025 fehlt');
+const daten: Zahlen = {
+  zh: zahlen(zh, 'Kanton Zürich'),
+  bund: zahlen(bund, 'Bund'),
+  tarif: { ledig: tarife.ledig, verheiratet: tarife.verheiratet },
+};
+// The calculation needs these keys; a missing one fails the build here instead of in the browser.
+const NOETIG = {
+  zh: ['fahrkosten_max', 'velo_pauschal', 'auto_km', 'motorrad_km', 'verpflegung_tag', 'verpflegung_jahr', 'verpflegung_verbilligt_tag', 'verpflegung_verbilligt_jahr',
+    'uebrige_berufskosten_satz', 'uebrige_berufskosten_min', 'uebrige_berufskosten_max', 'nebenerwerb_satz', 'nebenerwerb_min', 'nebenerwerb_max',
+    'versicherung_alleinstehend', 'versicherung_alleinstehend_ohne_vorsorge', 'versicherung_verheiratet', 'versicherung_verheiratet_ohne_vorsorge', 'versicherung_pro_kind', 'versicherung_pro_unterstuetzt',
+    'weiterbildung_max', 'kinderabzug', 'kinderdrittbetreuung_max', 'unterstuetzungsabzug', 'zweiverdiener', 'krankheitskosten_selbstbehalt', 'spenden_min', 'spenden_max_satz',
+    'parteispenden_max', 'parteispenden_max_verheiratet', 'schuldzins_zusatz', 'liegenschaft_pauschal', 'teilbesteuerung_abzug', 'wertschriftenverwaltung_satz', 'wertschriftenverwaltung_max',
+    'vermoegen_minimum_alleinstehend', 'vermoegen_minimum_verheiratet', 'fahrzeug_abschreibung'],
+  bund: ['fahrkosten_max', 'saeule3a_mit_pk', 'saeule3a_ohne_pk', 'saeule3a_ohne_pk_satz', 'versicherung_alleinstehend', 'versicherung_alleinstehend_ohne_vorsorge', 'versicherung_verheiratet',
+    'versicherung_verheiratet_ohne_vorsorge', 'versicherung_pro_kind', 'versicherung_pro_unterstuetzt', 'weiterbildung_max', 'kinderabzug', 'kinderdrittbetreuung_max', 'unterstuetzungsabzug',
+    'verheiratetenabzug', 'zweiverdiener_min', 'zweiverdiener_max', 'zweiverdiener_satz', 'krankheitskosten_selbstbehalt', 'spenden_min', 'spenden_max_satz', 'parteispenden_max',
+    'schuldzins_zusatz', 'teilbesteuerung_abzug', 'elterntarif_pro_kind', 'verrechnungssteuer_satz', 'vst_frei_kundenguthaben', 'qualifizierte_beteiligung_min', 'liegenschaft_pauschal_neu'],
+} as const;
+for (const ebene of ['zh', 'bund'] as const)
+  for (const k of NOETIG[ebene]) if (!daten[ebene][k]) throw new Error(`Übungsformular: Wert «${k}» fehlt in ${ebene === 'zh' ? 'kantone/zh-2025.yaml' : 'bund/2025.yaml'}`);
+
+const q = (id: string) => (zh.data.quellen as Record<string, { titel: string; url: string }>)[id];
+const quellen = [q('zh-form-300'), q('zh-wegleitung-2025-ha'), q('zh-form-360'), q('zh-form-365'), q('zh-form-367'),
+  { titel: 'Kanton Zürich – Wertschriften- und Guthabenverzeichnis 2025 (Formular 340)', url: 'https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/steuern-finanzen/steuern/natuerlichepersonen/2025/est-formulare/340%20WV%20ZH%202025%20HA%20DEF.pdf' },
+  { titel: 'Kanton Zürich – Liegenschaftenverzeichnis (Formular 350)', url: 'https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/steuern-finanzen/steuern/natuerlichepersonen/jahrunabhaengig/est-formulare/350%20Liegensch%20ZH%202025%20HA%20DEF.pdf' },
+  (bund.data.quellen as Record<string, { titel: string; url: string }>)['estv-rs-2025'],
+];
+const geprueft = new Date('2026-11-06');
+const links = { steuerrechner: 'https://www.zh.ch/de/steuern-finanzen/steuern/steuern-natuerliche-personen/steuererklaerung-natuerliche-personen/steuerrechner.html' };
+---
+<Basis titel="Übungsformular Zürich 2025" beschreibung="Die Zürcher Steuererklärung 2025 mit Hilfsformularen im Browser ausfüllen und üben. Deine Eingaben bleiben auf deinem Gerät." bereich="uebungen" breit>
+  <header class="seite-kopf uf-seitenkopf">
+    <ol class="sd-breadcrumb" aria-label="Pfad">
+      <li><a href={pfad()}>Start</a></li>
+      <li><a href={pfad('uebungen')}>Übungen</a></li>
+      <li><span aria-current="page">Zürich 2025</span></li>
+    </ol>
+    <h1 class="seite-titel">Übungsformular Steuererklärung Zürich 2025</h1>
+    <p class="seite-lede">Hauptformular und Hilfsformulare wie auf Papier, mit denselben Ziffern und Codes. Summen, Überträge, Pauschalen und Höchstbeträge rechnet das Formular selbst.</p>
+    <div class="sd-meta">
+      <span>Steuerjahr 2025</span>
+      <span>Geprüft am {formatDatum(geprueft)}</span>
+      <span>Natürliche Personen, ganzjährig steuerpflichtig</span>
+    </div>
+    <div class="sd-notice" role="note">
+      <span class="icon sd-icon sd-notice__icon" aria-hidden="true" style={`--icon-url: url("${pfad('vendor/steinerdesign/assets/icons/key-round.svg').replace(/\/$/, '')}")`}></span>
+      <div class="sd-notice__body">
+        <span class="sd-notice__title">Deine Eingaben bleiben auf diesem Gerät</span>
+        <span>Die Fälle werden nur im Speicher dieses Browsers abgelegt. Nichts wird an einen Server geschickt. Wenn du die Browserdaten löschst, sind sie weg. Mit «Exportieren» sicherst du einen Fall als Datei.</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="uf-buehne">
+    <Uebung client:only="svelte" zahlen={daten} wegleitung={q('zh-wegleitung-2025-ha').url} links={links}>
+      <p slot="fallback" class="uf-intro">Formular wird geladen …</p>
+    </Uebung>
+    <noscript><p class="uf-intro">Das Übungsformular braucht JavaScript.</p></noscript>
+  </div>
+
+  <div class="seite-fuss uf-fuss">
+    <Quellen quellen={quellen} />
+    <KeineBeratung />
+  </div>
+</Basis>

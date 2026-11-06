@@ -14,6 +14,18 @@ quellen:
   bsv-3a:
     titel: BSV, Kennzahlen berufliche Vorsorge und Säule 3a 2026
     url: https://www.bsv.admin.ch/dam/de/sd-web/3jZGqTLgADbl/BPP_Zahlen_85_2026.pdf
+  sm-fahrkosten:
+    titel: ESTV-Steuermäppchen 2025 – Fahrkosten
+    url: https://www.estv2.admin.ch/stp/sm/fahrkosten-de-fr.pdf
+  sm-verpflegung:
+    titel: ESTV-Steuermäppchen 2025 – Mehrkosten für Verpflegung
+    url: https://www.estv2.admin.ch/stp/sm/mehrkosten-verpflegung-de-fr.pdf
+  sm-nebenerwerb:
+    titel: ESTV-Steuermäppchen 2025 – Berufskosten bei Nebenerwerb
+    url: https://www.estv2.admin.ch/stp/sm/berufskosten-nebenerwerb-de-fr.pdf
+  vstg:
+    titel: Bundesgesetz über die Verrechnungssteuer (VStG, SR 642.21)
+    url: https://www.fedlex.admin.ch/eli/cc/1966/371_385_384/de
   estv-dossier-emw:
     titel: ESTV – Dossier Steuerinformationen «Besteuerung der Eigenmietwerte» (Februar 2026)
     url: https://www.estv2.admin.ch/stp/ds/f-besteuerung-eigenmietwerte-de.pdf
@@ -33,6 +45,7 @@ werte:
   versicherung_verheiratet_ohne_vorsorge: { wert: 5550, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 1bis }
   versicherung_pro_kind: { wert: 700, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 1bis }
   zweiverdiener_min: { wert: 8600, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 2 }
+  zweiverdiener_satz: { wert: 50, einheit: prozent, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 2, hinweis: "des tieferen Erwerbseinkommens" }
   zweiverdiener_max: { wert: 14100, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 2, hinweis: "50 % des tieferen Einkommens, mindestens CHF 8’600" }
   kinderdrittbetreuung_max: { wert: 25800, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 3 }
   weiterbildung_max: { wert: 13000, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 1 lit. j }
@@ -50,6 +63,19 @@ werte:
   # Eigenmietwert: gilt bis Steuerjahr 2028 (abgeschafft ab 1.1.2029)
   emw_untergrenze_bger: { wert: 60, einheit: prozent, quelle: estv-dossier-emw, artikel: BGE 124 I 145, hinweis: "der Marktmiete, im Einzelfall, für die Kantonssteuern" }
   emw_mindestniveau_dbst: { wert: 70, einheit: prozent, quelle: estv-dossier-emw, artikel: DBG Art. 21 Abs. 2, hinweis: "der Marktmiete, im Durchschnitt eines Kantons" }
+  velo_pauschal: { wert: 700, typ: abzug, quelle: sm-fahrkosten, artikel: BKV Anhang Ziff. 2 }
+  auto_km: { wert: 0.70, einheit: CHF/km, typ: abzug, quelle: sm-fahrkosten, artikel: BKV Anhang Ziff. 2 }
+  motorrad_km: { wert: 0.40, einheit: CHF/km, typ: abzug, quelle: sm-fahrkosten, artikel: BKV Anhang Ziff. 2 }
+  verpflegung_verbilligt_tag: { wert: 7.50, einheit: CHF/Tag, typ: abzug, quelle: sm-verpflegung, artikel: BKV Anhang Ziff. 1 }
+  verpflegung_verbilligt_jahr: { wert: 1600, typ: abzug, quelle: sm-verpflegung, artikel: BKV Anhang Ziff. 1 }
+  nebenerwerb_satz: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-nebenerwerb, artikel: BKV Anhang Ziff. 1, hinweis: "der Einkünfte aus Nebenerwerb" }
+  nebenerwerb_min: { wert: 800, typ: abzug, quelle: sm-nebenerwerb, artikel: BKV Anhang Ziff. 1 }
+  nebenerwerb_max: { wert: 2400, typ: abzug, quelle: sm-nebenerwerb, artikel: BKV Anhang Ziff. 1 }
+  versicherung_pro_unterstuetzt: { wert: 700, typ: abzug, quelle: estv-rs-2025, artikel: DBG Art. 33 Abs. 1bis }
+  teilbesteuerung_abzug: { wert: 30, einheit: prozent, typ: abzug, quelle: dbg, artikel: DBG Art. 20 Abs. 1bis, hinweis: "nicht steuerbarer Teil der Erträge aus qualifizierten Beteiligungen im Privatvermögen (steuerbar 70 %)" }
+  vst_frei_kundenguthaben: { wert: 200, quelle: vstg, artikel: VStG Art. 5 Abs. 1 lit. c, hinweis: "Bruttozins pro Kalenderjahr, bis zu dem Kundenguthaben ohne Verrechnungssteuer bleiben" }
+  qualifizierte_beteiligung_min: { wert: 10, einheit: prozent, quelle: dbg, artikel: DBG Art. 20 Abs. 1bis, hinweis: "Mindestanteil am Grund- oder Stammkapital" }
+  verrechnungssteuer_satz: { wert: 35, einheit: prozent, quelle: vstg, artikel: VStG Art. 13 Abs. 1 lit. a }
   schuldzins_zusatz: { wert: 50000, typ: abzug, quelle: dbg, artikel: DBG Art. 33 Abs. 1 lit. a, hinweis: "private Schuldzinsen bis zum Vermögensertrag plus dieser Betrag" }
 # Tarif DBG Art. 36, Steuerjahr 2025: ab (steuerbares Einkommen) → Steuer an der Stufe, je weitere CHF 100.
 # Letzte Stufe: satz_ganz = Prozentsatz auf dem ganzen Einkommen.

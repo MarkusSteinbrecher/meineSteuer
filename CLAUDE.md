@@ -18,6 +18,7 @@
 - Eigenmietwert (valid up to tax year 2028): canton files carry an `eigenmietwert` block (method, target level, federal tax, under-use, hardship, optional rate table `staffel`/`degressiv`/`gruppen`); single figures are `emw_*` keys in `werte`. `bund/2029.yaml` holds the post-reform values (first-time-buyer deduction).
 - Canton pages are generated from the data (`src/pages/kantone/`). The canton-vs-federal table rows are in `src/lib/vergleich.ts`.
 - Internal links go through `pfad()` (`src/lib/site.ts`) because of the GitHub Pages base path `/meineSteuer/`.
+- Übungsformular ZH 2025 (ADR 0003): `src/pages/uebungen/zh-2025.astro` passes all `werte` of `zh-2025` and `bund/2025` to the Svelte island `src/components/uebung/Uebung.svelte` (`client:only`); calculation in `src/lib/uebung/zh2025.ts` (no CHF amounts there; a key it needs is listed in `NOETIG` on the page and fails the build if missing). Exercise cases live only in the browser's localStorage; never commit course data.
 - `ENTWURFSPHASE` in `src/lib/site.ts` adds `noindex` and the «Entwurf» badge; switch off only at launch.
 - SteinerDesign is vendored in `public/vendor/steinerdesign/` (see its `VERSION`). Site CSS in `src/styles/site.css`, role tokens only.
 

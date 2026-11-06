@@ -41,6 +41,27 @@ quellen:
   sm-eigenmietwert:
     titel: ESTV-Steuermäppchen 2025 – Besteuerung des Eigenmietwertes
     url: https://www.estv2.admin.ch/stp/sm/eigenmietwert-de-fr.pdf
+  sm-verpflegung:
+    titel: ESTV-Steuermäppchen 2025 – Mehrkosten für Verpflegung
+    url: https://www.estv2.admin.ch/stp/sm/mehrkosten-verpflegung-de-fr.pdf
+  sm-nebenerwerb:
+    titel: ESTV-Steuermäppchen 2025 – Berufskosten bei Nebenerwerb
+    url: https://www.estv2.admin.ch/stp/sm/berufskosten-nebenerwerb-de-fr.pdf
+  zh-wegleitung-2025-ha:
+    titel: Kanton Zürich – Wegleitung zur Steuererklärung 2025 (ganzjährige Steuerpflicht)
+    url: https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/steuern-finanzen/steuern/natuerlichepersonen/2025/est-wegleitungen/305_Wegleitung_ZH_2025_HA%20bf%20DEF.pdf
+  zh-form-300:
+    titel: Kanton Zürich – Steuererklärung 2025 (Formular 300)
+    url: https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/steuern-finanzen/steuern/natuerlichepersonen/2025/est-formulare/300%20STE%20ZH%202025%20HA%20DEF.pdf
+  zh-form-360:
+    titel: Kanton Zürich – Berufsauslagen 2025 (Formular 360)
+    url: https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/steuern-finanzen/steuern/natuerlichepersonen/2025/est-formulare/360%20Berufsauslagen%20ZH%202025%20HA%20DEF.pdf
+  zh-form-365:
+    titel: Kanton Zürich – Versicherungsprämien 2025 (Formular 365)
+    url: https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/steuern-finanzen/steuern/natuerlichepersonen/2025/est-formulare/365%20Versicherung%20ZH%202025%20HA%20DEF.pdf
+  zh-form-367:
+    titel: Kanton Zürich – Berufsorientierte Aus- und Weiterbildungskosten 2025 (Formular 367)
+    url: https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/steuern-finanzen/steuern/natuerlichepersonen/2025/est-formulare/367%20Aus-%20und%20Weiterbildung%20ZH%202025%20HA%20DEF.pdf
 frist:
   datum: 2026-03-31
   text: 31. März 2026
@@ -92,3 +113,30 @@ werte:
   liegenschaft_pauschal: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-liegenschaft, hinweis: "unabhängig vom Alter des Gebäudes" }
   emw_satz_efh: { wert: 3.5, einheit: prozent, quelle: sm-eigenmietwert, artikel: Weisung 2009 Ziff. 59–60, hinweis: "des Land- und Zeitbauwerts; Gebäudeanteil über einem Versicherungs-Basiswert von CHF 120’000 nur zu 1 %" }
   emw_satz_stwe: { wert: 4.25, einheit: prozent, quelle: sm-eigenmietwert, artikel: Weisung 2009 Ziff. 59–60, hinweis: "des Land- und Zeitbauwertanteils; Gebäudeanteil über einem Versicherungs-Basiswert von CHF 40’000 nur zu 1 %" }
+  # Übungsformular ZH 2025 (src/pages/uebungen/): Beträge aus Wegleitung und Formularen 2025
+  velo_pauschal: { wert: 700, typ: abzug, quelle: sm-fahrkosten, hinweis: "Fahrrad, Motorfahrrad, Motorrad mit gelbem Kontrollschild" }
+  auto_km: { wert: 0.70, einheit: CHF/km, typ: abzug, quelle: sm-fahrkosten }
+  motorrad_km: { wert: 0.40, einheit: CHF/km, typ: abzug, quelle: sm-fahrkosten, hinweis: "weisses Kontrollschild" }
+  verpflegung_tag: { wert: 15, einheit: CHF/Tag, typ: abzug, quelle: sm-verpflegung }
+  verpflegung_jahr: { wert: 3200, typ: abzug, quelle: sm-verpflegung }
+  verpflegung_verbilligt_tag: { wert: 7.50, einheit: CHF/Tag, typ: abzug, quelle: sm-verpflegung, hinweis: "Verpflegung durch den Arbeitgeber verbilligt" }
+  verpflegung_verbilligt_jahr: { wert: 1600, typ: abzug, quelle: sm-verpflegung }
+  uebrige_berufskosten_satz: { wert: 3, einheit: prozent, typ: abzug, quelle: zh-form-360, hinweis: "des Nettolohns" }
+  uebrige_berufskosten_min: { wert: 2000, typ: abzug, quelle: zh-form-360 }
+  uebrige_berufskosten_max: { wert: 4000, typ: abzug, quelle: zh-form-360 }
+  nebenerwerb_satz: { wert: 20, einheit: prozent, typ: abzug, quelle: sm-nebenerwerb, hinweis: "der Einkünfte aus Nebenerwerb" }
+  nebenerwerb_min: { wert: 800, typ: abzug, quelle: sm-nebenerwerb }
+  nebenerwerb_max: { wert: 2400, typ: abzug, quelle: sm-nebenerwerb }
+  weiterbildung_max: { wert: 12400, typ: abzug, quelle: zh-form-367 }
+  versicherung_pro_unterstuetzt: { wert: 1300, typ: abzug, quelle: zh-form-365 }
+  unterstuetzungsabzug: { wert: 2800, typ: abzug, quelle: zh-form-300, hinweis: "nur bei einer Unterstützung von mindestens diesem Betrag" }
+  krankheitskosten_selbstbehalt: { wert: 5, einheit: prozent, quelle: zh-wegleitung-2025-ha, hinweis: "des Nettoeinkommens (Ziffer 21)" }
+  spenden_min: { wert: 100, typ: abzug, quelle: zh-wegleitung-2025-ha }
+  spenden_max_satz: { wert: 20, einheit: prozent, typ: abzug, quelle: zh-wegleitung-2025-ha, hinweis: "des Nettoeinkommens (Ziffer 21)" }
+  parteispenden_max: { wert: 10300, typ: abzug, quelle: zh-wegleitung-2025-ha }
+  parteispenden_max_verheiratet: { wert: 20600, typ: abzug, quelle: zh-wegleitung-2025-ha }
+  schuldzins_zusatz: { wert: 50000, typ: abzug, quelle: zh-wegleitung-2025-ha, hinweis: "private Schuldzinsen bis zum Vermögensertrag plus dieser Betrag" }
+  wertschriftenverwaltung_satz: { wert: 0.3, einheit: prozent, typ: abzug, quelle: zh-wegleitung-2025-ha, hinweis: "Pauschale: 3 Promille des Steuerwerts der von Dritten verwalteten Wertschriften" }
+  wertschriftenverwaltung_max: { wert: 6000, typ: abzug, quelle: zh-wegleitung-2025-ha }
+  teilbesteuerung_abzug: { wert: 50, einheit: prozent, typ: abzug, quelle: zh-wegleitung-2025-ha, hinweis: "nicht steuerbarer Teil der Erträge aus qualifizierten Beteiligungen im Privatvermögen" }
+  fahrzeug_abschreibung: { wert: 40, einheit: prozent, quelle: zh-wegleitung-2025-ha, hinweis: "Wertverminderung des Motorfahrzeugs pro Jahr, in Prozent des Restwerts (Regel)" }

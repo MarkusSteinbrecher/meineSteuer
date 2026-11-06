@@ -52,3 +52,142 @@ body { background: var(--bg-page); }
 .seite-rumpf .sd-prose > details { max-width: var(--measure); }
 .seite-rumpf .sd-prose td .zelle-hinweis { max-width: 32ch; }
 .seite-rumpf .sd-prose td[data-num] .zelle-hinweis { margin-left: auto; }
+
+/* ------------------------------------------------------------------ Übungsformular (ADR 0003) */
+.uf-seitenkopf .sd-notice { max-width: var(--measure); }
+.uf-buehne { padding-block: var(--space-8) var(--space-12); }
+.uf-fuss { padding-bottom: var(--space-16); }
+
+/* Toolbar: case selection and file actions */
+.uf-leiste { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); padding-bottom: var(--space-4); border-bottom: var(--border-hairline) solid var(--border-subtle); }
+.uf-leiste__ende { margin-left: auto; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.uf-fallwahl select { min-width: 28ch; height: var(--control-sm); }
+.uf-leiste form input { height: var(--control-sm); width: 28ch; }
+.uf-leiste + .sd-notice, .uf-leiste ~ .sd-notice { margin-top: var(--space-4); }
+
+/* Two columns: form navigation · current part */
+.uf-rahmen { display: grid; grid-template-columns: 232px minmax(0, 1fr); gap: var(--space-10); padding-top: var(--space-6); }
+.uf-nav { position: sticky; top: var(--space-4); align-self: start; display: grid; gap: var(--space-1); max-height: calc(100vh - var(--space-8)); overflow-y: auto; }
+.uf-nav .sd-sidenav__heading { padding-top: var(--space-3); }
+.uf-zaehler { margin-left: auto; font: var(--font-caption); color: var(--warn-fg); background: var(--warn-tint); border-radius: var(--radius-pill); padding: 0 var(--space-2); font-variant-numeric: tabular-nums; }
+.uf-kurz { margin-top: var(--space-4); padding-top: var(--space-2); border-top: var(--border-hairline) solid var(--border-subtle); }
+.uf-kurz dl { display: grid; gap: var(--space-1); padding: 0 var(--space-3); margin: 0; }
+.uf-kurz dl div { display: flex; justify-content: space-between; gap: var(--space-3); font: var(--font-label); letter-spacing: var(--tracking-sm); }
+.uf-kurz dt { color: var(--fg-muted); }
+.uf-kurz dd { margin: 0; font-variant-numeric: tabular-nums; }
+.uf-gespeichert { display: block; padding: var(--space-3) var(--space-3) 0; font: var(--font-caption); letter-spacing: var(--tracking-xs); color: var(--fg-subtle); }
+
+.uf-inhalt { min-width: 0; scroll-margin-top: var(--space-4); }
+.uf-teil + .uf-teil { margin-top: var(--space-12); }
+.uf-h2 { font: var(--font-title); letter-spacing: var(--tracking-xl); margin-bottom: var(--space-3); }
+.uf-h3 { display: flex; align-items: baseline; gap: var(--space-3); font: var(--weight-bold) var(--text-md) / var(--leading-md) var(--font-sans); letter-spacing: var(--tracking-md); margin-top: var(--space-8); padding-bottom: var(--space-2); }
+.uf-intro { font: var(--font-body); letter-spacing: var(--tracking-md); color: var(--fg-muted); max-width: var(--measure); margin-bottom: var(--space-6); }
+.uf-text { font: var(--font-body); letter-spacing: var(--tracking-md); max-width: var(--measure); margin-block: var(--space-3); }
+.uf-leise { color: var(--fg-muted); font: var(--font-caption); letter-spacing: var(--tracking-xs); }
+.uf-wl { font: var(--font-caption); letter-spacing: var(--tracking-xs); color: var(--fg-muted); margin-left: var(--space-2); white-space: nowrap; }
+.uf-verweis { font: var(--font-caption); letter-spacing: var(--tracking-xs); }
+.uf-reihe { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); margin-block: var(--space-3); }
+.uf-teile { display: grid; gap: var(--space-1); justify-items: start; }
+
+/* Form lines: Ziffer · label · code · Staatssteuer · Bundessteuer */
+.uf-kopf, .uf-zeile { display: grid; grid-template-columns: 5ch minmax(0, 1fr) 7ch 17ch 17ch; gap: var(--space-4); align-items: center; }
+.uf-kopf[data-spalten="1"], .uf-zeile[data-spalten="1"] { grid-template-columns: 5ch minmax(0, 1fr) 7ch 17ch; }
+.uf-kopf { font: var(--font-label); letter-spacing: var(--tracking-sm); color: var(--fg-muted); padding-bottom: var(--space-2); border-bottom: var(--border-hairline) solid var(--border-default); }
+.uf-kopf > :nth-child(n + 4) { text-align: right; }
+.uf-zeile { min-height: 48px; padding-block: var(--space-2); border-bottom: var(--border-hairline) solid var(--border-subtle); }
+.uf-zeile--stark { border-bottom-color: var(--border-default); }
+.uf-zeile--stark .uf-label { font-weight: var(--weight-bold); }
+.uf-ziffer { font: var(--font-label); letter-spacing: var(--tracking-sm); color: var(--fg-muted); font-variant-numeric: tabular-nums; }
+.uf-label { display: grid; gap: var(--space-1); font: var(--font-body); letter-spacing: var(--tracking-md); }
+.uf-unter { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); }
+.uf-code { font: var(--font-caption); letter-spacing: var(--tracking-xs); color: var(--fg-subtle); font-variant-numeric: tabular-nums; }
+.uf-zelle { display: flex; justify-content: flex-end; }
+.uf-rechnung { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); font: var(--font-caption); letter-spacing: var(--tracking-xs); color: var(--fg-muted); }
+.uf-strich { color: var(--fg-subtle); }
+
+/* Amount inputs and outputs */
+input.uf-zahl { text-align: right; font-variant-numeric: tabular-nums; height: var(--control-sm); }
+input.uf-zahl.uf-klein { width: 12ch; }
+.uf-wert { display: block; width: 100%; text-align: right; font-variant-numeric: tabular-nums; padding-inline: var(--space-3); }
+.uf-stark { font-weight: var(--weight-bold); }
+.uf-ueber { display: flex; align-items: center; gap: var(--space-1); width: 100%; }
+.uf-ueber .uf-wert, .uf-ueber input { flex: 1; }
+.uf-knopf { all: unset; box-sizing: border-box; display: inline-grid; place-items: center; width: var(--control-sm); height: var(--control-sm); flex: none; border-radius: var(--radius-sm); color: var(--fg-subtle); cursor: pointer; }
+.uf-knopf:hover { background: var(--fill-hover); color: var(--fg-default); }
+.uf-knopf:focus-visible { outline: var(--border-focus) solid var(--focus-ring); }
+input.uf-text-klein { width: 18ch; height: var(--control-sm); }
+input.uf-text-breit { height: var(--control-sm); }
+.uf-zeile .uf-label > .uf-unter input.uf-text-breit { width: 100%; }
+
+/* Fields above the lines */
+.uf-raster { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4) var(--space-6); max-width: 720px; margin-bottom: var(--space-6); }
+.uf-raster--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: none; }
+.uf-unten { align-self: end; }
+.uf-personen { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-8); }
+.uf-personen[data-anzahl="1"] { grid-template-columns: minmax(0, 1fr); max-width: 420px; }
+.uf-gruppe { display: grid; gap: var(--space-3); border: 0; padding: 0; margin: 0; min-width: 0; }
+.uf-gruppe legend { font: var(--weight-bold) var(--text-md) / var(--leading-md) var(--font-sans); padding-bottom: var(--space-2); }
+.uf-gruppe--breit { padding-block: var(--space-4); border-bottom: var(--border-hairline) solid var(--border-subtle); }
+.uf-feld-breit { max-width: 560px; margin-bottom: var(--space-3); }
+
+/* Tables (children, securities, debts, lists) */
+.uf-tabelle-rahmen { overflow-x: auto; }
+.uf-tabelle { margin-block: var(--space-2); }
+.uf-tabelle th { white-space: normal; height: auto; padding-block: var(--space-2); vertical-align: bottom; }
+.uf-tabelle td { padding: var(--space-1) var(--space-2); }
+.uf-tabelle :is(input, select) { height: var(--control-sm); padding-inline: var(--space-2); }
+.uf-tabelle select { padding-right: var(--space-6); background-position: calc(100% - 13px) 52%, calc(100% - 8px) 52%; }
+.uf-tabelle--eng td, .uf-tabelle--eng th { font: var(--font-label); letter-spacing: var(--tracking-sm); }
+.uf-tabelle tfoot td { font-weight: var(--weight-bold); border-bottom: 0; }
+.uf-tabelle td[data-num] { white-space: nowrap; }
+.uf-wv input.uf-schmal { width: 8ch; }
+.uf-wv input.uf-datum { width: 8ch; }
+.uf-wv select { width: 7ch; }
+.uf-wv td:nth-child(5) { min-width: 24ch; }
+.uf-wv td:nth-child(n + 8) { min-width: 11ch; }
+.uf-zahl-zelle { width: 18ch; }
+
+/* Totals and result */
+.uf-summen { display: grid; margin: var(--space-6) 0; max-width: 760px; border-top: var(--border-hairline) solid var(--border-subtle); }
+.uf-summen > div { display: flex; justify-content: space-between; gap: var(--space-6); padding-block: var(--space-2); border-bottom: var(--border-hairline) solid var(--border-subtle); font: var(--font-body); letter-spacing: var(--tracking-md); }
+.uf-summen dt { color: var(--fg-muted); }
+.uf-summen dd { margin: 0; display: flex; gap: var(--space-4); align-items: baseline; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.uf-summe-stark { font-weight: var(--weight-bold); border-bottom-color: var(--border-default) !important; }
+.uf-summe-stark dt { color: var(--fg-default); }
+.uf-ergebnis { max-width: 860px; }
+.uf-stark-zeile td { font-weight: var(--weight-bold); }
+.uf-hinweise { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); max-width: var(--measure); }
+.uf-hinweise li { display: flex; gap: var(--space-3); align-items: start; padding: var(--space-3); border-radius: var(--radius-md); font: var(--font-body); letter-spacing: var(--tracking-md); }
+.uf-hinweise li[data-ton="warn"] { background: var(--warn-tint); color: var(--fg-default); }
+.uf-hinweise li[data-ton="warn"] > .icon { color: var(--warn-fg); margin-top: var(--space-half); }
+.uf-hinweise li[data-ton="info"] { background: var(--fill-subtle); }
+.uf-hinweise li[data-ton="info"] > .icon { color: var(--fg-muted); margin-top: var(--space-half); }
+.uf-blaettern { display: flex; justify-content: space-between; margin-top: var(--space-10); padding-top: var(--space-4); border-top: var(--border-hairline) solid var(--border-subtle); }
+
+/* Phone width only has to work (desktop first): stack, no horizontal page scroll */
+@media (max-width: 900px) {
+  .uf-rahmen { grid-template-columns: minmax(0, 1fr); }
+  .uf-nav { position: static; max-height: none; }
+  .uf-kopf, .uf-zeile { grid-template-columns: 4ch minmax(0, 1fr) 13ch 13ch; }
+  .uf-kopf[data-spalten="1"], .uf-zeile[data-spalten="1"] { grid-template-columns: 4ch minmax(0, 1fr) 14ch; }
+  .uf-code, .uf-kopf > :nth-child(3) { display: none; }
+  .uf-raster, .uf-raster--4, .uf-personen { grid-template-columns: minmax(0, 1fr); }
+  .uf-leiste__ende { margin-left: 0; }
+  .sd-nav__links { overflow-x: auto; }
+}
+
+@media print {
+  .sd-nav, .site-fuss, .uf-leiste, .uf-nav, .uf-blaettern, .uf-knopf, .uf-seitenkopf .sd-notice, .uf-fuss, .uf-reihe button, .uf-wl, .uf-verweis { display: none !important; }
+  .uf-rahmen { display: block; }
+  .uf-teil { break-before: page; }
+  .uf-teil:first-of-type { break-before: auto; }
+  .uf-zeile, .uf-tabelle tr { break-inside: avoid; }
+  input, select { border-color: var(--border-subtle) !important; }
+}
+.uf-hinweise--oben { margin-bottom: var(--space-6); }
+.uf-label .sd-check__text, .uf-teile .sd-check__text { display: block; }
+.uf-label .uf-tabelle-rahmen { width: 100%; min-width: 0; flex: 1 1 100%; }
+.uf-label, .uf-unter { min-width: 0; }
+.uf-tabelle--eng input.uf-zahl.uf-klein { width: 9ch; }
+.uf-tabelle--eng input.uf-ort { min-width: 16ch; }
+.uf-tabelle--eng select.uf-fahrzeug { min-width: 13ch; }
